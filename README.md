@@ -68,3 +68,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# GET STARTING
+> npx create-react-app prime-react
+> npm install react-router-dom
+> npm install axios
+> npm install primereact
+> npm install primeicons
+> npm install primeflex --save
+> 
+> 
