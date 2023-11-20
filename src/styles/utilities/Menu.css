@@ -1,0 +1,11 @@
+.p-menubar {
+    border-radius: 0;
+}
+
+.p-menubar .p-menubar-start {
+    margin: 5px 5px;
+}
+
+.p-menubar .p-menuitem-link:focus {
+    box-shadow: unset;
+}

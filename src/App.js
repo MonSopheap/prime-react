@@ -10,13 +10,15 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
 import HomePage from './pages/home';
 import PageNotFound from './components/PageNotFound';
+import Settings from './pages/settings/Settings';
 
 function App() {
   return (
     <BrowserRouter basename='/web'>
       <MainLayout>
         <Routes>
-          <Route path='/home' element={<HomePage />}></Route>
+          <Route path='home' element={<HomePage />}></Route>
+          <Route path='setting' element={<Settings />}></Route>
           {/* 👇️ only match this when no other routes match */}
           <Route path="*" element={<PageNotFound />} />
         </Routes>
