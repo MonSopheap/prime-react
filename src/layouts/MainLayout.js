@@ -1,50 +1,154 @@
-import React, { useState } from 'react'
-import { Button } from 'primereact/button';
-import { Panel } from 'primereact/panel';
-import { Card } from 'primereact/card';
-import { Sidebar } from 'primereact/sidebar';
+import React from 'react';
+import { Menubar } from 'primereact/menubar';
+import { InputText } from 'primereact/inputtext';
 
-function MainLayout() {
-    const [visible, setVisible] = useState(false);
+function MainLayout({ children }) {
+    const items = [
+        {
+            label: 'File',
+            icon: 'pi pi-fw pi-file',
+            items: [
+                {
+                    label: 'New',
+                    icon: 'pi pi-fw pi-plus',
+                    items: [
+                        {
+                            label: 'Bookmark',
+                            icon: 'pi pi-fw pi-bookmark'
+                        },
+                        {
+                            label: 'Video',
+                            icon: 'pi pi-fw pi-video'
+                        },
+
+                    ]
+                },
+                {
+                    label: 'Delete',
+                    icon: 'pi pi-fw pi-trash'
+                },
+                {
+                    separator: true
+                },
+                {
+                    label: 'Export',
+                    icon: 'pi pi-fw pi-external-link'
+                }
+            ]
+        },
+        {
+            label: 'Edit',
+            icon: 'pi pi-fw pi-pencil',
+            items: [
+                {
+                    label: 'Left',
+                    icon: 'pi pi-fw pi-align-left'
+                },
+                {
+                    label: 'Right',
+                    icon: 'pi pi-fw pi-align-right'
+                },
+                {
+                    label: 'Center',
+                    icon: 'pi pi-fw pi-align-center'
+                },
+                {
+                    label: 'Justify',
+                    icon: 'pi pi-fw pi-align-justify'
+                },
+
+            ]
+        },
+        {
+            label: 'Users',
+            icon: 'pi pi-fw pi-user',
+            items: [
+                {
+                    label: 'New',
+                    icon: 'pi pi-fw pi-user-plus',
+
+                },
+                {
+                    label: 'Delete',
+                    icon: 'pi pi-fw pi-user-minus',
+
+                },
+                {
+                    label: 'Search',
+                    icon: 'pi pi-fw pi-users',
+                    items: [
+                        {
+                            label: 'Filter',
+                            icon: 'pi pi-fw pi-filter',
+                            items: [
+                                {
+                                    label: 'Print',
+                                    icon: 'pi pi-fw pi-print'
+                                }
+                            ]
+                        },
+                        {
+                            icon: 'pi pi-fw pi-bars',
+                            label: 'List'
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            label: 'Events',
+            icon: 'pi pi-fw pi-calendar',
+            items: [
+                {
+                    label: 'Edit',
+                    icon: 'pi pi-fw pi-pencil',
+                    items: [
+                        {
+                            label: 'Save',
+                            icon: 'pi pi-fw pi-calendar-plus'
+                        },
+                        {
+                            label: 'Delete',
+                            icon: 'pi pi-fw pi-calendar-minus'
+                        }
+                    ]
+                },
+                {
+                    label: 'Archive',
+                    icon: 'pi pi-fw pi-calendar-times',
+                    items: [
+                        {
+                            label: 'Remove',
+                            icon: 'pi pi-fw pi-calendar-minus'
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            label: 'Quit',
+            icon: 'pi pi-fw pi-power-off'
+        }
+    ];
+
+    const start = <img alt="logo" src="https://primefaces.org/cdn/primereact/images/logo.png" height="40" className="mr-2"></img>;
+    const end = <InputText placeholder="Search" type="text" className="w-full" />;
+
     return (
         <>
-            <div className="h-screen w-full">
-                <div className="w-full h-full p-2">
-                    <h1 className="text-center">MainLayout</h1>
-                    <Button label="Submit" />
+            <main className="h-screen w-screen">
+                <div className="h-full flex flex-column align-items-center justify-content-center">
+                    <div className="w-full flex h-3rem bg-blue-100 overflow-auto">
+                        <header className="w-full h-full">
+                            <Menubar model={items} start={start} end={end} className="z-5" />
+                        </header>
+                    </div>
+                    <div className="h-full flex-1 overflow-y-auto">
+                        {children}
+                    </div>
 
-
-                    <Card title="Title">
-                        <p className="m-0">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
-                            numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
-                        </p>
-                    </Card>
-
-                    <Panel header="Header" className="mt-5">
-                        <p className="m-0">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                    </Panel>
                 </div>
-
-
-                <div className="card flex justify-content-center">
-                    <Sidebar visible={visible} onHide={() => setVisible(false)}>
-                        <h2>Sidebar</h2>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        </p>
-                    </Sidebar>
-                    <Button icon="pi pi-arrow-right" onClick={() => setVisible(true)} />
-                </div>
-
-
-            </div>
+            </main>
         </>
     )
 }
