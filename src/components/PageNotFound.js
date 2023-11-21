@@ -10,8 +10,9 @@ function PageNotFound() {
         <>
             <div className="w-full h-full text-center" style={{ fontFamily: "KantumruyPro" }}>
                 <div className="h-full flex flex-column justify-content-center align-items-center">
-                    <h1 className="p-0 m-0 text-gray-500">{translate("GLOBAL.PAGE_404")}</h1>
-                    <p className="text-xl p-0 my-2" style={{ fontFamily: "KantumruyPro" }}><span className="font-bold">[404]</span> {translate("MSG.WE_ARE_SORRY")}</p>
+                    <h1 className="text-gray-500 mb-3 text-7xl font-bold">Oops</h1>
+                    <h2 className="p-0 mb-1 text-gray-500">{translate("GLOBAL.PAGE_404")}</h2>
+                    <p className="text-xl p-0 my-2" style={{ fontFamily: "KantumruyPro" }}><span className="font-bold text-600">[404]</span> {translate("MSG.PAGE_NOT_FOUND")}</p>
                     <Button onClick={() => navigate("/home")} label={translate("NAV.GO_TO_DASHBOARD")} className="mt-3 text-sm" icon="pi pi-replay" iconPos="left" />
                 </div>
             </div>

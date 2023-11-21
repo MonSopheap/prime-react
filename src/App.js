@@ -8,9 +8,10 @@ import './styles/PublicCss.css';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
-import HomePage from './pages/home';
 import PageNotFound from './components/PageNotFound';
 import Settings from './pages/settings/Settings';
+import HomePage from './pages/home/HomePage';
+import ItemCenter from './pages/stock/ItemCenter';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <MainLayout>
         <Routes>
           <Route path='home' element={<HomePage />}></Route>
+          <Route path='item-center' element={<ItemCenter />}></Route>
           <Route path='setting' element={<Settings />}></Route>
           {/* 👇️ only match this when no other routes match */}
           <Route path="*" element={<PageNotFound />} />

@@ -5,9 +5,14 @@
         "PAGE_404": "Page not found"
     },
     "NAV": {
-        "GO_TO_DASHBOARD": "Go to Dashabord"
+        "REPORT": "Report",
+        "GO_TO_DASHBOARD": "Go to Dashabord",
+        "ITEM": "Item",
+        "ADD": "Add New",
+        "EDIT": "Edit",
+        "DELETE": "Delete"
     },
     "MSG": {
-        "WE_ARE_SORRY": "We're sorry, the page you requested could not be found!"
+        "PAGE_NOT_FOUND": "That's an error. The requested URL was not found on this server. That's all we know!"
     }
 }

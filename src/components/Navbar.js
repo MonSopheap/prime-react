@@ -1,11 +1,9 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from 'primereact/button';
 import { Badge } from 'primereact/badge';
 import { Menubar } from 'primereact/menubar';
 import { OverlayPanel } from 'primereact/overlaypanel';
-
-
 import {
     flagKh,
     flagEn,
@@ -17,6 +15,17 @@ function Navbar() {
     const [translate, i18n] = useTranslation("global");
     const op = useRef(null);
     const navigate = useNavigate()
+    const [language, setLanguage] = useState({ id: "kh", name: "ភាសាខ្មែរ", flag: flagKh })
+
+
+    useEffect(() => {
+        const lang = JSON.parse(localStorage.getItem("__lang__"));
+        setLanguage(lang);
+
+        console.log(lang)
+    }, [])
+
+
     const items = [
         {
             label: translate("GLOBAL.DASHBOARD"),
@@ -24,13 +33,19 @@ function Navbar() {
             command: () => navigate("/home"),
         },
         {
-            label: 'Setting',
-            icon: 'pi pi-fw pi-cog',
-            // url: 'https://reactjs.org/'
+            label: translate("NAV.ITEM"),
+            icon: 'pi pi-fw pi-box',
+            command: () => navigate("/item-center"),
+        },
+        {
+            label: translate("NAV.REPORT"),
+            icon: 'pi pi-fw pi-book',
+            command: () => navigate("/report"),
         },
         // {
         //     label: 'Help',
         //     icon: 'pi pi-fw pi-question-circle',
+        //     url: 'https://reactjs.org/'
         // },
         // {
         //     label: 'Events',
@@ -65,9 +80,11 @@ function Navbar() {
     ];
 
     const handleChangeLanguage = (lang) => {
-        i18n.changeLanguage(lang)
+        localStorage.setItem("__lang__", JSON.stringify(lang));
+        setLanguage(lang)
+        i18n.changeLanguage(lang.id)
     }
-    const start = <img alt="logo" src={logo} height="35" className="mr-2"></img>;
+    const start = <img alt="logo" onClick={() => navigate("/home")} src={logo} height="35" className="mr-2 cursor-pointer"></img>;
 
     return (
         <>
@@ -77,9 +94,9 @@ function Navbar() {
                 </header>
                 <div className="flex-1 flex flex-row align-items-center justify-content-center px-3 pl-3">
                     <div className="flex flex-row align-items-center justify-content-center cursor-pointer">
-                        <img src={flagKh} height={'13px'} />
+                        <img src={language.flag} loading={"lazy"} height={'13px'} />
                         <div onClick={(e) => op.current.toggle(e)} className="w-full h-full flex flex-row ml-1 align-items-center justify-content-center">
-                            <span style={{ fontFamily: 'KantumruyPro' }} className="select-none mr-1">ភាសាខ្មែរ</span>
+                            <span style={{ fontFamily: 'KantumruyPro' }} className="select-none mr-1">{language.name}</span>
                             <i className="pi pi-angle-down text-gray-500"></i>
                         </div>
                     </div>
@@ -95,16 +112,16 @@ function Navbar() {
             </div>
 
             <OverlayPanel ref={op} className="shadow-2">
-                <ul className="list-none text-left p-0 m-0" style={{ width: "150px", 'font-family': 'KantumruyPro' }}>
-                    <li onClick={(e) => { op.current.hide(); handleChangeLanguage("kh") }} className="text-left p-2 px-2 cursor-pointer hover:bg-blue-100 border-round-sm">
+                <ul className="list-none text-left p-0 m-0" style={{ width: "150px", fontFamily: 'KantumruyPro' }}>
+                    <li onClick={(e) => { op.current.hide(); handleChangeLanguage({ id: "kh", name: "ភាសាខ្មែរ", flag: flagKh }) }} className="text-left p-2 px-2 cursor-pointer hover:bg-blue-100 border-round-sm">
                         <div className="flex flex-row align-items-center">
-                            <img src={flagKh} height={'14px'} className="mr-2" />
+                            <img src={flagKh} loading={"lazy"} height={'14px'} className="mr-2" />
                             <a href='#' className="no-underline flex text-sm">ភាសាខ្មែរ</a>
                         </div>
                     </li>
-                    <li onClick={(e) => { op.current.hide(); handleChangeLanguage("en") }} className="text-left p-2 cursor-pointer hover:bg-blue-100 border-round-sm">
+                    <li onClick={(e) => { op.current.hide(); handleChangeLanguage({ id: "en", name: "English", flag: flagEn }) }} className="text-left p-2 cursor-pointer hover:bg-blue-100 border-round-sm">
                         <div className="flex flex-row align-items-center">
-                            <img src={flagEn} height={'14px'} className="mr-2" />
+                            <img src={flagEn} loading={"lazy"} height={'14px'} className="mr-2" />
                             <a href='#' className="no-underline flex text-sm">English</a>
                         </div>
                     </li>
