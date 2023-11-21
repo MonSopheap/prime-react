@@ -1,0 +1,13 @@
+{
+    "GLOBAL": {
+        "WELCOME": "Welcome",
+        "DASHBOARD": "Dashboard",
+        "PAGE_404": "Page not found"
+    },
+    "NAV": {
+        "GO_TO_DASHBOARD": "Go to Dashabord"
+    },
+    "MSG": {
+        "WE_ARE_SORRY": "We're sorry, the page you requested could not be found!"
+    }
+}

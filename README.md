@@ -76,5 +76,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 > npm install primereact
 > npm install primeicons
 > npm install primeflex --save
-> 
-> 
+
+# FOR SETUP JSON LANGUAGE
+> npm i i18next react-i18next --save
+# https://www.npmjs.com/package/i18next
+# FOR CHANGE LANGUGAE
+# https://www.npmjs.com/package/react-i18next
+# https://www.youtube.com/watch?v=TlHk11Eftow&list=PLTf-z6qf4E6frAoByh-7fF6pVgk1PM7yK&index=2
+

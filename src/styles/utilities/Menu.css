@@ -1,5 +1,6 @@
 .p-menubar {
     border-radius: 0;
+    background-color: #321f61;
 }
 
 .p-menubar .p-menubar-start {
@@ -9,3 +10,11 @@
 .p-menubar .p-menuitem-link:focus {
     box-shadow: unset;
 }
+
+/* .p-menubar .p-menubar-root-list>.p-menuitem>.p-menuitem-link .p-menuitem-text {
+    color: white;
+}
+
+.p-menubar .p-menubar-root-list>.p-menuitem>.p-menuitem-link .p-menuitem-icon {
+    color: white;
+} */

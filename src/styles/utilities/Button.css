@@ -1,3 +1,7 @@
+.p-button {
+    font-family: "KantumruyPro";
+}
+
 .p-button:focus {
     box-shadow: unset;
 }

@@ -13,7 +13,7 @@ code {
 }
 
 @font-face {
-  font-family: "Kantumruy Pro";
+  font-family: "KantumruyPro";
   src: url("../src/assets/fonts/KantumruyPro-Regular.ttf") format('truetype');
   font-display: swap;
 }

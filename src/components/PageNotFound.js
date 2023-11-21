@@ -1,16 +1,18 @@
 import React from 'react'
 import { Button } from 'primereact/button';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 function PageNotFound() {
+    const [translate] = useTranslation("global")
     const navigate = useNavigate()
     return (
         <>
-            <div className="w-full h-full text-center">
+            <div className="w-full h-full text-center" style={{ fontFamily: "KantumruyPro" }}>
                 <div className="h-full flex flex-column justify-content-center align-items-center">
-                    <h1 className="p-0 m-0">Page not found</h1>
-                    <p className="text-xl p-0 my-2" style={{ fontFamily: "Kantumruy Pro" }}>We're sorry, the page you requested could not be found!</p>
-                    <Button onClick={() => navigate("/home")} label="Go To Dashboard" className="mt-3 text-sm" icon="pi pi-replay" iconPos="left" />
+                    <h1 className="p-0 m-0 text-gray-500">{translate("GLOBAL.PAGE_404")}</h1>
+                    <p className="text-xl p-0 my-2" style={{ fontFamily: "KantumruyPro" }}><span className="font-bold">[404]</span> {translate("MSG.WE_ARE_SORRY")}</p>
+                    <Button onClick={() => navigate("/home")} label={translate("NAV.GO_TO_DASHBOARD")} className="mt-3 text-sm" icon="pi pi-replay" iconPos="left" />
                 </div>
             </div>
         </>
