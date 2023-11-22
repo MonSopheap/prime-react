@@ -16,7 +16,7 @@ import Profile from './pages/profile/Profile';
 
 function App() {
   return (
-    <BrowserRouter basename='/web'>
+    <BrowserRouter basename='/'>
       <MainLayout>
         <Routes>
           <Route path='home' element={<HomePage />}></Route>
