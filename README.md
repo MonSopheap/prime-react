@@ -84,3 +84,15 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 # https://www.npmjs.com/package/react-i18next
 # https://www.youtube.com/watch?v=TlHk11Eftow&list=PLTf-z6qf4E6frAoByh-7fF6pVgk1PM7yK&index=2
 
+
+
+
+
+
+
+
+# You can transfer those (simply by adding a remote to a GitHub repo and pushing them)
+# create an empty repo on GitHub
+> git remote add github https://yourLogin@github.com/yourLogin/yourRepoName.git
+> git push --mirror github
+The history will be the same.

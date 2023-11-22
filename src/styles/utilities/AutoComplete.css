@@ -1,0 +1,16 @@
+.p-autocomplete .p-button.p-button-icon-only {
+    width: 2.357rem;
+    padding: 0.5rem 0;
+    height: 32px;
+}
+
+.p-autocomplete .p-inputtext {
+    border-right: unset;
+}
+
+.p-autocomplete .p-button {
+    color: black;
+    background: transparent;
+    border-left: unset;
+    color: gray;
+}

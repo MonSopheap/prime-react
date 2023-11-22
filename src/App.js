@@ -1,6 +1,6 @@
 import './App.css';
-// import "primereact/resources/themes/saga-blue/theme.css";
-import "primereact/resources/themes/tailwind-light/theme.css";
+import "primereact/resources/themes/saga-blue/theme.css";
+// import "primereact/resources/themes/tailwind-light/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import "/node_modules/primeflex/primeflex.css";
@@ -11,7 +11,8 @@ import MainLayout from './layouts/MainLayout';
 import PageNotFound from './components/PageNotFound';
 import Settings from './pages/settings/Settings';
 import HomePage from './pages/home/HomePage';
-import ItemCenter from './pages/stock/ItemCenter';
+import ItemCenter from './pages/items/ItemCenter';
+import Profile from './pages/profile/Profile';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path='home' element={<HomePage />}></Route>
           <Route path='item-center' element={<ItemCenter />}></Route>
           <Route path='setting' element={<Settings />}></Route>
+          <Route path='profile' element={<Profile />}></Route>
           {/* 👇️ only match this when no other routes match */}
           <Route path="*" element={<PageNotFound />} />
         </Routes>

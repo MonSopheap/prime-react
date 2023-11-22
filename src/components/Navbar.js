@@ -9,22 +9,31 @@ import {
     flagEn,
     logo
 } from "../assets/images";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { Avatar } from 'primereact/avatar';
 
 function Navbar() {
     const [translate, i18n] = useTranslation("global");
     const op = useRef(null);
     const navigate = useNavigate()
-    const [language, setLanguage] = useState({ id: "kh", name: "ភាសាខ្មែរ", flag: flagKh })
-
-
+    const [language, setLanguage] = useState({})
     useEffect(() => {
         const lang = JSON.parse(localStorage.getItem("__lang__"));
-        setLanguage(lang);
+        if (lang) setLanguage(lang);
+        else setLanguage({ id: "kh", name: "ភាសាខ្មែរ", flag: flagKh });
 
         console.log(lang)
-    }, [])
+    }, []);
 
+    const [loading, setLoading] = useState(false);
+
+    const load = () => {
+        setLoading(true);
+
+        setTimeout(() => {
+            setLoading(false);
+        }, 1500);
+    };
 
     const items = [
         {
@@ -100,14 +109,16 @@ function Navbar() {
                             <i className="pi pi-angle-down text-gray-500"></i>
                         </div>
                     </div>
-                    <div onClick={() => navigate("/settings")} className="cursor-pointer p-1 bg-blue-50 hover:bg-blue-100 select-none border-circle ml-2 flex justify-content-center align-items-center" style={{ width: "40px", height: "40px" }}>
-                        <i className="pi pi-cog p-overlay-badge text-900" style={{ fontSize: '18px' }}></i>
-                    </div>
-                    <div onClick={() => navigate("/notification")} className="cursor-pointer p-1 bg-blue-50 hover:bg-blue-100 select-none border-circle ml-1 flex justify-content-center align-items-center" style={{ width: "40px", height: "40px" }}>
-                        <i className="pi pi-bell p-overlay-badge" style={{ fontSize: '18px' }}>
+                    <Link target={"_blank"} to="https://react.dev/learn">
+                        <Button icon="pi pi-question-circle" style={{ width: '38px', height: "38px" }} tooltip={translate("GLOBAL.HELP")} tooltipOptions={{ position: 'bottom', mouseTrack: true, mouseTrackTop: 15 }} className="ml-2 border bg-blue-50 border-primary-50 focus:border-primary-500" rounded outlined />
+                    </Link>
+                    <Button onClick={() => { navigate("/settings") }} icon="pi pi-cog" style={{ width: '38px', height: "38px" }} tooltip={translate("GLOBAL.SETTING")} tooltipOptions={{ position: 'bottom', mouseTrack: true, mouseTrackTop: 15 }} className="ml-1 border bg-blue-50 border-primary-50 focus:border-primary-500" rounded outlined loading={loading} />
+                    <Button onClick={() => navigate("/notification")} className="p-1 border bg-blue-50 border-primary-50 focus:border-primary-500 ml-1 flex justify-content-center align-items-center" rounded outlined style={{ width: "40px", height: "40px" }}>
+                        <i className="pi pi-bell p-overlay-badge text-primary" style={{ fontSize: '18px' }}>
                             <Badge severity="danger" style={{ fontSize: "9px", minWidth: "15px", height: "15px", justifyContent: "center", alignItems: "center", alignContent: "center", display: "flex" }} value={1}></Badge>
                         </i>
-                    </div>
+                    </Button>
+                    <Avatar onClick={() => { navigate("/profile") }} image="https://southasia.macmillan.yale.edu/sites/default/files/puttpunyagupta.jpeg" className="ml-1 cursor-pointer" style={{ backgroundColor: '#2196F3', color: '#ffffff' }} shape="circle" />
                 </div>
             </div>
 

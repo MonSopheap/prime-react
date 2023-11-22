@@ -2,7 +2,9 @@
     "GLOBAL": {
         "WELCOME": "Welcome",
         "DASHBOARD": "Dashboard",
-        "PAGE_404": "Page not found"
+        "PAGE_404": "Page not found",
+        "HELP": "Help",
+        "SETTING": "Setting"
     },
     "NAV": {
         "REPORT": "Report",
@@ -10,7 +12,30 @@
         "ITEM": "Item",
         "ADD": "Add New",
         "EDIT": "Edit",
-        "DELETE": "Delete"
+        "DELETE": "Delete",
+        "YES": "Yes",
+        "NO": "No",
+        "OK": "Ok",
+        "CANCEL": "Cancel",
+        "SAVE": "Save",
+        "ADD_ITEM": "Add Item",
+        "EDIT_ITEM": "Edit Item",
+        "ITEM_GROUP": "Item Group",
+        "MEMO": "Memo",
+        "GENERAL_INFO": "General Info",
+        "STOCK_INFO": "Stock Info"
+    },
+    "ITEM": {
+        "CODE": "Code",
+        "NAME": "Name (English)",
+        "LOCAL_NAME": "Local Name",
+        "ITEM_BRAND": "Item Brand",
+        "ITEM_TYPE": "Item Type"
+    },
+    "ITEM_GROUP": {
+        "CODE": "Code",
+        "NAME": "Name (English)",
+        "LOCAL_NAME": "Local Name"
     },
     "MSG": {
         "PAGE_NOT_FOUND": "That's an error. The requested URL was not found on this server. That's all we know!"

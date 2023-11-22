@@ -12,7 +12,7 @@ import { I18nextProvider } from 'react-i18next';
 
 i18next.init({
   interpolation: { escapeValue: false },
-  lng: "kh",
+  lng: JSON.parse(localStorage.getItem("__lang__"))?.id ?? "kh",
   resources: {
     en: {
       global: global_en
