@@ -118,7 +118,7 @@ function Navbar() {
                             <Badge severity="danger" style={{ fontSize: "9px", minWidth: "15px", height: "15px", justifyContent: "center", alignItems: "center", alignContent: "center", display: "flex" }} value={1}></Badge>
                         </i>
                     </Button>
-                    <Avatar onClick={() => { navigate("/profile") }} image="https://southasia.macmillan.yale.edu/sites/default/files/puttpunyagupta.jpeg" className="ml-1 cursor-pointer" style={{ backgroundColor: '#2196F3', color: '#ffffff' }} shape="circle" />
+                    <Avatar onClick={() => { navigate("/profile") }} image="https://static-cdn.jtvnw.net/jtv_user_pictures/zengaming_ow-profile_image-3283a0daab4ea418-300x300.png" className="ml-1 cursor-pointer" style={{ backgroundColor: '#2196F3', color: '#ffffff' }} shape="circle" />
                 </div>
             </div>
 
