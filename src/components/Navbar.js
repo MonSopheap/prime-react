@@ -7,7 +7,7 @@ import { OverlayPanel } from 'primereact/overlaypanel';
 import {
     flagKh,
     flagEn,
-    logo
+    logo,
 } from "../assets/images";
 import { Link, useNavigate } from 'react-router-dom';
 import { Avatar } from 'primereact/avatar';
@@ -113,12 +113,12 @@ function Navbar() {
                         <Button icon="pi pi-question-circle" style={{ width: '38px', height: "38px" }} tooltip={translate("GLOBAL.HELP")} tooltipOptions={{ position: 'bottom', mouseTrack: true, mouseTrackTop: 15 }} className="ml-2 border bg-blue-50 border-primary-50 focus:border-primary-500" rounded outlined />
                     </Link>
                     <Button onClick={() => { navigate("/settings") }} icon="pi pi-cog" style={{ width: '38px', height: "38px" }} tooltip={translate("GLOBAL.SETTING")} tooltipOptions={{ position: 'bottom', mouseTrack: true, mouseTrackTop: 15 }} className="ml-1 border bg-blue-50 border-primary-50 focus:border-primary-500" rounded outlined loading={loading} />
-                    <Button onClick={() => navigate("/notification")} className="p-1 border bg-blue-50 border-primary-50 focus:border-primary-500 ml-1 flex justify-content-center align-items-center" rounded outlined style={{ width: "40px", height: "40px" }}>
+                    <Button onClick={() => navigate("/notification")} className="p-1 border overflow-visible bg-blue-50 border-primary-50 focus:border-primary-500 ml-1 flex justify-content-center align-items-center" rounded outlined style={{ width: "40px", height: "40px" }}>
                         <i className="pi pi-bell p-overlay-badge text-primary" style={{ fontSize: '18px' }}>
                             <Badge severity="danger" style={{ fontSize: "9px", minWidth: "15px", height: "15px", justifyContent: "center", alignItems: "center", alignContent: "center", display: "flex" }} value={1}></Badge>
                         </i>
                     </Button>
-                    <Avatar onClick={() => { navigate("/profile") }} image="https://static-cdn.jtvnw.net/jtv_user_pictures/zengaming_ow-profile_image-3283a0daab4ea418-300x300.png" className="ml-1 cursor-pointer" style={{ backgroundColor: '#2196F3', color: '#ffffff' }} shape="circle" />
+                    <Avatar onClick={() => { navigate("/profile") }} image="https://static-cdn.jtvnw.net/jtv_user_pictures/zengaming_ow-profile_image-3283a0daab4ea418-300x300.png" className="ml-2 cursor-pointer border-primary-500 shadow-3" style={{ width: "40px", height: "40px", backgroundColor: '#2196F3', color: '#ffffff', }} shape="circle" />
                 </div>
             </div>
 

@@ -4,7 +4,9 @@
         "DASHBOARD": "ផ្ទាំងព័ត៌មាន",
         "PAGE_404": "រកមិនឃើញទំព័រ",
         "HELP": "ជំនួយ",
-        "SETTING": "កំណត់ប្រព័ន្ធ"
+        "SETTING": "កំណត់ប្រព័ន្ធ",
+        "CURRENCY": "រូបិយបណ្ណ",
+        "CHOOSE": "ជ្រើសរើស"
     },
     "NAV": {
         "REPORT": "របាយការណ៍",
@@ -23,19 +25,30 @@
         "ITEM_GROUP": "ក្រុមទំនិញ",
         "MEMO": "សម្គាល់",
         "GENERAL_INFO": "ព័ត៌មានទូទៅ",
-        "STOCK_INFO": "ព័ត៌មានស្តុក"
+        "STOCK_INFO": "ព័ត៌មានស្តុក",
+        "UNIT_SET": "ខ្នាត"
     },
     "ITEM": {
         "CODE": "កូដ",
         "NAME": "ឈ្មោះ (English)",
         "LOCAL_NAME": "ឈ្មោះ (ភាសាខ្មែរ)",
-        "ITEM_BRAND": "ម៉ាក់យីហោ",
-        "ITEM_TYPE": "ប្រភេទទំនិញ"
+        "ITEM_BRAND": "ម៉ាក់ទំនិញ",
+        "ITEM_TYPE": "ប្រភេទទំនិញ",
+        "COST": "ថ្លៃដើម",
+        "BASE_UNIT": "ខ្នាតគោល",
+        "BASE_PRICE": "តម្លៃខ្នាតគោល",
+        "BARCODE": "កូដទំនិញ"
     },
     "ITEM_GROUP": {
         "CODE": "កូដ",
         "NAME": "ឈ្មោះ (English)",
         "LOCAL_NAME": "ឈ្មោះ (ភាសាខ្មែរ)"
+    },
+    "UNIT_SET": {
+        "CODE": "កូដ",
+        "NAME": "ឈ្មោះ (English)",
+        "LOCAL_NAME": "ឈ្មោះ (ភាសាខ្មែរ)",
+        "UNITSET_NAME": "ឈ្មោះខ្នាត"
     },
     "MSG": {
         "PAGE_NOT_FOUND": "នោះ​ជា​កំហុស។ URL ដែលបានស្នើសុំមិនត្រូវបានរកឃើញនៅលើប្រព័ន្ធនេះទេ។"

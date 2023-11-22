@@ -7,6 +7,11 @@ import { InputText } from "primereact/inputtext";
 import { AutoComplete } from "primereact/autocomplete";
 import { InputTextarea } from "primereact/inputtextarea";
 import { TabView, TabPanel } from 'primereact/tabview';
+import { Dropdown } from 'primereact/dropdown';
+
+import {
+    defaultImage
+} from "../../assets/images";
 
 function ItemCenter() {
     const [translate] = useTranslation("global")
@@ -17,6 +22,10 @@ function ItemCenter() {
     const [value, setValue] = useState('');
     const [memo, setMemo] = useState('');
     const [itemGroups, setItemGroups] = useState([]);
+    const [selectedCurrency, setSelectedCurrency] = useState(null);
+    const [loading, setLoading] = useState(false);
+
+
     const search = (event) => {
         let _items = [...Array(10).keys()];
         setItemGroups(event.query ? [...Array(10).keys()].map(item => event.query + '-' + item) : _items);
@@ -27,7 +36,6 @@ function ItemCenter() {
         { label: "abc3", value: "3" }
     ];
 
-    const [loading, setLoading] = useState(false);
 
     const load = () => {
         setLoading(true);
@@ -44,6 +52,11 @@ function ItemCenter() {
             <Button label={translate("NAV.CANCEL")} icon="pi pi-times" onClick={() => setVisible(false)} className="border-primary-100" />
         </div>
     );
+
+    const currencyList = [
+        { name: 'Dollar', code: 'USD' },
+        { name: 'Riel', code: 'KHR' },
+    ];
 
     useEffect(() => {
         setItemGroups(data)
@@ -73,7 +86,7 @@ function ItemCenter() {
                 </div>
             </div>
 
-            <Dialog header={translate("NAV.ADD_ITEM")} className="text-sm" visible={visible} style={{ width: '75%', maxHeight: "80%", height: "80%" }} onHide={() => setVisible(false)} footer={footerContent}>
+            <Dialog header={translate("NAV.ADD_ITEM")} className="text-sm" visible={visible} style={{ width: '90%', maxHeight: "95%", height: "90%" }} onHide={() => setVisible(false)} footer={footerContent}>
                 <div className="w-full h-full p-1">
                     <div className="w-full h-full justify-content-center align-items-center">
                         <div className="w-full">
@@ -82,6 +95,7 @@ function ItemCenter() {
                                     <div className="grid align-items-center">
                                         <div className="col-12 sm:col-12 md:col-5 lg:col-5 xl:col-5">
                                             <label className="text-base">{translate("ITEM.CODE")}</label>
+                                            <sup className="text-red-500">*</sup>
                                         </div>
                                         <div className="col-12 sm:col-12 md:col-7 lg:col-7 xl:col-7">
                                             <InputText value={''} className="w-full" onChange={(e) => { }} autoFocus />
@@ -90,6 +104,7 @@ function ItemCenter() {
                                     <div className="grid align-items-center">
                                         <div className="col-12 sm:col-12 md:col-5 lg:col-5 xl:col-5">
                                             <label className="text-base">{translate("ITEM.NAME")}</label>
+                                            <sup className="text-red-500">*</sup>
                                         </div>
                                         <div className="col-12 sm:col-12 md:col-7 lg:col-7 xl:col-7">
                                             <InputText value={null} className="w-full" onChange={(e) => { }} />
@@ -101,6 +116,14 @@ function ItemCenter() {
                                         </div>
                                         <div className="col-12 sm:col-12 md:col-7 lg:col-7 xl:col-7">
                                             <InputText value={''} className="w-full" onChange={(e) => { }} />
+                                        </div>
+                                    </div>
+                                    <div className="grid align-items-center">
+                                        <div className="col-12 sm:col-12 md:col-5 lg:col-5 xl:col-5">
+                                            <label className="text-base">{translate("ITEM.ITEM_BRAND")}</label>
+                                        </div>
+                                        <div className="col-12 sm:col-12 md:col-7 lg:col-7 xl:col-7">
+                                            <AutoComplete className="w-full" value={value} suggestions={itemGroups} completeMethod={search} onChange={(e) => setValue(e.value)} dropdown />
                                         </div>
                                     </div>
                                 </div>
@@ -118,47 +141,86 @@ function ItemCenter() {
                                             <label className="text-base">{translate("NAV.MEMO")}</label>
                                         </div>
                                         <div className="col-12 sm:col-12 md:col-7 lg:col-7 xl:col-7">
-                                            <InputTextarea className="w-full h-full" rows={4} cols={30} value={memo} onChange={(e) => setMemo(e.target.value)} />
+                                            <InputTextarea className="w-full h-full" rows={6} cols={30} value={memo} onChange={(e) => setMemo(e.target.value)} />
                                         </div>
                                     </div>
                                 </div>
                                 <div className="col-12 sm:col-12 md:col-3 lg:col-3 xl:col-3">
                                     <div className="grid">
                                         <div className="col-12 flex align-items-center justify-content-center">
-                                            <img className="h-7rem border-round-md cursor-pointer" src="https://getuikit.com/v2/docs/images/placeholder_600x400.svg" />
+                                            <img className="h-8rem border-round-md cursor-pointer" src={defaultImage} />
                                         </div>
                                     </div>
                                 </div>
 
                             </div>
                         </div>
-                        <div className="flex-1 w-full h-full">
-                            <TabView>
+                        <div className="flex-1 w-full">
+                            <TabView className="p-0">
                                 <TabPanel header={translate("NAV.GENERAL_INFO")}>
-                                    <p className="m-0">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                    </p>
-                                    <p className="m-0">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                    </p>
-                                    <p className="m-0">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                    </p>
-                                    <p className="m-0">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                    </p>
+                                    <div className="w-full h-full">
+                                        <div className="grid">
+                                            <div className="col-12 sm:col-12 md:col-5 lg:col-5 xl:col-5 pb-0">
+                                                <div className="grid align-items-center">
+                                                    <div className="col-12 sm:col-12 md:col-5 lg:col-5 xl:col-5">
+                                                        <label className="text-base">{translate("UNIT_SET.UNITSET_NAME")}</label>
+                                                    </div>
+                                                    <div className="col-12 sm:col-12 md:col-7 lg:col-7 xl:col-7">
+                                                        <Dropdown value={selectedCurrency} onChange={(e) => { setSelectedCurrency(e.value) }} options={currencyList} optionLabel="name"
+                                                            filter placeholder={translate("GLOBAL.CHOOSE")} className="w-full" />
+                                                    </div>
+                                                </div>
+                                                <div className="grid align-items-center">
+                                                    <div className="col-12 sm:col-12 md:col-5 lg:col-5 xl:col-5">
+                                                        <label className="text-base">{translate("ITEM.COST")}</label>
+                                                    </div>
+                                                    <div className="col-12 sm:col-12 md:col-7 lg:col-7 xl:col-7">
+                                                        <InputText value={''} className="w-full" onChange={(e) => { }} />
+                                                    </div>
+                                                </div>
+                                                <div className="grid align-items-center">
+                                                    <div className="col-12 sm:col-12 md:col-5 lg:col-5 xl:col-5">
+                                                        <label className="text-base">{translate("GLOBAL.CURRENCY")}</label>
+                                                    </div>
+                                                    <div className="col-12 sm:col-12 md:col-7 lg:col-7 xl:col-7">
+                                                        <Dropdown value={selectedCurrency} onChange={(e) => { setSelectedCurrency(e.value) }} options={currencyList} optionLabel="name"
+                                                            showClear placeholder={translate("GLOBAL.CHOOSE")} className="w-full" />
+                                                    </div>
+                                                </div>
+                                                <div className="grid align-items-center">
+                                                    <div className="col-12 sm:col-12 md:col-5 lg:col-5 xl:col-5">
+                                                        <label className="text-base">{translate("ITEM.BASE_UNIT")}</label>
+                                                    </div>
+                                                    <div className="col-12 sm:col-12 md:col-7 lg:col-7 xl:col-7">
+                                                        <InputText value={''} className="w-full" onChange={(e) => { }} />
+                                                    </div>
+                                                </div>
+                                                <div className="grid align-items-center">
+                                                    <div className="col-12 sm:col-12 md:col-5 lg:col-5 xl:col-5">
+                                                        <label className="text-base">{translate("ITEM.BASE_PRICE")}</label>
+                                                    </div>
+                                                    <div className="col-12 sm:col-12 md:col-7 lg:col-7 xl:col-7">
+                                                        <InputText value={''} className="w-full" onChange={(e) => { }} />
+                                                    </div>
+                                                </div>
+                                                <div className="grid align-items-center">
+                                                    <div className="col-12 sm:col-12 md:col-5 lg:col-5 xl:col-5">
+                                                        <label className="text-base">{translate("ITEM.BARCODE")}</label>
+                                                    </div>
+                                                    <div className="col-12 sm:col-12 md:col-7 lg:col-7 xl:col-7">
+                                                        <InputText value={''} className="w-full" onChange={(e) => { }} />
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div className="col-12 sm:col-12 md:col-4 lg:col-4 xl:col-4 pb-0">
+
+                                            </div>
+                                            <div className="col-12 sm:col-12 md:col-3 lg:col-3 xl:col-3 pb-0">
+
+                                            </div>
+                                        </div>
+                                    </div>
                                 </TabPanel>
                                 <TabPanel header={translate("NAV.STOCK_INFO")}>
                                     <p className="m-0">

@@ -1,0 +1,4 @@
+.p-dropdown:not(.p-disabled) {
+    outline: none !important;
+    box-shadow: unset !important;
+}
