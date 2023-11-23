@@ -1,3 +1,10 @@
+.p-overlaypanel {
+    /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    /* box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px; */
+    /* box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px; */
+}
+
 .p-overlaypanel .p-overlaypanel-content {
     padding: 8px;
 }

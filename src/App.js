@@ -13,8 +13,11 @@ import Settings from './pages/settings/Settings';
 import HomePage from './pages/home/HomePage';
 import ItemCenter from './pages/items/ItemCenter';
 import Profile from './pages/profile/Profile';
+import ActivityLogs from './pages/activities-log/ActivityLogs';
+
 
 function App() {
+
   return (
     <BrowserRouter basename='/'>
       <MainLayout>
@@ -23,6 +26,7 @@ function App() {
           <Route path='item-center' element={<ItemCenter />}></Route>
           <Route path='setting' element={<Settings />}></Route>
           <Route path='profile' element={<Profile />}></Route>
+          <Route path='report/activity-log' element={<ActivityLogs />}></Route>
           {/* 👇️ only match this when no other routes match */}
           <Route path="*" element={<PageNotFound />} />
         </Routes>

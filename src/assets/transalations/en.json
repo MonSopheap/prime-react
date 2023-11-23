@@ -2,11 +2,15 @@
     "GLOBAL": {
         "WELCOME": "Welcome",
         "DASHBOARD": "Dashboard",
+        "DEVELOPER": "Developer",
         "PAGE_404": "Page not found",
         "HELP": "Help",
         "SETTING": "Setting",
         "CURRENCY": "Currency",
-        "CHOOSE": "Choose"
+        "CHOOSE": "Choose",
+        "PROFILE": "Profile",
+        "SIGN_IN": "Sign In",
+        "SIGN_OUT": "Sign Out"
     },
     "NAV": {
         "REPORT": "Report",
@@ -51,6 +55,13 @@
         "UNITSET_NAME": "UnitSet Name"
     },
     "MSG": {
-        "PAGE_NOT_FOUND": "That's an error. The requested URL was not found on this server. That's all we know!"
+        "PAGE_NOT_FOUND": "That's an error. The page you were looking for, does not exist!"
+    },
+    "REPORT": {
+        "ACTIVITY_LOG": "Activity Log",
+        "STOCK_REPORT": "Stock",
+        "STOCK_VALUATION": "Stock Valuation",
+        "STOCK_WORK_SHEET": "Stock Work Sheet",
+        "REORDER_LIST": "Qty Reorder List"
     }
 }

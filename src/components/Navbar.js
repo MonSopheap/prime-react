@@ -15,14 +15,13 @@ import { Avatar } from 'primereact/avatar';
 function Navbar() {
     const [translate, i18n] = useTranslation("global");
     const op = useRef(null);
+    const optProfile = useRef(null);
     const navigate = useNavigate()
     const [language, setLanguage] = useState({})
     useEffect(() => {
         const lang = JSON.parse(localStorage.getItem("__lang__"));
         if (lang) setLanguage(lang);
         else setLanguage({ id: "kh", name: "ភាសាខ្មែរ", flag: flagKh });
-
-        console.log(lang)
     }, []);
 
     const [loading, setLoading] = useState(false);
@@ -49,7 +48,32 @@ function Navbar() {
         {
             label: translate("NAV.REPORT"),
             icon: 'pi pi-fw pi-book',
-            command: () => navigate("/report"),
+            items: [
+                // {
+                //     label: translate("REPORT.STOCK_REPORT"),
+                //     icon: 'pi pi-fw pi-chart-bar',
+                //     items: [
+                //         {
+                //             label: translate("REPORT.STOCK_VALUATION"),
+                //             command: () => navigate("/report"),
+                //         },
+                //         {
+                //             label: translate("REPORT.STOCK_WORK_SHEET"),
+                //             command: () => navigate("/report"),
+                //         },
+                //         {
+                //             label: translate("REPORT.REORDER_LIST"),
+                //             command: () => navigate("/report"),
+                //         }
+                //     ]
+                // },
+                {
+                    label: translate("REPORT.ACTIVITY_LOG"),
+                    icon: 'pi pi-fw pi-stopwatch',
+                    command: () => navigate("/report/activity-log"),
+
+                },
+            ]
         },
         // {
         //     label: 'Help',
@@ -109,16 +133,16 @@ function Navbar() {
                             <i className="pi pi-angle-down text-gray-500"></i>
                         </div>
                     </div>
-                    <Link target={"_blank"} to="https://react.dev/learn">
+                    {/* <Link target={"_blank"} to="https://react.dev/learn">
                         <Button icon="pi pi-question-circle" style={{ width: '38px', height: "38px" }} tooltip={translate("GLOBAL.HELP")} tooltipOptions={{ position: 'bottom', mouseTrack: true, mouseTrackTop: 15 }} className="ml-2 border bg-blue-50 border-primary-50 focus:border-primary-500" rounded outlined />
-                    </Link>
-                    <Button onClick={() => { navigate("/settings") }} icon="pi pi-cog" style={{ width: '38px', height: "38px" }} tooltip={translate("GLOBAL.SETTING")} tooltipOptions={{ position: 'bottom', mouseTrack: true, mouseTrackTop: 15 }} className="ml-1 border bg-blue-50 border-primary-50 focus:border-primary-500" rounded outlined loading={loading} />
+                    </Link> */}
+                    <Button onClick={() => { navigate("/setting") }} icon="pi pi-cog" style={{ width: '38px', height: "38px" }} tooltip={translate("GLOBAL.SETTING")} tooltipOptions={{ position: 'bottom', mouseTrack: true, mouseTrackTop: 15 }} className="ml-1 border bg-blue-50 border-primary-50 focus:border-primary-500" rounded outlined loading={loading} />
                     <Button onClick={() => navigate("/notification")} className="p-1 border overflow-visible bg-blue-50 border-primary-50 focus:border-primary-500 ml-1 flex justify-content-center align-items-center" rounded outlined style={{ width: "40px", height: "40px" }}>
                         <i className="pi pi-bell p-overlay-badge text-primary" style={{ fontSize: '18px' }}>
                             <Badge severity="danger" style={{ fontSize: "9px", minWidth: "15px", height: "15px", justifyContent: "center", alignItems: "center", alignContent: "center", display: "flex" }} value={1}></Badge>
                         </i>
                     </Button>
-                    <Avatar onClick={() => { navigate("/profile") }} image="https://static-cdn.jtvnw.net/jtv_user_pictures/zengaming_ow-profile_image-3283a0daab4ea418-300x300.png" className="ml-2 cursor-pointer border-primary-500 shadow-3" style={{ width: "40px", height: "40px", backgroundColor: '#2196F3', color: '#ffffff', }} shape="circle" />
+                    <Avatar onClick={(e) => { optProfile.current.toggle(e); }} image="https://static-cdn.jtvnw.net/jtv_user_pictures/zengaming_ow-profile_image-3283a0daab4ea418-300x300.png" className="ml-2 cursor-pointer border-primary-500 shadow-3" style={{ width: "40px", height: "40px", backgroundColor: '#2196F3', color: '#ffffff', }} shape="circle" />
                 </div>
             </div>
 
@@ -135,6 +159,35 @@ function Navbar() {
                             <img src={flagEn} loading={"lazy"} height={'14px'} className="mr-2" />
                             <a href='#' className="no-underline flex text-sm">English</a>
                         </div>
+                    </li>
+                </ul>
+            </OverlayPanel>
+
+            <OverlayPanel ref={optProfile}>
+                <ul className="list-none p-0 m-0" style={{ minWidth: "190px", width: "200px" }}>
+                    <li onClick={(e) => { optProfile.current.hide() }} className="p-2 border-round-sm hover:bg-gray-100 cursor-pointer">
+                        <a href='#' className='block text-left text-800 no-underline'>
+                            <i className="pi pi-star-fill pr-2 text-primary" style={{ color: '#708090' }}></i>
+                            info@gmail.com
+                        </a>
+                    </li>
+                    <li onClick={(e) => { optProfile.current.hide(); navigate("/profile") }} className="p-2 border-round-sm hover:bg-gray-100 cursor-pointer">
+                        <a href='#' className='block text-left text-800 no-underline'>
+                            <i className="pi pi-user pr-2" style={{ color: '#708090' }}></i>
+                            {translate("GLOBAL.PROFILE")}
+                        </a>
+                    </li>
+                    <li onClick={(e) => { optProfile.current.hide() }} className="p-2 border-round-sm hover:bg-gray-100 cursor-pointer">
+                        <a href='#' className='block text-left text-800 no-underline'>
+                            <i className="pi pi-question-circle pr-2" style={{ color: '#708090' }}></i>
+                            {translate("GLOBAL.HELP")}
+                        </a>
+                    </li>
+                    <li onClick={(e) => { optProfile.current.hide() }} className="p-2 border-round-sm hover:bg-gray-100 cursor-pointer">
+                        <a href='#' className='block text-left text-800 no-underline'>
+                            <i className="pi pi-sign-out pr-2" style={{ color: '#708090' }}></i>
+                            {translate("GLOBAL.SIGN_OUT")}
+                        </a>
                     </li>
                 </ul>
             </OverlayPanel>

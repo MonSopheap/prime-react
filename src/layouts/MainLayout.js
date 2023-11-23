@@ -10,7 +10,7 @@ function MainLayout({ children }) {
             <main className="h-screen w-screen">
                 <div className="h-full flex flex-column align-items-center justify-content-center">
                     <Navbar />
-                    <div className="h-full w-full flex-1">
+                    <div className="h-full w-full flex-1 overflow-auto">
                         {children}
                     </div>
                 </div>
