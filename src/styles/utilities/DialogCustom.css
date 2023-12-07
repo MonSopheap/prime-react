@@ -1,13 +1,7 @@
-.p-dialog {
-    font-family: "KantumruyPro";
-}
-
 .p-dialog .p-dialog-header {
-    padding: 10px 12px;
-    /* border-top-right-radius: 0;
-    border-top-left-radius: 0; */
     box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
     border-bottom: 1px solid #dee2e6;
+    padding: 0.5rem 1rem;
 }
 
 .p-dialog .p-dialog-header .p-dialog-title {
@@ -16,18 +10,35 @@
 
 .p-dialog .p-dialog-footer {
     height: 50px;
-    padding: 8px 12px;
-    /* border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0; */
+    padding: 0.5rem;
     box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
 }
 
 .p-dialog .p-dialog-content {
     background: #ffffff;
     color: #495057;
-    padding: 5px 12px 0 12px;
+    padding: 1rem;
 }
 
-.p-dialog .p-dialog-footer button {
-    margin: 0;
+.p-confirm-dialog-accept {
+    margin-right: 0;
+}
+
+.p-confirm-dialog-reject {
+    margin: 0 5px;
+}
+
+/* CONFIRM DIALOG */
+.p-confirm-dialog .p-dialog-header {
+    border-bottom: unset;
+}
+
+.p-confirm-dialog .p-dialog-footer {
+    box-shadow: unset;
+    height: unset;
+    padding: 10px;
+}
+
+.p-confirm-dialog .p-dialog-content .p-confirm-dialog-icon {
+    font-size: 14pt;
 }

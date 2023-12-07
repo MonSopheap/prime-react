@@ -4,25 +4,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import i18next from 'i18next';
 // LANGUAGE
-import global_en from "../src/assets/transalations/en.json";
-import global_kh from "../src/assets/transalations/kh.json";
+import i18next from '../src/commom/i18next';
 import { I18nextProvider } from 'react-i18next';
-
-i18next.init({
-  interpolation: { escapeValue: false },
-  lng: JSON.parse(localStorage.getItem("__lang__"))?.id ?? "kh",
-  resources: {
-    en: {
-      global: global_en
-    },
-    kh: {
-      global: global_kh
-    }
-  }
-});
-
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

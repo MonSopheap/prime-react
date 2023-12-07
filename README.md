@@ -95,4 +95,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 # create an empty repo on GitHub
 > git remote add github https://yourLogin@github.com/yourLogin/yourRepoName.git
 > git push --mirror github
-The history will be the same.
+# The history will be the same Gitlab.
+
+> console.log(data)
+> console.error(data)
+> console.warn(data)
+> console.info(data)
+> console.table(data)
+> console.group(data)

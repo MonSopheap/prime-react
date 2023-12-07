@@ -66,18 +66,18 @@ function ActivityLogs() {
     return (
         <div className="w-full h-full">
             <div className="w-full h-full flex flex-column justify-content-center align-items-center">
-                <div className="w-full flex flex-row justify-content-between align-items-center border-bottom-1 border-200 overflow-hidden" style={{ height: "50px" }}>
+                <div className="w-full flex flex-row justify-content-center align-items-center border-bottom-1 border-200 overflow-hidden" style={{ height: "50px" }}>
                     <div className="w-full flex-1 h-full flex justify-content-start align-items-center">
-                        <BreadCrumb model={items} home={home} className="text-md border-none border-noround w-full h-full" style={{ fontFamily: "KantumruyPro", backgroundColor: "transparent" }} />
+                        <BreadCrumb model={items} home={home} className="text-md border-none border-noround w-full h-full" style={{ backgroundColor: "transparent" }} />
                     </div>
-                    <div className="h-full flex-1 flex flex-row justify-content-end align-items-center">
+                    <div className="h-full flex flex-row justify-content-end align-items-center">
                         <div className="pr-3">
 
                         </div>
                     </div>
                 </div>
                 <div className="w-full h-full flex-1  overflow-auto">
-                    <DataTable value={dataList} scrollable scrollHeight="100%" stripedRows size={'normal'} className="h-full w-full text-sm" tableStyle={{ minWidth: '50rem' }}>
+                    <DataTable value={dataList} scrollable scrollHeight="100%" stripedRows paginator rows={50} rowsPerPageOptions={[5, 10, 25, 50]} size={'normal'} className="text-sm" tableStyle={{ minWidth: '50rem', height: "100%" }}>
                         {
                             columns.map((col, i) => (
                                 <Column key={i} sortable style={{ width: '25%' }} field={col.field} header={col.header} />

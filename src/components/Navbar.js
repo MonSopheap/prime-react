@@ -8,6 +8,7 @@ import {
     flagKh,
     flagEn,
     logo,
+    dragonLogo,
 } from "../assets/images";
 import { Link, useNavigate } from 'react-router-dom';
 import { Avatar } from 'primereact/avatar';
@@ -123,31 +124,31 @@ function Navbar() {
         <>
             <div className="w-full flex flex-row align-items-center justify-content-center h-3rem bg-white shadow-1">
                 <header className="w-full h-full">
-                    <Menubar model={items} start={start} className="h-3rem px-3 bg-white border-none" style={{ fontFamily: "KantumruyPro" }} />
+                    <Menubar model={items} start={start} className="h-3rem px-3 bg-white border-none" />
                 </header>
                 <div className="flex-1 flex flex-row align-items-center justify-content-center px-3 pl-3">
                     <div className="flex flex-row align-items-center justify-content-center cursor-pointer">
                         <img src={language.flag} loading={"lazy"} height={'13px'} />
                         <div onClick={(e) => op.current.toggle(e)} className="w-full h-full flex flex-row ml-1 align-items-center justify-content-center">
-                            <span style={{ fontFamily: 'KantumruyPro' }} className="select-none mr-1">{language.name}</span>
+                            <span className="select-none mr-1">{language.name}</span>
                             <i className="pi pi-angle-down text-gray-500"></i>
                         </div>
                     </div>
                     {/* <Link target={"_blank"} to="https://react.dev/learn">
                         <Button icon="pi pi-question-circle" style={{ width: '38px', height: "38px" }} tooltip={translate("GLOBAL.HELP")} tooltipOptions={{ position: 'bottom', mouseTrack: true, mouseTrackTop: 15 }} className="ml-2 border bg-blue-50 border-primary-50 focus:border-primary-500" rounded outlined />
                     </Link> */}
-                    <Button onClick={() => { navigate("/setting") }} icon="pi pi-cog" style={{ width: '38px', height: "38px" }} tooltip={translate("GLOBAL.SETTING")} tooltipOptions={{ position: 'bottom', mouseTrack: true, mouseTrackTop: 15 }} className="ml-1 border bg-blue-50 border-primary-50 focus:border-primary-500" rounded outlined loading={loading} />
-                    <Button onClick={() => navigate("/notification")} className="p-1 border overflow-visible bg-blue-50 border-primary-50 focus:border-primary-500 ml-1 flex justify-content-center align-items-center" rounded outlined style={{ width: "40px", height: "40px" }}>
+                    <Button onClick={() => { navigate("/setting") }} icon="pi pi-cog" style={{ width: '38px', height: "38px" }} tooltip={translate("GLOBAL.SETTING")} tooltipOptions={{ position: 'bottom', mouseTrack: true, mouseTrackTop: 15 }} className="ml-1 border bg-blue-50 border-primary-50 focus:border-primary-200" rounded outlined loading={loading} />
+                    <Button onClick={() => navigate("/notification")} className="p-1 border overflow-visible bg-blue-50 border-primary-50 focus:border-primary-200 ml-1 flex justify-content-center align-items-center" rounded outlined style={{ width: "40px", height: "40px" }}>
                         <i className="pi pi-bell p-overlay-badge text-primary" style={{ fontSize: '18px' }}>
                             <Badge severity="danger" style={{ fontSize: "9px", minWidth: "15px", height: "15px", justifyContent: "center", alignItems: "center", alignContent: "center", display: "flex" }} value={1}></Badge>
                         </i>
                     </Button>
-                    <Avatar onClick={(e) => { optProfile.current.toggle(e); }} image="https://static-cdn.jtvnw.net/jtv_user_pictures/zengaming_ow-profile_image-3283a0daab4ea418-300x300.png" className="ml-2 cursor-pointer border-primary-500 shadow-3" style={{ width: "40px", height: "40px", backgroundColor: '#2196F3', color: '#ffffff', }} shape="circle" />
+                    <Avatar onClick={(e) => { optProfile.current.toggle(e); }} image={dragonLogo} className="ml-2 cursor-pointer border-primary-500 shadow-3" style={{ width: "40px", height: "40px", backgroundColor: '#2196F3', color: '#ffffff', }} shape="circle" />
                 </div>
             </div>
 
-            <OverlayPanel ref={op} className="shadow-2">
-                <ul className="list-none text-left p-0 m-0" style={{ width: "150px", fontFamily: 'KantumruyPro' }}>
+            <OverlayPanel ref={op}>
+                <ul className="list-none text-left p-0 m-0" style={{ width: "150px" }}>
                     <li onClick={(e) => { op.current.hide(); handleChangeLanguage({ id: "kh", name: "ភាសាខ្មែរ", flag: flagKh }) }} className="text-left p-2 px-2 cursor-pointer hover:bg-blue-100 border-round-sm">
                         <div className="flex flex-row align-items-center">
                             <img src={flagKh} loading={"lazy"} height={'14px'} className="mr-2" />
@@ -165,9 +166,9 @@ function Navbar() {
 
             <OverlayPanel ref={optProfile}>
                 <ul className="list-none p-0 m-0" style={{ minWidth: "190px", width: "200px" }}>
-                    <li onClick={(e) => { optProfile.current.hide() }} className="p-2 border-round-sm hover:bg-gray-100 cursor-pointer">
+                    <li onClick={(e) => { optProfile.current.hide() }} className="p-2 border-round-sm hover:bg-gray-100 hover:font-bold cursor-pointer">
                         <a href='#' className='block text-left text-800 no-underline'>
-                            <i className="pi pi-star-fill pr-2 text-primary" style={{ color: '#708090' }}></i>
+                            <i className="pi pi-at pr-2 text-primary" style={{ color: '#708090' }}></i>
                             info@gmail.com
                         </a>
                     </li>
@@ -178,13 +179,13 @@ function Navbar() {
                         </a>
                     </li>
                     <li onClick={(e) => { optProfile.current.hide() }} className="p-2 border-round-sm hover:bg-gray-100 cursor-pointer">
-                        <a href='#' className='block text-left text-800 no-underline'>
+                        <a href='https://react.dev/learn' target={"_blank"} className='block text-left text-800 no-underline'>
                             <i className="pi pi-question-circle pr-2" style={{ color: '#708090' }}></i>
                             {translate("GLOBAL.HELP")}
                         </a>
                     </li>
                     <li onClick={(e) => { optProfile.current.hide() }} className="p-2 border-round-sm hover:bg-gray-100 cursor-pointer">
-                        <a href='#' className='block text-left text-800 no-underline'>
+                        <a href='#' onClick={() => navigate("/login")} className='block text-left text-800 no-underline'>
                             <i className="pi pi-sign-out pr-2" style={{ color: '#708090' }}></i>
                             {translate("GLOBAL.SIGN_OUT")}
                         </a>

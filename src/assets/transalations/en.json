@@ -1,8 +1,9 @@
 {
     "GLOBAL": {
         "WELCOME": "Welcome",
+        "WELCOME_BACK": "Welcome Back",
         "DASHBOARD": "Dashboard",
-        "DEVELOPER": "Developer",
+        "DEVELOPER": "Dev Tools",
         "PAGE_404": "Page not found",
         "HELP": "Help",
         "SETTING": "Setting",
@@ -10,7 +11,10 @@
         "CHOOSE": "Choose",
         "PROFILE": "Profile",
         "SIGN_IN": "Sign In",
-        "SIGN_OUT": "Sign Out"
+        "SIGN_OUT": "Sign Out",
+        "ENTER_YOUR_CREDENTIALS": "Enter your credentials",
+        "FORGOT_PASSWORD": "Forgot password?",
+        "CREATE_ACCOUNT": "Create account?"
     },
     "NAV": {
         "REPORT": "Report",
@@ -30,7 +34,9 @@
         "MEMO": "Memo",
         "GENERAL_INFO": "General Info",
         "STOCK_INFO": "Stock Info",
-        "UNIT_SET": "Unit set"
+        "UNIT_SET": "Unit set",
+        "USERNAME": "Username or Email",
+        "PASSWORD": "Password"
     },
     "ITEM": {
         "CODE": "Code",
@@ -55,7 +61,14 @@
         "UNITSET_NAME": "UnitSet Name"
     },
     "MSG": {
-        "PAGE_NOT_FOUND": "That's an error. The page you were looking for, does not exist!"
+        "WARNING": "Warning",
+        "SUCCESS": "Success",
+        "PAGE_NOT_FOUND": "That's an error. The page you were looking for, does not exist!",
+        "ENTER_YOUR_USERNAME": "Enter your username or email",
+        "ENTER_YOUR_PASSWORD": "Enter your password"
+    },
+    "ERROR": {
+        "INVALID_USER": "Invalid Username or Password"
     },
     "REPORT": {
         "ACTIVITY_LOG": "Activity Log",

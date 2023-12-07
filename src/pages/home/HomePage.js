@@ -16,7 +16,7 @@ function HomePage() {
                 <div className="w-full h-full flex flex-column">
                     <div className="w-full flex flex-row justify-content-between align-items-center border-bottom-1 border-200 overflow-hidden" style={{ height: "50px" }}>
                         <div className="w-full flex-1 h-full flex justify-content-start align-items-center">
-                            <BreadCrumb model={items} home={home} className="text-md border-none border-noround w-full h-full" style={{ fontFamily: "KantumruyPro", backgroundColor: "transparent" }} />
+                            <BreadCrumb model={items} home={home} className="text-md border-none border-noround w-full h-full" style={{ backgroundColor: "transparent" }} />
                         </div>
                         <div className="h-full flex-1 flex flex-row justify-content-end align-items-center">
                             <div className="pr-3">

@@ -14,23 +14,25 @@ import HomePage from './pages/home/HomePage';
 import ItemCenter from './pages/items/ItemCenter';
 import Profile from './pages/profile/Profile';
 import ActivityLogs from './pages/activities-log/ActivityLogs';
+import LoginPage from './pages/auth/LoginPage';
 
 
 function App() {
 
   return (
-    <BrowserRouter basename='/'>
-      <MainLayout>
-        <Routes>
-          <Route path='home' element={<HomePage />}></Route>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainLayout />}>
+          <Route path='login' element={<LoginPage />}></Route>
+          <Route index element={<HomePage />}></Route>
           <Route path='item-center' element={<ItemCenter />}></Route>
           <Route path='setting' element={<Settings />}></Route>
           <Route path='profile' element={<Profile />}></Route>
           <Route path='report/activity-log' element={<ActivityLogs />}></Route>
           {/* 👇️ only match this when no other routes match */}
           <Route path="*" element={<PageNotFound />} />
-        </Routes>
-      </MainLayout>
+        </Route>
+      </Routes>
     </BrowserRouter>
   );
 }

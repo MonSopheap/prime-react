@@ -1,19 +1,17 @@
-class RoleService {
-    constructor(httpClient) {
-        this.httpClient = httpClient;
-    }
+import { MethodEnum } from "../commom/Enum";
+import AxiosInstanceService from "./axios/AxiosInstance";
 
+class RoleService {
     async getRols() {
         try {
-            const response = await this.httpClient.get("http://localhost:4000/role/gets");
+            const response = await AxiosInstanceService("/role/gets/s", MethodEnum.GET);
             console.log(`RESPONSE:`, response)
-            return response.json();
+            return response;
         } catch (error) {
             console.error(error);
             throw error;
         }
     }
 }
-
 
 export default RoleService;
