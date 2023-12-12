@@ -81,8 +81,8 @@ function ItemCenter() {
                     </div>
                     <div className="h-full flex-1 flex flex-row justify-content-end align-items-center pr-2">
                         <div className="w-full flex justify-content-end align-items-center">
-                            <Button onClick={() => setVisible(true)} icon="pi pi-plus" style={{ width: '38px', height: "38px" }} className="mr-1 border border-primary-100 focus:border-primary-200" rounded size="small" outlined loading={false} />
-                            {/* <Button label={translate("NAV.ADD")} icon="pi pi-save" className="px-3 py-2 mr-1" outlined loading={loading} onClick={load} />
+                            {/* <Button onClick={() => setVisible(true)} icon="pi pi-plus" style={{ width: '38px', height: "38px" }} className="mr-1 border border-primary-100 focus:border-primary-200" rounded size="small" outlined loading={false} />
+                            <Button label={translate("NAV.ADD")} icon="pi pi-save" className="px-3 py-2 mr-1" outlined loading={loading} onClick={load} />
                             <Button label={translate("NAV.EDIT")} icon="pi pi-pencil" severity="info" className="px-3 py-2 mr-1" outlined loading={loading} onClick={load} />
                             <Button label={translate("NAV.DELETE")} icon="pi pi-trash" severity="danger" className="px-3 py-2" outlined loading={loading} onClick={load} /> */}
                         </div>

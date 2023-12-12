@@ -4,12 +4,14 @@ import { InputText } from "primereact/inputtext";
 import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
 import { confirmDialog, ConfirmDialog } from 'primereact/confirmdialog';
+import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
     const [translate] = useTranslation("global");
     const [loading, setLoading] = useState(false);
     const [passwordValue, setPassword] = useState('');
     const toastMsgRef = useRef(null);
+    const navigate = useNavigate()
 
     const showMessage = () => {
         toastMsgRef.current.show({ severity: 'error', summary: translate("MSG.WARNING"), detail: translate("ERROR.INVALID_USER"), life: 3000 });
@@ -71,7 +73,7 @@ function LoginPage() {
                                 </div>
                             </div>
                             <div className='flex flex-row justify-content-between align-items-center mt-2 mb-4'>
-                                <a href='#' className='p-0 no-underline focus:text-primary-500'>{translate("GLOBAL.FORGOT_PASSWORD")}</a>
+                                <a href='#' onClick={() => navigate("/")} className='p-0 no-underline focus:text-primary-500'>{translate("GLOBAL.FORGOT_PASSWORD")}</a>
                                 <a href='#' onClick={signUp} className='p-0 text-600 focus:text-primary-500'>{translate("GLOBAL.CREATE_ACCOUNT")} </a>
                             </div>
                             <Button type="submit" className='w-full' label={translate("GLOBAL.SIGN_IN")} icon="pi pi-sign-in" loading={loading} />

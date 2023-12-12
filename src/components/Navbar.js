@@ -8,7 +8,7 @@ import {
     flagKh,
     flagEn,
     logo,
-    dragonLogo,
+    avatar001,
 } from "../assets/images";
 import { Link, useNavigate } from 'react-router-dom';
 import { Avatar } from 'primereact/avatar';
@@ -22,10 +22,15 @@ function Navbar() {
     useEffect(() => {
         const lang = JSON.parse(localStorage.getItem("__lang__"));
         if (lang) setLanguage(lang);
-        else setLanguage({ id: "kh", name: "ភាសាខ្មែរ", flag: flagKh });
+        else setLanguage({ code: "kh", label: "ភាសាខ្មែរ", flag: flagKh });
     }, []);
 
     const [loading, setLoading] = useState(false);
+
+    const languageList = [
+        { id: 1, label: "ភាសាខ្មែរ", description: "ភាសាខ្មែរ (Cambodia)", code: "kh", flag: flagKh },
+        { id: 2, label: "English", description: "English (United State)", code: "en", flag: flagEn },
+    ]
 
     const load = () => {
         setLoading(true);
@@ -39,43 +44,43 @@ function Navbar() {
         {
             label: translate("GLOBAL.DASHBOARD"),
             icon: 'pi pi-fw pi-th-large',
-            command: () => navigate("/home"),
+            command: () => navigate("/"),
         },
-        {
-            label: translate("NAV.ITEM"),
-            icon: 'pi pi-fw pi-box',
-            command: () => navigate("/item-center"),
-        },
-        {
-            label: translate("NAV.REPORT"),
-            icon: 'pi pi-fw pi-book',
-            items: [
-                // {
-                //     label: translate("REPORT.STOCK_REPORT"),
-                //     icon: 'pi pi-fw pi-chart-bar',
-                //     items: [
-                //         {
-                //             label: translate("REPORT.STOCK_VALUATION"),
-                //             command: () => navigate("/report"),
-                //         },
-                //         {
-                //             label: translate("REPORT.STOCK_WORK_SHEET"),
-                //             command: () => navigate("/report"),
-                //         },
-                //         {
-                //             label: translate("REPORT.REORDER_LIST"),
-                //             command: () => navigate("/report"),
-                //         }
-                //     ]
-                // },
-                {
-                    label: translate("REPORT.ACTIVITY_LOG"),
-                    icon: 'pi pi-fw pi-stopwatch',
-                    command: () => navigate("/report/activity-log"),
+        // {
+        //     label: translate("NAV.ITEM"),
+        //     icon: 'pi pi-fw pi-box',
+        //     command: () => navigate("/item-center"),
+        // },
+        // {
+        //     label: translate("NAV.REPORT"),
+        //     icon: 'pi pi-fw pi-book',
+        //     items: [
+        //         {
+        //             label: translate("REPORT.STOCK_REPORT"),
+        //             icon: 'pi pi-fw pi-chart-bar',
+        //             items: [
+        //                 {
+        //                     label: translate("REPORT.STOCK_VALUATION"),
+        //                     command: () => navigate("/report"),
+        //                 },
+        //                 {
+        //                     label: translate("REPORT.STOCK_WORK_SHEET"),
+        //                     command: () => navigate("/report"),
+        //                 },
+        //                 {
+        //                     label: translate("REPORT.REORDER_LIST"),
+        //                     command: () => navigate("/report"),
+        //                 }
+        //             ]
+        //         },
+        //         {
+        //             label: translate("REPORT.ACTIVITY_LOG"),
+        //             icon: 'pi pi-fw pi-stopwatch',
+        //             command: () => navigate("/report/activity-log"),
 
-                },
-            ]
-        },
+        //         },
+        //     ]
+        // },
         // {
         //     label: 'Help',
         //     icon: 'pi pi-fw pi-question-circle',
@@ -116,21 +121,21 @@ function Navbar() {
     const handleChangeLanguage = (lang) => {
         localStorage.setItem("__lang__", JSON.stringify(lang));
         setLanguage(lang)
-        i18n.changeLanguage(lang.id)
+        i18n.changeLanguage(lang.code)
     }
     const start = <img alt="logo" onClick={() => navigate("/home")} src={logo} height="35" className="mr-2 cursor-pointer"></img>;
 
     return (
         <>
-            <div className="w-full flex flex-row align-items-center justify-content-center h-3rem bg-white shadow-1">
-                <header className="w-full h-full">
+            <div className="w-full flex flex-row align-items-center justify-content-center h-3rem bg-white shadow-1 z-1">
+                <header className="flex w-full h-full">
                     <Menubar model={items} start={start} className="h-3rem px-3 bg-white border-none" />
                 </header>
                 <div className="flex-1 flex flex-row align-items-center justify-content-center px-3 pl-3">
-                    <div className="flex flex-row align-items-center justify-content-center cursor-pointer">
-                        <img src={language.flag} loading={"lazy"} height={'13px'} />
-                        <div onClick={(e) => op.current.toggle(e)} className="w-full h-full flex flex-row ml-1 align-items-center justify-content-center">
-                            <span className="select-none mr-1">{language.name}</span>
+                    <div className="flex flex-1 flex-row align-items-center justify-content-center cursor-pointer ml-2 mr-2">
+                        <img src={language.flag} loading={"lazy"} height={'12px'} width={'20px'} className="mr-1" />
+                        <div onClick={(e) => op.current.toggle(e)} className="w-full h-full flex flex-row align-items-center justify-content-center">
+                            <div className="select-none mr-1 inline-block mr-1">{language.label}</div>
                             <i className="pi pi-angle-down text-gray-500"></i>
                         </div>
                     </div>
@@ -143,24 +148,22 @@ function Navbar() {
                             <Badge severity="danger" style={{ fontSize: "9px", minWidth: "15px", height: "15px", justifyContent: "center", alignItems: "center", alignContent: "center", display: "flex" }} value={1}></Badge>
                         </i>
                     </Button>
-                    <Avatar onClick={(e) => { optProfile.current.toggle(e); }} image={dragonLogo} className="ml-2 cursor-pointer border-primary-500 shadow-3" style={{ width: "40px", height: "40px", backgroundColor: '#2196F3', color: '#ffffff', }} shape="circle" />
+                    <Avatar onClick={(e) => { optProfile.current.toggle(e); }} image={avatar001} className="ml-2 cursor-pointer border-primary-100 shadow-3" style={{ width: "38px", height: "38px", color: '#ffffff', }} shape="circle" />
                 </div>
             </div>
 
             <OverlayPanel ref={op}>
-                <ul className="list-none text-left p-0 m-0" style={{ width: "150px" }}>
-                    <li onClick={(e) => { op.current.hide(); handleChangeLanguage({ id: "kh", name: "ភាសាខ្មែរ", flag: flagKh }) }} className="text-left p-2 px-2 cursor-pointer hover:bg-blue-100 border-round-sm">
-                        <div className="flex flex-row align-items-center">
-                            <img src={flagKh} loading={"lazy"} height={'14px'} className="mr-2" />
-                            <a href='#' className="no-underline flex text-sm">ភាសាខ្មែរ</a>
-                        </div>
-                    </li>
-                    <li onClick={(e) => { op.current.hide(); handleChangeLanguage({ id: "en", name: "English", flag: flagEn }) }} className="text-left p-2 cursor-pointer hover:bg-blue-100 border-round-sm">
-                        <div className="flex flex-row align-items-center">
-                            <img src={flagEn} loading={"lazy"} height={'14px'} className="mr-2" />
-                            <a href='#' className="no-underline flex text-sm">English</a>
-                        </div>
-                    </li>
+                <ul className="list-none text-left p-0 m-0" style={{ width: "200px" }}>
+                    {
+                        languageList.map((item) => (
+                            <li key={item?.id} onClick={(e) => { op.current.hide(); handleChangeLanguage({ code: item.code, label: item.label, flag: item.flag }) }} className="text-left p-2 px-2 cursor-pointer hover:bg-blue-100 border-round-sm">
+                                <div className="flex flex-row align-items-center">
+                                    <img src={item.flag} loading={"lazy"} height={'12px'} width={'20px'} className="mr-2" />
+                                    <div className="no-underline select-none flex text-sm">{item.description}</div>
+                                </div>
+                            </li>
+                        ))
+                    }
                 </ul>
             </OverlayPanel>
 
@@ -185,7 +188,7 @@ function Navbar() {
                         </a>
                     </li>
                     <li onClick={(e) => { optProfile.current.hide() }} className="p-2 border-round-sm hover:bg-gray-100 cursor-pointer">
-                        <a href='#' onClick={() => navigate("/login")} className='block text-left text-800 no-underline'>
+                        <a href='#' onClick={() => navigate("auth/login")} className='block text-left text-800 no-underline'>
                             <i className="pi pi-sign-out pr-2" style={{ color: '#708090' }}></i>
                             {translate("GLOBAL.SIGN_OUT")}
                         </a>
