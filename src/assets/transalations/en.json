@@ -36,7 +36,9 @@
         "STOCK_INFO": "Stock Info",
         "UNIT_SET": "Unit set",
         "USERNAME": "Username or Email",
-        "PASSWORD": "Password"
+        "ENTER_USERNAME": "Enter Username or Email",
+        "PASSWORD": "Password",
+        "ENTER_PASSWORD": "Enter Password"
     },
     "ITEM": {
         "CODE": "Code",

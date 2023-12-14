@@ -58,7 +58,7 @@ function LoginPage() {
                                         <label htmlFor="username">{translate("NAV.USERNAME")}</label>
                                         <span className="p-input-icon-left w-full">
                                             <i className="pi pi-user" />
-                                            <InputText id="username" className='w-full' aria-describedby="username-help" autoFocus />
+                                            <InputText id="username" className='w-full' placeholder={translate("NAV.ENTER_USERNAME")} aria-describedby="username-help" autoFocus />
                                         </span>
                                         {/* <small id="username-help">
                                     {translate("MSG.ENTER_YOUR_USERNAME")}
@@ -68,7 +68,7 @@ function LoginPage() {
                                         <label htmlFor="password">{translate("NAV.PASSWORD")}</label>
                                         <span className="p-input-icon-left w-full">
                                             <i className="pi pi-unlock" />
-                                            <InputText id="password" value={passwordValue} onChange={(e) => setPassword(e.target.value)} className='w-full' type="password" aria-describedby="password-help" />
+                                            <InputText id="password" value={passwordValue} onChange={(e) => setPassword(e.target.value)} className='w-full' type="password" placeholder={translate("NAV.ENTER_PASSWORD")} aria-describedby="password-help" />
                                         </span>
                                         {/* <small id="password-help">
                                     {translate("MSG.ENTER_YOUR_USERNAME")}
