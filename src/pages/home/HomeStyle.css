@@ -2,3 +2,7 @@
     font-weight: normal;
     border: none;
 }
+
+.p-panelmenu .p-panelmenu-content {
+    border: none;
+}

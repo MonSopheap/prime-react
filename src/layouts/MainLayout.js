@@ -1,10 +1,8 @@
 import React from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
 function MainLayout() {
-    const location = useLocation();
-
     return (
         <>
             <main className="h-screen w-screen">

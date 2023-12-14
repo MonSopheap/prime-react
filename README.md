@@ -76,6 +76,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 > npm install primereact
 > npm install primeicons
 > npm install primeflex --save
+> npm i framer-motion
 
 # FOR SETUP JSON LANGUAGE
 > npm i i18next react-i18next --save

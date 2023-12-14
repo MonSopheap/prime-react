@@ -2,10 +2,13 @@ import React from 'react'
 import { useTranslation } from 'react-i18next';
 import { BreadCrumb } from 'primereact/breadcrumb';
 import { Button } from 'primereact/button';
+import { useNavigate } from 'react-router-dom';
 
 function Settings() {
     const [translate] = useTranslation("global")
-    const home = { icon: 'pi pi-home', url: '/home' }
+    const navigate = useNavigate()
+
+    const home = { icon: 'pi pi-home', command: () => navigate("/home"), }
     const items = [
         { label: translate("GLOBAL.SETTING") },
     ];
@@ -36,7 +39,7 @@ function Settings() {
 
                             <div className='w-full h-full flex flex-row align-content-center'>
                                 {/* background: "#e8f0fe" */}
-                                <div className='h-full border-right-1 border-primary-100 overflow-auto hidden md:block lg:block xl:block' style={{ width: "250px" }}>
+                                <div className='h-full border-right-1 border-gray-100 shadow-1 overflow-auto hidden md:block lg:block xl:block' style={{ width: "250px" }}>
                                     <div className='w-full h-full'>
                                         <div className='py-1 px-2'>
                                             <ul className='list-none p-0 m-0'>

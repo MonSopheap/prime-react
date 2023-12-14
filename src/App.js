@@ -16,6 +16,7 @@ import Profile from './pages/profile/Profile';
 import ActivityLogs from './pages/activities-log/ActivityLogs';
 import LoginPage from './pages/auth/LoginPage';
 import AuthLayout from './layouts/AuthLayout';
+import DeveloperPage from './pages/developer/DeveloperPage';
 
 
 function App() {
@@ -24,8 +25,19 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainLayout />}>
-          <Route index element={<null />}></Route>
-          <Route path="home" element={<HomePage />}></Route>
+          <Route index element={<PageNotFound />}></Route>
+
+          <Route path="home" element={<HomePage />}>
+            <Route path='developer' element={<DeveloperPage />}></Route>
+            <Route path='dashboard' element={<span>Dashboard</span>}></Route>
+            <Route path='submenu1' element={<span>Submenu 1</span>}></Route>
+            <Route path='submenu2' element={<span>Submenu 2</span>}></Route>
+            <Route path='submenu3' element={<span>Submenu 3</span>}></Route>
+            <Route path='submenu4' element={<span>Submenu 4</span>}></Route>
+            {/* 👇️ only match this when no other routes match */}
+            <Route path="*" element={<PageNotFound />} />
+          </Route>
+
           <Route path='item-center' element={<ItemCenter />}></Route>
           <Route path='setting' element={<Settings />}></Route>
           <Route path='profile' element={<Profile />}></Route>
