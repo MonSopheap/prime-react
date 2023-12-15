@@ -17,6 +17,7 @@ import ActivityLogs from './pages/activities-log/ActivityLogs';
 import LoginPage from './pages/auth/LoginPage';
 import AuthLayout from './layouts/AuthLayout';
 import DeveloperPage from './pages/developer/DeveloperPage';
+import ProtectedRoute from './commom/protected-route';
 
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<MainLayout />}>
+        <Route path="/" element={<ProtectedRoute><MainLayout /></ProtectedRoute>}>
           <Route index element={<PageNotFound />}></Route>
 
           <Route path="home" element={<HomePage />}>

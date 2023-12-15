@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { MethodEnum } from '../../commom/Enum';
 import { confirmDialog } from 'primereact/confirmdialog';
+import { MethodEnum } from './Enum';
 
 
 localStorage.setItem("access_token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJ1c2VyTmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkSkljVlRybG5mamVUQ3hFSk5LRGtKdTZrdmxJWUZXa1dlMllxNzY1MHBRZC52dUlFa0pEbzIiLCJwYXNzd29yZEhhc2hlZCI6bnVsbCwicGFzc3dvcmRTYWx0IjpudWxsLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImNyZWF0ZWRCeSI6ImFkbWluIiwidXBkYXRlZEJ5IjpudWxsLCJpc0FjdGl2ZSI6dHJ1ZSwiY3JlYXRlZEF0IjoiMjAyMy0xMS0yMFQwMzoxNDowMi4wMDBaIiwidXBkYXRlZEF0IjoiMjAyMy0xMS0yMFQwMzoxNDowMi4wMDBaIn0sImlhdCI6MTcwMTMxNjc2OCwiZXhwIjoxNzAxMzU5OTY4fQ.IKRx_CLZf8whM7FQfbK35gimnFBzry_HlZqQpo_6xwE")
@@ -29,19 +29,19 @@ AxiosInstance.defaults.timeout = 2500;
 AxiosInstance.interceptors.response.use(function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
-    console.log(`INTERCEPTOR:`, response)
+    // console.log(`INTERCEPTOR:`, response)
     return response;
 }, function (error) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
-    console.log(`INTERCEPTOR_ERROR:`, error);
+    // console.log(`INTERCEPTOR_ERROR:`, error);
 
     if (error) {
         confirmDialog({
             draggable: false,
             trigger: null,
             message: `${error.message}`,
-            header: `ERROR ${error.response.statusText}`,
+            header: `ERROR [${error.response.statusText}]`,
             icon: 'pi pi-exclamation-triangle',
             accept: () => { },
         });
@@ -51,15 +51,18 @@ AxiosInstance.interceptors.response.use(function (response) {
 });
 
 const AxiosInstanceService = (url, method, params = {}) => {
+    const param = JSON.stringify(params);
+    console.info(param)
+
     switch (method) {
         case MethodEnum.GET:
             return AxiosInstance.get(url);
         case MethodEnum.POST:
-            return AxiosInstance.post(url, params);
+            return AxiosInstance.post(url, param);
         case MethodEnum.PUT:
-            return AxiosInstance.put(url, params);
+            return AxiosInstance.put(url, param);
         case MethodEnum.PATCH:
-            return AxiosInstance.put(url, params);
+            return AxiosInstance.put(url, param);
         case MethodEnum.DELETE:
             return AxiosInstance.put(url);
         default:

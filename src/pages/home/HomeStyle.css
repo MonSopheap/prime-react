@@ -1,8 +1,19 @@
 .p-panelmenu .p-panelmenu-header>a {
+    background: #ffff;
     font-weight: normal;
     border: none;
 }
 
 .p-panelmenu .p-panelmenu-content {
     border: none;
+}
+
+.p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link:focus {
+    box-shadow: none;
+}
+
+.p-panelmenu .p-panelmenu-header:not(.p-highlight):not(.p-disabled)>a:hover {
+    background: #e9ecef;
+    border-color: #dee2e6;
+    color: #495057;
 }

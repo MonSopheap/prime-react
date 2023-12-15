@@ -1,11 +1,11 @@
 .p-dialog .p-dialog-header {
     box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
     border-bottom: 1px solid #dee2e6;
-    padding: 0.5rem 1rem;
+    padding: 8px 1rem;
 }
 
 .p-dialog .p-dialog-header .p-dialog-title {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .p-dialog .p-dialog-footer {
@@ -17,7 +17,8 @@
 .p-dialog .p-dialog-content {
     background: #ffffff;
     color: #495057;
-    padding: 1rem;
+    padding: 8px 1rem;
+    font-size: 14px;
 }
 
 .p-confirm-dialog-accept {
@@ -37,6 +38,14 @@
     box-shadow: unset;
     height: unset;
     padding: 10px;
+}
+
+.p-confirm-dialog .p-dialog-footer .p-button {
+    font-size: 14px;
+}
+
+.p-confirm-dialog .p-dialog-footer .p-confirm-dialog-accept {
+    padding: 7px 15px;
 }
 
 .p-confirm-dialog .p-dialog-content .p-confirm-dialog-icon {

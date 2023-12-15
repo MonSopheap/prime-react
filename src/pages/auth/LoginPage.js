@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { InputText } from "primereact/inputtext";
 import { Button } from 'primereact/button';
@@ -6,28 +6,35 @@ import { Toast } from 'primereact/toast';
 import { confirmDialog, ConfirmDialog } from 'primereact/confirmdialog';
 import { useNavigate } from 'react-router-dom';
 import AnimationWrapper from '../../commom/page-animation';
+import { AppProps } from '../../commom/AppProps';
+import UserService from '../../services/UserService';
 
 function LoginPage() {
     const [translate] = useTranslation("global");
     const [loading, setLoading] = useState(false);
-    const [passwordValue, setPassword] = useState('');
+    const [userName, setUsername] = useState('')
+    const [password, setPassword] = useState('')
     const toastMsgRef = useRef(null);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const userService = new UserService();
 
-    const showMessage = () => {
-        toastMsgRef.current.show({ severity: 'error', summary: translate("MSG.WARNING"), detail: translate("ERROR.INVALID_USER"), life: 3000 });
+
+    const showMessage = ({ message }) => {
+        toastMsgRef.current.show({ severity: 'error', summary: translate("MSG.WARNING"), detail: message, life: 3500 });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        console.log(e)
         setLoading(true);
-        showMessage();
-
-        setTimeout(() => {
+        await userService.login({ userName: userName, password: password }).then((res) => {
             setLoading(false);
-        }, 1500);
+            navigate("/")
+            console.log(res)
+            localStorage.setItem(AppProps.ACCESS_TOKEN, res.data.accessToken);
+            localStorage.setItem(AppProps.CURRENT_USER, res.data.data);
+        }).catch((err) => {
+            setLoading(false);
+        });
     }
 
     const signUp = (event) => {
@@ -58,21 +65,15 @@ function LoginPage() {
                                         <label htmlFor="username">{translate("NAV.USERNAME")}</label>
                                         <span className="p-input-icon-left w-full">
                                             <i className="pi pi-user" />
-                                            <InputText id="username" className='w-full' placeholder={translate("NAV.ENTER_USERNAME")} aria-describedby="username-help" autoFocus />
+                                            <InputText id="username" value={userName} className='w-full' onChange={(e) => setUsername(e.target.value)} placeholder={translate("NAV.ENTER_USERNAME")} aria-describedby="username-help" autoFocus />
                                         </span>
-                                        {/* <small id="username-help">
-                                    {translate("MSG.ENTER_YOUR_USERNAME")}
-                                </small> */}
                                     </div>
                                     <div className="flex flex-column gap-2">
                                         <label htmlFor="password">{translate("NAV.PASSWORD")}</label>
                                         <span className="p-input-icon-left w-full">
                                             <i className="pi pi-unlock" />
-                                            <InputText id="password" value={passwordValue} onChange={(e) => setPassword(e.target.value)} className='w-full' type="password" placeholder={translate("NAV.ENTER_PASSWORD")} aria-describedby="password-help" />
+                                            <InputText id="password" value={password} onChange={(e) => setPassword(e.target.value)} className='w-full' type="password" placeholder={translate("NAV.ENTER_PASSWORD")} aria-describedby="password-help" />
                                         </span>
-                                        {/* <small id="password-help">
-                                    {translate("MSG.ENTER_YOUR_USERNAME")}
-                                </small> */}
                                     </div>
                                 </div>
                                 <div className='flex flex-row justify-content-between align-items-center mt-2 mb-4'>

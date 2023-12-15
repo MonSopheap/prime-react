@@ -12,23 +12,32 @@ function HomePage() {
     const isExpandedMenu = (route) => {
         return route.find((x) => x === pathname);
     }
+    const isActiveClass = (route) => {
+        if (route === pathname) return "bg-gray-300";
+    }
 
     const menuItems = [
         {
             icon: 'pi pi-fw pi-qrcode',
             label: translate("GLOBAL.DASHBOARD"),
             visible: true,
-            command: () => { navigate('/home/dashboard') },
+            command: (event) => {
+                navigate('/home/developerx');
+                console.log(event.originalEvent.currentTarget)
+            },
+            disabled: false
+
         },
         {
             icon: 'pi pi-fw pi-github',
             label: "Dev",
-            command: () => navigate('/home/developer')
+            command: () => { navigate('/home/developer') },
+            className: isActiveClass("/home/developer"),
         },
         {
             icon: 'pi pi-fw pi-android',
             label: "Android",
-            command: () => navigate('/home/123')
+            command: () => navigate('/home/android')
         },
         {
             label: 'Menu',
@@ -36,22 +45,26 @@ function HomePage() {
                 {
                     label: 'Submenu 1',
                     icon: 'pi pi-fw pi-align-left',
-                    command: () => { navigate('/home/submenu1') }
+                    command: () => { navigate('/home/submenu1') },
+                    className: isActiveClass("/home/submenu1"),
                 },
                 {
                     label: 'Submenu 2',
                     icon: 'pi pi-fw pi-align-right',
-                    command: () => { navigate('/home/submenu2') }
+                    command: () => { navigate('/home/submenu2') },
+                    className: isActiveClass("/home/submenu2")
                 },
                 {
                     label: 'Submenu 3',
                     icon: 'pi pi-fw pi-align-center',
-                    command: () => { navigate('/home/submenu3') }
+                    command: () => { navigate('/home/submenu3') },
+                    className: isActiveClass("/home/submenu3")
                 },
                 {
                     label: 'Submenu 4',
                     icon: 'pi pi-fw pi-align-justify',
                     command: () => { navigate('/home/submenu4') },
+                    className: isActiveClass("/home/submenu4")
                 }
             ],
             expanded: isExpandedMenu([
@@ -70,7 +83,8 @@ function HomePage() {
                 {
                     label: 'New',
                     icon: 'pi pi-fw pi-user-plus',
-                    command: () => { navigate('/home/developer') }
+                    command: () => { navigate('/home/developer') },
+                    className: isActiveClass("/home/developer"),
                 },
                 {
                     label: 'Delete',
@@ -215,7 +229,7 @@ function HomePage() {
 
     return (
         <>
-            <div className="w-full h-full">
+            <div className="w-full h-full z-1">
                 <div className="w-full h-full flex flex-column">
                     <div className="flex flex-row w-full h-full overflow-auto">
                         <div className='flex bg-white shadow-2 h-full' style={{ width: "250px" }}>
@@ -225,8 +239,8 @@ function HomePage() {
                                         <PanelMenu model={menuItems} className="w-full"
                                             pt={{
                                                 root: { className: 'w-full' },
-                                                headerAction: ({ context }) => ({ className: context.active ? 'bg-gray-200' : undefined }),
-                                                action: ({ context }) => ({ className: context.active ? 'bg-primary-50' : undefined })
+                                                headerAction: ({ context }) => ({ className: context.active ? 'bg-gray-300' : undefined }),
+                                                action: ({ context }) => ({ className: context.active ? 'bg-gray-200' : undefined }),
                                             }} />
                                     </div>
                                 </div>

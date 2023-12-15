@@ -12,6 +12,7 @@ import {
 } from "../assets/images";
 import { Link, useNavigate } from 'react-router-dom';
 import { Avatar } from 'primereact/avatar';
+import { AppProps } from '../commom/AppProps';
 
 function Navbar() {
     const [translate, i18n] = useTranslation("global");
@@ -125,9 +126,13 @@ function Navbar() {
     }
     const start = <img alt="logo" onClick={() => navigate("/home")} src={logo} height="35" className="mr-2 cursor-pointer"></img>;
 
+    const handleLogOut = () => {
+        localStorage.removeItem(AppProps.ACCESS_TOKEN);
+        navigate("auth/login");
+    }
     return (
         <>
-            <div className="w-full flex flex-row align-items-center justify-content-center h-3rem bg-white shadow-1 z-1">
+            <div className="w-full flex flex-row align-items-center justify-content-center h-3rem bg-white shadow-1 z-2">
                 <header className="flex w-full h-full">
                     <Menubar model={items} start={start} className="h-3rem px-3 bg-white border-none" />
                 </header>
@@ -187,8 +192,8 @@ function Navbar() {
                             {translate("GLOBAL.HELP")}
                         </a>
                     </li>
-                    <li onClick={(e) => { optProfile.current.hide() }} className="p-2 border-round-sm hover:bg-gray-100 cursor-pointer">
-                        <a href='#' onClick={() => navigate("auth/login")} className='block text-left text-800 no-underline'>
+                    <li onClick={(e) => { optProfile.current.hide(); handleLogOut() }} className="p-2 border-round-sm hover:bg-gray-100 cursor-pointer">
+                        <a href='#' className='block text-left text-800 no-underline'>
                             <i className="pi pi-sign-out pr-2" style={{ color: '#708090' }}></i>
                             {translate("GLOBAL.SIGN_OUT")}
                         </a>

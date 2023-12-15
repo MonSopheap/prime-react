@@ -1,10 +1,10 @@
 import AxiosInstanceService from "../commom/AxiosInstance";
 import { MethodEnum } from "../commom/Enum";
 
-class RoleService {
-    getRols = async () => {
+class UserService {
+    login = async ({ userName, password }) => {
         try {
-            const response = await AxiosInstanceService("/role/gets", MethodEnum.GET);
+            const response = await AxiosInstanceService("/user/login", MethodEnum.POST, { userName: userName, password: password });
             console.log(`RESPONSE:`, response)
             return response;
         } catch (error) {
@@ -14,4 +14,4 @@ class RoleService {
     }
 }
 
-export default RoleService;
+export default UserService;
