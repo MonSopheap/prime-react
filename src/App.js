@@ -17,7 +17,8 @@ import ActivityLogs from './pages/activities-log/ActivityLogs';
 import LoginPage from './pages/auth/LoginPage';
 import AuthLayout from './layouts/AuthLayout';
 import DeveloperPage from './pages/developer/DeveloperPage';
-import ProtectedRoute from './commom/protected-route';
+import ProtectedRoute from './commom/ProtectedRoute';
+import UserCenter from './pages/users/UserCenter';
 
 
 function App() {
@@ -34,7 +35,8 @@ function App() {
             <Route path='submenu1' element={<span>Submenu 1</span>}></Route>
             <Route path='submenu2' element={<span>Submenu 2</span>}></Route>
             <Route path='submenu3' element={<span>Submenu 3</span>}></Route>
-            <Route path='submenu4' element={<span>Submenu 4</span>}></Route>
+            <Route path='submenu4' element={<span>Submenu 3</span>}></Route>
+            <Route path='user' element={<UserCenter />}></Route>
             {/* 👇️ only match this when no other routes match */}
             <Route path="*" element={<PageNotFound />} />
           </Route>
@@ -49,7 +51,6 @@ function App() {
 
         <Route path="/auth" element={<AuthLayout />}>
           <Route path='login' element={<LoginPage />}></Route>
-          {/* 👇️ only match this when no other routes match */}
           <Route path="*" element={<null />} />
         </Route>
       </Routes>

@@ -1,13 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { InputText } from "primereact/inputtext";
 import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
-import { confirmDialog, ConfirmDialog } from 'primereact/confirmdialog';
+import { confirmDialog } from 'primereact/confirmdialog';
 import { useNavigate } from 'react-router-dom';
-import AnimationWrapper from '../../commom/page-animation';
 import { AppProps } from '../../commom/AppProps';
 import UserService from '../../services/UserService';
+import AnimationWrapper from '../../commom/PageAnimation';
 
 function LoginPage() {
     const [translate] = useTranslation("global");
@@ -27,12 +27,14 @@ function LoginPage() {
         e.preventDefault();
         setLoading(true);
         await userService.login({ userName: userName, password: password }).then((res) => {
+            console.log(`RESULT:`, res)
+
             setLoading(false);
             navigate("/")
-            console.log(res)
             localStorage.setItem(AppProps.ACCESS_TOKEN, res.data.accessToken);
             localStorage.setItem(AppProps.CURRENT_USER, res.data.data);
         }).catch((err) => {
+            console.log(`ERROR: ${err}`)
             setLoading(false);
         });
     }

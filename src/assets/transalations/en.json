@@ -38,7 +38,8 @@
         "USERNAME": "Username or Email",
         "ENTER_USERNAME": "Enter Username or Email",
         "PASSWORD": "Password",
-        "ENTER_PASSWORD": "Enter Password"
+        "ENTER_PASSWORD": "Enter Password",
+        "USER": "User"
     },
     "ITEM": {
         "CODE": "Code",

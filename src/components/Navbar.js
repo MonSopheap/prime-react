@@ -126,8 +126,8 @@ function Navbar() {
     }
     const start = <img alt="logo" onClick={() => navigate("/home")} src={logo} height="35" className="mr-2 cursor-pointer"></img>;
 
-    const handleLogOut = () => {
-        localStorage.removeItem(AppProps.ACCESS_TOKEN);
+    const handleLogout = () => {
+        localStorage.clear();
         navigate("auth/login");
     }
     return (
@@ -192,7 +192,7 @@ function Navbar() {
                             {translate("GLOBAL.HELP")}
                         </a>
                     </li>
-                    <li onClick={(e) => { optProfile.current.hide(); handleLogOut() }} className="p-2 border-round-sm hover:bg-gray-100 cursor-pointer">
+                    <li onClick={(e) => { optProfile.current.hide(); handleLogout() }} className="p-2 border-round-sm hover:bg-gray-100 cursor-pointer">
                         <a href='#' className='block text-left text-800 no-underline'>
                             <i className="pi pi-sign-out pr-2" style={{ color: '#708090' }}></i>
                             {translate("GLOBAL.SIGN_OUT")}

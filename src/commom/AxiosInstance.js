@@ -1,12 +1,11 @@
 import axios from 'axios';
 import { confirmDialog } from 'primereact/confirmdialog';
-import { MethodEnum } from './Enum';
+import { AppProps } from './AppProps';
+import { MethodEnum } from './MethodEnum';
 
-
-localStorage.setItem("access_token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJ1c2VyTmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkSkljVlRybG5mamVUQ3hFSk5LRGtKdTZrdmxJWUZXa1dlMllxNzY1MHBRZC52dUlFa0pEbzIiLCJwYXNzd29yZEhhc2hlZCI6bnVsbCwicGFzc3dvcmRTYWx0IjpudWxsLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImNyZWF0ZWRCeSI6ImFkbWluIiwidXBkYXRlZEJ5IjpudWxsLCJpc0FjdGl2ZSI6dHJ1ZSwiY3JlYXRlZEF0IjoiMjAyMy0xMS0yMFQwMzoxNDowMi4wMDBaIiwidXBkYXRlZEF0IjoiMjAyMy0xMS0yMFQwMzoxNDowMi4wMDBaIn0sImlhdCI6MTcwMTMxNjc2OCwiZXhwIjoxNzAxMzU5OTY4fQ.IKRx_CLZf8whM7FQfbK35gimnFBzry_HlZqQpo_6xwE")
 
 const BASE_URL = 'http://localhost:5000';
-const AUTH_TOKEN = `Bearer ${localStorage.getItem('access_token')}`;
+const AUTH_TOKEN = `Bearer ${localStorage.getItem(AppProps.ACCESS_TOKEN)}`;
 
 // Set config defaults when creating the instance
 export const AxiosInstance = axios.create({
@@ -25,6 +24,17 @@ AxiosInstance.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 // Now all requests using this instance will wait 2.5 seconds before timing out
 AxiosInstance.defaults.timeout = 2500;
 
+
+// Add a request interceptor
+axios.interceptors.request.use(function (config) {
+    // Do something before request is sent
+    return config;
+}, function (error) {
+    console.log(`REQUEST_ERROR:`, error);
+    // Do something with request error
+    return Promise.reject(error);
+});
+
 // Add a response interceptor
 AxiosInstance.interceptors.response.use(function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
@@ -34,25 +44,23 @@ AxiosInstance.interceptors.response.use(function (response) {
 }, function (error) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
-    // console.log(`INTERCEPTOR_ERROR:`, error);
-
+    console.log(`INTERCEPTOR_ERROR:`, error);
     if (error) {
         confirmDialog({
             draggable: false,
             trigger: null,
             message: `${error.message}`,
-            header: `ERROR [${error.response.statusText}]`,
+            header: `ERROR [${error.code}]`,
+            style: { minWidth: '20rem', maxWidth: '25rem' },
             icon: 'pi pi-exclamation-triangle',
             accept: () => { },
         });
     }
-
     return Promise.reject(error);
 });
 
 const AxiosInstanceService = (url, method, params = {}) => {
     const param = JSON.stringify(params);
-    console.info(param)
 
     switch (method) {
         case MethodEnum.GET:

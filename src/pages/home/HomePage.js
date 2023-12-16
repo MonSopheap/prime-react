@@ -3,6 +3,7 @@ import { PanelMenu } from 'primereact/panelmenu';
 import { useTranslation } from 'react-i18next';
 import "./HomeStyle.css";
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import DeveloperPage from '../developer/DeveloperPage';
 
 function HomePage() {
     const [translate] = useTranslation("global")
@@ -16,32 +17,40 @@ function HomePage() {
         if (route === pathname) return "bg-gray-300";
     }
 
-    const menuItems = [
+    const items = [
         {
+            id: translate("GLOBAL.DASHBOARD"),
             icon: 'pi pi-fw pi-qrcode',
             label: translate("GLOBAL.DASHBOARD"),
             visible: true,
-            command: (event) => {
-                navigate('/home/developerx');
-                console.log(event.originalEvent.currentTarget)
+            command: (e) => {
+                console.log(e)
             },
-            disabled: false
-
         },
         {
             icon: 'pi pi-fw pi-github',
             label: "Dev",
-            command: () => { navigate('/home/developer') },
+            disabled: false,
+            command: () => {
+                navigate('/home/android')
+                console.log('Abc')
+            },
             className: isActiveClass("/home/developer"),
         },
         {
             icon: 'pi pi-fw pi-android',
             label: "Android",
-            command: () => navigate('/home/android')
+            command: () => { navigate('/home/android') }
         },
         {
             label: 'Menu',
             items: [
+                {
+                    label: translate("NAV.USER"),
+                    icon: 'pi pi-fw pi-user',
+                    command: () => { navigate('/home/user') },
+                    className: isActiveClass("/home/user"),
+                },
                 {
                     label: 'Submenu 1',
                     icon: 'pi pi-fw pi-align-left',
@@ -68,6 +77,7 @@ function HomePage() {
                 }
             ],
             expanded: isExpandedMenu([
+                "/home/user",
                 "/home/submenu1",
                 "/home/submenu2",
                 "/home/submenu3",
@@ -236,9 +246,8 @@ function HomePage() {
                             <div className='flex flex-column h-full w-full'>
                                 <div className='flex-1 w-full h-full overflow-auto'>
                                     <div className='h-full w-full'>
-                                        <PanelMenu model={menuItems} className="w-full"
+                                        <PanelMenu model={items} className="w-full"
                                             pt={{
-                                                root: { className: 'w-full' },
                                                 headerAction: ({ context }) => ({ className: context.active ? 'bg-gray-300' : undefined }),
                                                 action: ({ context }) => ({ className: context.active ? 'bg-gray-200' : undefined }),
                                             }} />
@@ -250,7 +259,7 @@ function HomePage() {
                             </div>
                         </div>
                         <div className="flex flex-1 w-full h-full overflow-auto">
-                            <div className='p-2 w-full h-full'>
+                            <div className='w-full h-full'>
                                 {<Outlet />}
                             </div>
                         </div>

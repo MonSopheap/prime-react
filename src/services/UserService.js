@@ -1,14 +1,12 @@
 import AxiosInstanceService from "../commom/AxiosInstance";
-import { MethodEnum } from "../commom/Enum";
+import { MethodEnum } from "../commom/MethodEnum";
 
 class UserService {
-    login = async ({ userName, password }) => {
+    async login({ userName, password }) {
         try {
             const response = await AxiosInstanceService("/user/login", MethodEnum.POST, { userName: userName, password: password });
-            console.log(`RESPONSE:`, response)
-            return response;
+            if (response) return response.data;
         } catch (error) {
-            console.log(error);
             throw error;
         }
     }

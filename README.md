@@ -104,3 +104,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 > console.info(data)
 > console.table(data)
 > console.group(data)
+
+
+
+
+
+# https://dayvster.com/blog/use-context-for-auth
