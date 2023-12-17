@@ -10,6 +10,15 @@ class UserService {
             throw error;
         }
     }
+
+    async getUsers() {
+        try {
+            const response = await AxiosInstanceService("/user/gets", MethodEnum.GET,);
+            if (response) return response.data;
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 export default UserService;

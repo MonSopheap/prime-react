@@ -77,6 +77,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 > npm install primeicons
 > npm install primeflex --save
 > npm i framer-motion
+# FORMAT DATE TIME
+> npm install moment --save
 
 # FOR SETUP JSON LANGUAGE
 > npm i i18next react-i18next --save

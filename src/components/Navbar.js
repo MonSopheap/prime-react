@@ -8,11 +8,11 @@ import {
     flagKh,
     flagEn,
     logo,
+    logo1,
     avatar001,
 } from "../assets/images";
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Avatar } from 'primereact/avatar';
-import { AppProps } from '../commom/AppProps';
 
 function Navbar() {
     const [translate, i18n] = useTranslation("global");
@@ -124,7 +124,7 @@ function Navbar() {
         setLanguage(lang)
         i18n.changeLanguage(lang.code)
     }
-    const start = <img alt="logo" onClick={() => navigate("/home")} src={logo} height="35" className="mr-2 cursor-pointer"></img>;
+    const start = <img alt="logo" onClick={() => navigate("/home")} src={logo1} height="35" className="mr-2 cursor-pointer"></img>;
 
     const handleLogout = () => {
         localStorage.clear();
@@ -153,7 +153,7 @@ function Navbar() {
                             <Badge severity="danger" style={{ fontSize: "9px", minWidth: "15px", height: "15px", justifyContent: "center", alignItems: "center", alignContent: "center", display: "flex" }} value={1}></Badge>
                         </i>
                     </Button>
-                    <Avatar onClick={(e) => { optProfile.current.toggle(e); }} image={avatar001} className="ml-2 cursor-pointer border-primary-100 shadow-3" style={{ width: "38px", height: "38px", color: '#ffffff', }} shape="circle" />
+                    <Avatar onClick={(e) => { optProfile.current.toggle(e); }} image={avatar001} className="ml-2 cursor-pointer border-primary-100 shadow-1" style={{ width: "38px", height: "38px", color: '#ffffff', }} shape="circle" />
                 </div>
             </div>
 

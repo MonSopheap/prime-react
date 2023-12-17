@@ -1,14 +1,19 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { PanelMenu } from 'primereact/panelmenu';
 import { useTranslation } from 'react-i18next';
 import "./HomeStyle.css";
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import DeveloperPage from '../developer/DeveloperPage';
+import { Toast } from 'primereact/toast';
 
 function HomePage() {
     const [translate] = useTranslation("global")
     const navigate = useNavigate()
     const { pathname } = useLocation();
+    const toastMsgRef = useRef(null);
+
+    const showMessage = () => {
+        toastMsgRef.current.show({ severity: 'error', summary: translate("MSG.WARNING"), detail: "Message detail", life: 3500 });
+    };
 
     const isExpandedMenu = (route) => {
         return route.find((x) => x === pathname);
@@ -17,15 +22,12 @@ function HomePage() {
         if (route === pathname) return "bg-gray-300";
     }
 
-    const items = [
+    const menuItems = [
         {
-            id: translate("GLOBAL.DASHBOARD"),
             icon: 'pi pi-fw pi-qrcode',
             label: translate("GLOBAL.DASHBOARD"),
             visible: true,
-            command: (e) => {
-                console.log(e)
-            },
+            command: () => { navigate('/home/dashboard') }
         },
         {
             icon: 'pi pi-fw pi-github',
@@ -33,7 +35,7 @@ function HomePage() {
             disabled: false,
             command: () => {
                 navigate('/home/android')
-                console.log('Abc')
+                console.log('/home/android')
             },
             className: isActiveClass("/home/developer"),
         },
@@ -240,13 +242,14 @@ function HomePage() {
     return (
         <>
             <div className="w-full h-full z-1">
+                <Toast ref={toastMsgRef} position="top-center" />
                 <div className="w-full h-full flex flex-column">
                     <div className="flex flex-row w-full h-full overflow-auto">
                         <div className='flex bg-white shadow-2 h-full' style={{ width: "250px" }}>
                             <div className='flex flex-column h-full w-full'>
                                 <div className='flex-1 w-full h-full overflow-auto'>
                                     <div className='h-full w-full'>
-                                        <PanelMenu model={items} className="w-full"
+                                        <PanelMenu model={menuItems} className="w-full"
                                             pt={{
                                                 headerAction: ({ context }) => ({ className: context.active ? 'bg-gray-300' : undefined }),
                                                 action: ({ context }) => ({ className: context.active ? 'bg-gray-200' : undefined }),
