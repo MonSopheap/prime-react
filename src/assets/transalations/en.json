@@ -14,7 +14,9 @@
         "SIGN_OUT": "Sign Out",
         "ENTER_YOUR_CREDENTIALS": "Enter your credentials",
         "FORGOT_PASSWORD": "Forgot password?",
-        "CREATE_ACCOUNT": "Create account?"
+        "CREATE_ACCOUNT": "Create account?",
+        "ACTIVE": "Active",
+        "INACTIVE": "Inactive"
     },
     "NAV": {
         "REPORT": "Report",

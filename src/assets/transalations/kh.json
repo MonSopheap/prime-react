@@ -14,7 +14,9 @@
         "SIGN_OUT": "ចាកចេញ",
         "ENTER_YOUR_CREDENTIALS": "បញ្ចូលព័ត៌មានសម្ងាត់របស់អ្នក",
         "FORGOT_PASSWORD": "ភ្លេចពាក្យសម្ងាត់?",
-        "CREATE_ACCOUNT": "បង្កើតគណនី?"
+        "CREATE_ACCOUNT": "បង្កើតគណនី?",
+        "ACTIVE": "សកម្ម",
+        "INACTIVE": "អសកម្ម"
     },
     "NAV": {
         "REPORT": "របាយការណ៍",

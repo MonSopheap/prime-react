@@ -45,7 +45,7 @@ function HomePage() {
             command: () => { navigate('/home/android') }
         },
         {
-            label: 'Menu',
+            label: translate("NAV.USER"),
             items: [
                 {
                     label: translate("NAV.USER"),

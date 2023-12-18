@@ -26,7 +26,9 @@ function UserCenter() {
     userService.getUsers().then((res) => {
       console.log(`RESULT:`, res);
       setUserList(res?.data);
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000)
     }).catch((err) => {
       console.log(`ERROR: ${err}`)
       setLoading(false);
@@ -38,17 +40,6 @@ function UserCenter() {
     fetchUsers();
   }, [])
 
-  const data = [
-    { id: 1, name: "abc", image: "https://img.freepik.com/premium-vector/user-profile-icon-flat-style-member-avatar-vector-illustration-isolated-background-human-permission-sign-business-concept_157943-15752.jpg" },
-    { id: 2, name: "abc", },
-    { id: 3, name: "abc", },
-    { id: 4, name: "abc", },
-    { id: 5, name: "abc", },
-    { id: 6, name: "abc", },
-    { id: 7, name: "abc", },
-    { id: 8, name: "abc", },
-    { id: 9, name: "abc", },
-  ]
 
   return (
     <>
@@ -62,7 +53,7 @@ function UserCenter() {
               <BreadCrumb model={items} home={home} className="text-md border-none border-noround w-full h-full" style={{ backgroundColor: "transparent" }} />
             </div>
             <div className="h-full flex-1 flex flex-row justify-content-end align-items-center">
-              <div className="pr-3">
+              <div className="pr-3 w-full">
 
               </div>
             </div>
@@ -72,28 +63,33 @@ function UserCenter() {
 
               <div className="grid">
                 {
-                  isLoading ? (
-                    <div className="text-center border-round-sm bg-blue-50">
-                      <div className='flex flex-row h-full w-full p-1 align-items-center justify-content-start'>
-                        <div className='flex p-1 justify-content-start align-content-center'>
-                          <Avatar label="P" className='text-gray-400 bg-white' size="large" shape="circle" />
-                        </div>
-                        <div className='flex-1 flex flex-column w-full p-1 justify-content-start align-items-center text-left'>
+                  isLoading ? [...Array(12)].map((elementInArray, index) => (
+                    <div key={index} className="col-12 sm:col-6 md:col-4 lg:col-3 xl:col-3">
+                      <div className="text-center border-round-sm bg-blue-50 w">
+                        <div className='flex flex-row h-full w-full p-1 align-items-center justify-content-start'>
+                          <div className='flex p-1 justify-content-start align-content-center'>
+                            <Skeleton shape="circle" size="3rem"></Skeleton>
+                          </div>
+                          <div className='flex-1 flex flex-column w-full p-1 justify-content-start align-items-start text-left'>
+                            <Skeleton className="mb-1"></Skeleton>
+                            <Skeleton width="7rem"></Skeleton>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  )
+                  ))
                     : userList.map((item) => (<div key={item.id} className="col-12 sm:col-6 md:col-4 lg:col-3 xl:col-3">
-                      <div className="text-center border-round-sm bg-blue-100">
+                      <div className={`text-center border-round-sm cursor-pointer hover:shadow-2  overflow-hidden ${item?.isActive ? " bg-blue-100" : "bg-red-100"}`}>
                         <div className='flex flex-row h-full w-full h-auto p-1 align-items-center justify-content-start'>
                           <div className='flex p-1 justify-content-start align-content-center'>
                             {
                               item?.image ? <Avatar image={item.image} size="large" shape="circle" /> : <Avatar label="P" className='text-gray-400 bg-white' size="large" shape="circle" />
                             }
                           </div>
-                          <div className='flex-1 flex flex-column w-full p-1 justify-content-start align-items-start text-left'>
-                            <span className='text-gray text-md font-bold'>{item.userName}</span>
-                            <span className='text-gray text-sm'>{item.userName}</span>
+                          <div className='flex-1 flex flex-column w-full p-1 flex align-items-start justify-content-center'>
+                            <div className='text-gray w-full text-sm font-bold text-overflow-ellipsis text-left'>{item.userName}</div>
+                            <span className='text-gray text-sm'><i className={`pi ${item?.isActive ? "pi-check-circle text-green-500" : "pi-minus-circle text-red-500"} mr-1`} style={{ fontSize: '12px' }}></i>{item?.isActive ? translate("GLOBAL.ACTIVE") : translate("GLOBAL.INACTIVE")}</span>
+                            <span className='text-gray text-sm'><i className="pi pi-envelope mr-1" style={{ fontSize: '12px' }}></i>{item?.email}</span>
                           </div>
                         </div>
                       </div>
