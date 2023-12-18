@@ -13,6 +13,7 @@ import {
 } from "../assets/images";
 import { useNavigate } from 'react-router-dom';
 import { Avatar } from 'primereact/avatar';
+import { AppProps } from '../commom/AppProps';
 
 function Navbar() {
     const [translate, i18n] = useTranslation("global");
@@ -20,10 +21,11 @@ function Navbar() {
     const optProfile = useRef(null);
     const navigate = useNavigate()
     const [language, setLanguage] = useState({})
+
     useEffect(() => {
-        const lang = JSON.parse(localStorage.getItem("__lang__"));
-        if (lang) setLanguage(lang);
-        else setLanguage({ code: "kh", label: "ភាសាខ្មែរ", flag: flagKh });
+        const lang = JSON.parse(localStorage.getItem(AppProps.KEY_LANGUAGE));
+        if (lang) storeLanguage(lang);
+        else storeLanguage({ code: "kh", label: "ភាសាខ្មែរ", flag: flagKh });
     }, []);
 
     const [loading, setLoading] = useState(false);
@@ -31,15 +33,7 @@ function Navbar() {
     const languageList = [
         { id: 1, label: "ភាសាខ្មែរ", description: "ភាសាខ្មែរ (Cambodia)", code: "kh", flag: flagKh },
         { id: 2, label: "English", description: "English (United State)", code: "en", flag: flagEn },
-    ]
-
-    const load = () => {
-        setLoading(true);
-
-        setTimeout(() => {
-            setLoading(false);
-        }, 1500);
-    };
+    ];
 
     const items = [
         {
@@ -47,87 +41,23 @@ function Navbar() {
             icon: 'pi pi-fw pi-th-large',
             command: () => navigate("/"),
         },
-        // {
-        //     label: translate("NAV.ITEM"),
-        //     icon: 'pi pi-fw pi-box',
-        //     command: () => navigate("/item-center"),
-        // },
-        // {
-        //     label: translate("NAV.REPORT"),
-        //     icon: 'pi pi-fw pi-book',
-        //     items: [
-        //         {
-        //             label: translate("REPORT.STOCK_REPORT"),
-        //             icon: 'pi pi-fw pi-chart-bar',
-        //             items: [
-        //                 {
-        //                     label: translate("REPORT.STOCK_VALUATION"),
-        //                     command: () => navigate("/report"),
-        //                 },
-        //                 {
-        //                     label: translate("REPORT.STOCK_WORK_SHEET"),
-        //                     command: () => navigate("/report"),
-        //                 },
-        //                 {
-        //                     label: translate("REPORT.REORDER_LIST"),
-        //                     command: () => navigate("/report"),
-        //                 }
-        //             ]
-        //         },
-        //         {
-        //             label: translate("REPORT.ACTIVITY_LOG"),
-        //             icon: 'pi pi-fw pi-stopwatch',
-        //             command: () => navigate("/report/activity-log"),
 
-        //         },
-        //     ]
-        // },
-        // {
-        //     label: 'Help',
-        //     icon: 'pi pi-fw pi-question-circle',
-        //     url: 'https://reactjs.org/'
-        // },
-        // {
-        //     label: 'Events',
-        //     icon: 'pi pi-fw pi-calendar',
-        //     items: [
-        //         {
-        //             label: 'Edit',
-        //             icon: 'pi pi-fw pi-pencil',
-        //             items: [
-        //                 {
-        //                     label: 'Save',
-        //                     icon: 'pi pi-fw pi-calendar-plus'
-        //                 },
-        //                 {
-        //                     label: 'Delete',
-        //                     icon: 'pi pi-fw pi-calendar-minus'
-        //                 }
-        //             ]
-        //         },
-        //         {
-        //             label: 'Archive',
-        //             icon: 'pi pi-fw pi-calendar-times',
-        //             items: [
-        //                 {
-        //                     label: 'Remove',
-        //                     icon: 'pi pi-fw pi-calendar-minus'
-        //                 }
-        //             ]
-        //         }
-        //     ],
-        // },
     ];
 
-    const handleChangeLanguage = (lang) => {
-        localStorage.setItem("__lang__", JSON.stringify(lang));
+    const storeLanguage = (lang) => {
+        localStorage.setItem(AppProps.KEY_LANGUAGE, JSON.stringify(lang));
         setLanguage(lang)
         i18n.changeLanguage(lang.code)
+    }
+
+    const handleChangeLanguage = (lang) => {
+        storeLanguage(lang);
     }
     const start = <img alt="logo" onClick={() => navigate("/home")} src={logo1} height="35" className="mr-2 cursor-pointer"></img>;
 
     const handleLogout = () => {
-        localStorage.clear();
+        localStorage.removeItem(AppProps.ACCESS_TOKEN);
+        localStorage.removeItem(AppProps.CURRENT_USER);
         navigate("auth/login");
     }
     return (

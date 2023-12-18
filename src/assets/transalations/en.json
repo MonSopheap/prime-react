@@ -3,7 +3,7 @@
         "WELCOME": "Welcome",
         "WELCOME_BACK": "Welcome Back",
         "DASHBOARD": "Dashboard",
-        "DEVELOPER": "Dev Tools",
+        "DEVELOPER": "Developer",
         "PAGE_404": "Page not found",
         "HELP": "Help",
         "SETTING": "Setting",
@@ -16,7 +16,8 @@
         "FORGOT_PASSWORD": "Forgot password?",
         "CREATE_ACCOUNT": "Create account?",
         "ACTIVE": "Active",
-        "INACTIVE": "Inactive"
+        "INACTIVE": "Inactive",
+        "SEARCH": "Search"
     },
     "NAV": {
         "REPORT": "Report",
@@ -41,7 +42,11 @@
         "ENTER_USERNAME": "Enter Username or Email",
         "PASSWORD": "Password",
         "ENTER_PASSWORD": "Enter Password",
-        "USER": "User"
+        "USER": "User",
+        "USERS": "Users",
+        "ROLE": "Role",
+        "TOOLS": "Tools",
+        "DATABASE": "Database"
     },
     "ITEM": {
         "CODE": "Code",

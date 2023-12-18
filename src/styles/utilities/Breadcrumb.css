@@ -1,0 +1,3 @@
+.p-breadcrumb .p-breadcrumb-list li:last-child .p-menuitem-text {
+    white-space: nowrap;
+}

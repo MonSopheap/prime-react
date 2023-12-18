@@ -79,6 +79,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 > npm i framer-motion
 # FORMAT DATE TIME
 > npm install moment --save
+# GOOGLE React OAuth2 | Google
+> https://www.npmjs.com/package/@react-oauth/google
+> npm i @react-oauth/google
 
 # FOR SETUP JSON LANGUAGE
 > npm i i18next react-i18next --save
@@ -112,3 +115,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 
 # https://dayvster.com/blog/use-context-for-auth
+# 1. slice(), 2. substring()
+# https://codingbeauty.medium.com/javascript-get-first-two-characters-from-string-7ed4fb598cbe

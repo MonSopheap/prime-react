@@ -30,16 +30,6 @@ function HomePage() {
             command: () => { navigate('/home/dashboard') }
         },
         {
-            icon: 'pi pi-fw pi-github',
-            label: "Dev",
-            disabled: false,
-            command: () => {
-                navigate('/home/android')
-                console.log('/home/android')
-            },
-            className: isActiveClass("/home/developer"),
-        },
-        {
             icon: 'pi pi-fw pi-android',
             label: "Android",
             command: () => { navigate('/home/android') }
@@ -48,16 +38,16 @@ function HomePage() {
             label: translate("NAV.USER"),
             items: [
                 {
-                    label: translate("NAV.USER"),
+                    label: translate("NAV.USERS"),
                     icon: 'pi pi-fw pi-user',
                     command: () => { navigate('/home/user') },
                     className: isActiveClass("/home/user"),
                 },
                 {
-                    label: 'Submenu 1',
-                    icon: 'pi pi-fw pi-align-left',
-                    command: () => { navigate('/home/submenu1') },
-                    className: isActiveClass("/home/submenu1"),
+                    label: translate("NAV.ROLE"),
+                    icon: 'pi pi-fw pi-wrench',
+                    command: () => { navigate('/home/role') },
+                    className: isActiveClass("/home/role"),
                 },
                 {
                     label: 'Submenu 2',
@@ -80,160 +70,34 @@ function HomePage() {
             ],
             expanded: isExpandedMenu([
                 "/home/user",
-                "/home/submenu1",
+                "/home/role",
                 "/home/submenu2",
                 "/home/submenu3",
                 "/home/submenu4",
             ])
         },
         {
-            label: 'Users',
+            label: translate("NAV.TOOLS"),
             expanded: isExpandedMenu([
-                "/home/developer",
+                "/home/telegram",
+                "/home/database",
             ]),
             items: [
                 {
-                    label: 'New',
-                    icon: 'pi pi-fw pi-user-plus',
-                    command: () => { navigate('/home/developer') },
-                    className: isActiveClass("/home/developer"),
+                    label: translate("Telegram"),
+                    icon: 'pi pi-fw pi-telegram',
+                    command: () => { navigate('/home/telegram') },
+                    className: isActiveClass("/home/telegram"),
                 },
                 {
-                    label: 'Delete',
-                    icon: 'pi pi-fw pi-user-minus'
+                    icon: 'pi pi-fw pi-database',
+                    label: translate("NAV.DATABASE"),
+                    disabled: false,
+                    command: (e) => {
+                        navigate('/home/database')
+                    },
+                    className: isActiveClass("/home/database"),
                 },
-                {
-                    label: 'Search',
-                    icon: 'pi pi-fw pi-users',
-                    items: [
-                        {
-                            label: 'Filter',
-                            icon: 'pi pi-fw pi-filter',
-                            items: [
-                                {
-                                    label: 'Print',
-                                    icon: 'pi pi-fw pi-print'
-                                }
-                            ]
-                        },
-                        {
-                            icon: 'pi pi-fw pi-bars',
-                            label: 'List'
-                        }
-                    ]
-                },
-                {
-                    label: 'New',
-                    icon: 'pi pi-fw pi-user-plus'
-                },
-                {
-                    label: 'Delete',
-                    icon: 'pi pi-fw pi-user-minus'
-                },
-                {
-                    label: 'Search',
-                    icon: 'pi pi-fw pi-users',
-                    items: [
-                        {
-                            label: 'Filter',
-                            icon: 'pi pi-fw pi-filter',
-                            items: [
-                                {
-                                    label: 'Print',
-                                    icon: 'pi pi-fw pi-print'
-                                }
-                            ]
-                        },
-                        {
-                            icon: 'pi pi-fw pi-bars',
-                            label: 'List'
-                        }
-                    ]
-                },
-                {
-                    label: 'New',
-                    icon: 'pi pi-fw pi-user-plus'
-                },
-                {
-                    label: 'Delete',
-                    icon: 'pi pi-fw pi-user-minus'
-                },
-                {
-                    label: 'Search',
-                    icon: 'pi pi-fw pi-users',
-                    items: [
-                        {
-                            label: 'Filter',
-                            icon: 'pi pi-fw pi-filter',
-                            items: [
-                                {
-                                    label: 'Print',
-                                    icon: 'pi pi-fw pi-print'
-                                }
-                            ]
-                        },
-                        {
-                            icon: 'pi pi-fw pi-bars',
-                            label: 'List'
-                        }
-                    ]
-                },
-                {
-                    label: 'New',
-                    icon: 'pi pi-fw pi-user-plus'
-                },
-                {
-                    label: 'Delete',
-                    icon: 'pi pi-fw pi-user-minus'
-                },
-                {
-                    label: 'Search',
-                    icon: 'pi pi-fw pi-users',
-                    items: [
-                        {
-                            label: 'Filter',
-                            icon: 'pi pi-fw pi-filter',
-                            items: [
-                                {
-                                    label: 'Print',
-                                    icon: 'pi pi-fw pi-print'
-                                }
-                            ]
-                        },
-                        {
-                            icon: 'pi pi-fw pi-bars',
-                            label: 'List'
-                        }
-                    ]
-                },
-                {
-                    label: 'New',
-                    icon: 'pi pi-fw pi-user-plus'
-                },
-                {
-                    label: 'Delete',
-                    icon: 'pi pi-fw pi-user-minus'
-                },
-                {
-                    label: 'Search',
-                    icon: 'pi pi-fw pi-users',
-                    items: [
-                        {
-                            label: 'Filter',
-                            icon: 'pi pi-fw pi-filter',
-                            items: [
-                                {
-                                    label: 'Print',
-                                    icon: 'pi pi-fw pi-print'
-                                }
-                            ]
-                        },
-                        {
-                            icon: 'pi pi-fw pi-bars',
-                            label: 'List'
-                        }
-                    ]
-                }
             ]
         },
     ];

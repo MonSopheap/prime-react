@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import { Avatar } from 'primereact/avatar';
 import UserService from '../../services/UserService';
 import { Skeleton } from 'primereact/skeleton';
+import { InputText } from 'primereact/inputtext';
+import RandomColor from '../../hooks/RandomColor';
 
 function UserCenter() {
   const [translate] = useTranslation("global");
@@ -14,6 +16,8 @@ function UserCenter() {
   const [isLoading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const userService = new UserService();
+  const [searchValue, setSearch] = useState('');
+
 
 
   const home = { icon: 'pi pi-home', command: () => navigate("/home"), }
@@ -24,13 +28,13 @@ function UserCenter() {
   const fetchUsers = () => {
     setLoading(true)
     userService.getUsers().then((res) => {
-      console.log(`RESULT:`, res);
+      // console.log(`RESULT:`, res);
       setUserList(res?.data);
       setTimeout(() => {
         setLoading(false);
       }, 1000)
     }).catch((err) => {
-      console.log(`ERROR: ${err}`)
+      // console.log(`ERROR: ${err}`)
       setLoading(false);
       setError(err);
     });
@@ -50,11 +54,20 @@ function UserCenter() {
               <div className='ml-2 block md:hidden lg:hidden xl:hidden'>
                 <Button icon="pi pi-align-left" size="small" outlined rounded />
               </div>
-              <BreadCrumb model={items} home={home} className="text-md border-none border-noround w-full h-full" style={{ backgroundColor: "transparent" }} />
+              <div className='w-full flex flex-1 flex-nowrap'>
+                <BreadCrumb model={items} home={home} className="text-md border-none border-noround h-full" style={{ backgroundColor: "transparent" }} />
+              </div>
+              <div className='pl-2 w-full flex-row'>
+                <span className="p-input-icon-left w-full">
+                  <i className="pi pi-search" />
+                  <InputText placeholder={translate("GLOBAL.SEARCH")} value={searchValue} onChange={(e) => setSearch(e.target.value)} className="w-full" />
+                </span>
+              </div>
             </div>
             <div className="h-full flex-1 flex flex-row justify-content-end align-items-center">
-              <div className="pr-3 w-full">
+              <div className="pr-3 w-full flex flex-row justify-content-end align-items-center">
 
+                <Button label={translate("NAV.ADD")} icon="pi pi-plus-circle" className="px-3 py-2 mr-1" outlined loading={false} onClick={() => { }} />
               </div>
             </div>
           </div>
@@ -63,16 +76,16 @@ function UserCenter() {
 
               <div className="grid">
                 {
-                  isLoading ? [...Array(12)].map((elementInArray, index) => (
+                  isLoading ? [...Array(12)].map((item, index) => (
                     <div key={index} className="col-12 sm:col-6 md:col-4 lg:col-3 xl:col-3">
                       <div className="text-center border-round-sm bg-blue-50 w">
-                        <div className='flex flex-row h-full w-full p-1 align-items-center justify-content-start'>
+                        <div className='flex flex-row h-full w-full p-1 align-items-center justify-content-start overflow-hidden'>
                           <div className='flex p-1 justify-content-start align-content-center'>
                             <Skeleton shape="circle" size="3rem"></Skeleton>
                           </div>
                           <div className='flex-1 flex flex-column w-full p-1 justify-content-start align-items-start text-left'>
                             <Skeleton className="mb-1"></Skeleton>
-                            <Skeleton width="7rem"></Skeleton>
+                            <Skeleton width='85%'></Skeleton>
                           </div>
                         </div>
                       </div>
@@ -83,7 +96,7 @@ function UserCenter() {
                         <div className='flex flex-row h-full w-full h-auto p-1 align-items-center justify-content-start'>
                           <div className='flex p-1 justify-content-start align-content-center'>
                             {
-                              item?.image ? <Avatar image={item.image} size="large" shape="circle" /> : <Avatar label="P" className='text-gray-400 bg-white' size="large" shape="circle" />
+                              item?.image ? <Avatar image={item.image} size="large" shape="circle" /> : <Avatar label={item?.userName.slice(0, 2).toUpperCase()} className={`text-white`} size="large" shape="circle" style={{ backgroundColor: `${RandomColor()}` }} />
                             }
                           </div>
                           <div className='flex-1 flex flex-column w-full p-1 flex align-items-start justify-content-center'>

@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { AppProps } from '../../commom/AppProps';
 import UserService from '../../services/UserService';
 import AnimationWrapper from '../../commom/PageAnimation';
+import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 
 function LoginPage() {
     const [translate] = useTranslation("global");
@@ -82,7 +83,18 @@ function LoginPage() {
                                     <a href='#' onClick={() => navigate("/")} className='p-0 no-underline focus:text-primary-500'>{translate("GLOBAL.FORGOT_PASSWORD")}</a>
                                     <a href='#' onClick={signUp} className='p-0 text-600 focus:text-primary-500'>{translate("GLOBAL.CREATE_ACCOUNT")} </a>
                                 </div>
-                                <Button type="submit" className='w-full' label={translate("GLOBAL.SIGN_IN")} icon="pi pi-sign-in" loading={loading} />
+                                <Button type="submit" className='w-full mb-2' label={translate("GLOBAL.SIGN_IN")} icon="pi pi-sign-in" loading={loading} />
+                                <GoogleOAuthProvider clientId="<your_client_id>">
+                                    <GoogleLogin
+                                        onSuccess={credentialResponse => {
+                                            console.log(credentialResponse);
+                                        }}
+                                        onError={() => {
+                                            console.log('Login Failed');
+                                        }}
+                                    />
+                                </GoogleOAuthProvider>
+
                             </form>
                         </div>
                     </div>
