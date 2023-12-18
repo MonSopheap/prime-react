@@ -19,6 +19,7 @@ import AuthLayout from './layouts/AuthLayout';
 import DeveloperPage from './pages/developer/DeveloperPage';
 import ProtectedRoute from './commom/ProtectedRoute';
 import UserCenter from './pages/users/UserCenter';
+import BackupDatabase from './pages/tools/BackupDatabase';
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
             <Route path='submenu3' element={<span>Submenu 3</span>}></Route>
             <Route path='submenu4' element={<span>Submenu 3</span>}></Route>
             <Route path='user' element={<UserCenter />}></Route>
+            <Route path='database' element={<BackupDatabase />}></Route>
             {/* 👇️ only match this when no other routes match */}
             <Route path="*" element={<PageNotFound />} />
           </Route>

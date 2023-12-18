@@ -70,9 +70,9 @@ const AxiosInstanceService = (url, method, params = {}) => {
         case MethodEnum.PUT:
             return AxiosInstance.put(url, param);
         case MethodEnum.PATCH:
-            return AxiosInstance.put(url, param);
+            return AxiosInstance.patch(url, param);
         case MethodEnum.DELETE:
-            return AxiosInstance.put(url);
+            return AxiosInstance.delete(url);
         default:
             break;
     }

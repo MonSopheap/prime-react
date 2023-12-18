@@ -1,0 +1,8 @@
+.p-sidebar .p-sidebar-header {
+    padding: 8px 10px;
+    border-bottom: 1px solid #dfe7ef;
+}
+
+.notification.p-sidebar .p-sidebar-content {
+    padding: 0;
+}

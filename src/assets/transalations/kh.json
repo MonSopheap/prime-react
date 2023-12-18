@@ -17,7 +17,9 @@
         "CREATE_ACCOUNT": "បង្កើតគណនី?",
         "ACTIVE": "សកម្ម",
         "INACTIVE": "អសកម្ម",
-        "SEARCH": "ស្វែរក"
+        "SEARCH": "ស្វែងរក",
+        "NOTIFICATION": "សារផ្តល់ដំណឹង",
+        "BACKUP_DATA": "ទាញទិន្នន័យបម្រុងទុក"
     },
     "NAV": {
         "REPORT": "របាយការណ៍",
@@ -73,9 +75,11 @@
     "MSG": {
         "WARNING": "ការព្រមាន",
         "SUCCESS": "ជោគជ័យ",
+        "DELETE_CONFIRMATION": "បញ្ជាក់ការលុប",
         "PAGE_NOT_FOUND": "នោះ​ជា​កំហុស។ URL ដែលអ្នកបានស្វែងរកមិនមាន​នៅលើប្រព័ន្ធនោះទេ។",
         "ENTER_YOUR_USERNAME": "សូមបញ្ចូលឈ្មោះ ឬ អ៊ីមែល",
-        "ENTER_YOUR_PASSWORD": "សូមបញ្ចូលពាក្យសម្ងាត់"
+        "ENTER_YOUR_PASSWORD": "សូមបញ្ចូលពាក្យសម្ងាត់",
+        "DO_YOU_WANT_TO_DELETE": "តើអ្នកចង់លុបទិន្នន័យនេះមែនទេ?"
     },
     "ERROR": {
         "INVALID_USER": "ឈ្មោះអ្នកប្រើ ឬពាក្យសម្ងាត់មិនត្រឹមត្រូវ"

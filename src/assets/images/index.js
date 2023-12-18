@@ -1,5 +1,6 @@
 import flagKh from "./kh.png";
 import flagEn from "./en.png";
+import flagEnJpg from "./en.jpg";
 import logo from "./logo.png";
 import logo1 from "./logo1.png";
 import defaultImage from "./default-image.png";
@@ -15,4 +16,5 @@ export {
     dragonLogo,
     avatar001,
     logo1,
+    flagEnJpg
 }

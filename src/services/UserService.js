@@ -19,6 +19,15 @@ class UserService {
             throw error;
         }
     }
+
+    async delete(id) {
+        try {
+            const response = await AxiosInstanceService(`/user/${id}`, MethodEnum.DELETE);
+            if (response) return response.data;
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 export default UserService;
