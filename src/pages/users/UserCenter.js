@@ -10,6 +10,7 @@ import { InputText } from 'primereact/inputtext';
 import RandomColor from '../../hooks/RandomColor';
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import { Dialog } from 'primereact/dialog';
+import { Controller, useForm } from 'react-hook-form';
 
 function UserCenter() {
   const [translate] = useTranslation("global");
@@ -21,8 +22,15 @@ function UserCenter() {
   const [searchValue, setSearch] = useState('');
   const [visible, setVisible] = useState(false);
   const [header, setHeader] = useState('')
+  const [formData, setFormData] = useState({});
 
-
+  const defaultValues = {
+    userName: '',
+    password: '',
+    confirmPassword: '',
+    email: '',
+    isActive: true,
+  }
 
   const home = { icon: 'pi pi-home', command: () => navigate("/home"), }
   const items = [
@@ -87,9 +95,21 @@ function UserCenter() {
   const footerContent = (
     <div>
       <Button label={translate("NAV.NO")} icon="pi pi-times" onClick={() => setVisible(false)} className="p-button-text" />
-      <Button label={translate("NAV.YES")} icon="pi pi-save" className='mr-0' onClick={() => setVisible(false)} autoFocus />
+      <Button type="submit" label={translate("NAV.YES")} icon="pi pi-save" className='mr-0' autoFocus />
     </div>
   );
+
+  const getFormErrorMessage = (name) => {
+    return errors[name] && <small className="p-error">{errors[name].message}</small>
+  };
+
+  const { control, formState: { errors }, handleSubmit, reset } = useForm({ defaultValues });
+
+  const onSubmit = (data) => {
+    console.log(data)
+    setFormData(data);
+    setVisible(false)
+  }
 
   return (
     <>
@@ -151,7 +171,7 @@ function UserCenter() {
                             <div className='flex-1 flex flex-column w-full p-1 flex align-items-start justify-content-center'>
                               <div className='text-gray w-full text-sm font-bold text-overflow-ellipsis text-left overflow-hiddent'>{item.userName}</div>
                               <span className='text-gray text-sm'><i className={`pi ${item?.isActive ? "pi-check-circle text-green-500" : "pi-minus-circle text-red-500"} mr-1`} style={{ fontSize: '12px' }}></i>{item?.isActive ? translate("GLOBAL.ACTIVE") : translate("GLOBAL.INACTIVE")}</span>
-                              <div className='text-gray text-sm'><i className="pi pi-envelope mr-1" style={{ fontSize: '12px' }}></i>{item?.email}</div>
+                              <div className='text-gray text-sm flex flex-nowrap align-items-center'><i className="pi pi-envelope mr-1" style={{ fontSize: '12px' }}></i>{item?.email}</div>
                             </div>
                             <div className='flex flex-column h-full p-1 align-items-center justify-content-center' style={{ width: "30px" }}>
                               <i onClick={() => handleEditUser(item)} className="pi pi-user-edit text-sm text-blue-400 hover:bg-blue-100 p-2 border-circle"></i>
@@ -168,15 +188,20 @@ function UserCenter() {
         </div>
       </div>
 
+      <form onSubmit={handleSubmit(onSubmit)} className="p-fluid">
+        <Dialog header={header} visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)} footer={footerContent}>
+          <div className="field">
+            <span className="p-float-label">
+              <Controller name="name" control={control} rules={{ required: 'Name is required.' }} render={({ field, fieldState }) => (
+                <InputText id={field.name} {...field} autoFocus />
+              )} />
+              <label htmlFor="name">Name*</label>
+            </span>
+            {getFormErrorMessage('name')}
+          </div>
+        </Dialog>
+      </form>
 
-      <Dialog header={header} visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)} footer={footerContent}>
-        <p className="m-0">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-      </Dialog>
     </>
   )
 }

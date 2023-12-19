@@ -83,6 +83,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 > https://www.npmjs.com/package/@react-oauth/google
 > npm i @react-oauth/google
 
+# FORM CONTROLL
+> npm i react-hook-form
+
 # FOR SETUP JSON LANGUAGE
 > npm i i18next react-i18next --save
 # https://www.npmjs.com/package/i18next
@@ -117,3 +120,10 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 # https://dayvster.com/blog/use-context-for-auth
 # 1. slice(), 2. substring()
 # https://codingbeauty.medium.com/javascript-get-first-two-characters-from-string-7ed4fb598cbe
+
+# FORM CONTROLL
+# https://www.primefaces.org/primereact-v8/reacthookform/
+
+
+# FORM CALCULATE PERCENTAGE
+> https://www.percent-off.com/How-much-is_10_percent-off_100_
