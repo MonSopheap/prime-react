@@ -29,7 +29,6 @@ function UserCenter() {
   const fetchUsers = () => {
     setLoading(true)
     userService.getUsers().then((res) => {
-      // console.log(`RESULT:`, res);
       setUserList(res?.data);
       setTimeout(() => {
         setLoading(false);
@@ -68,6 +67,8 @@ function UserCenter() {
       acceptClassName: 'p-button-danger',
       style: { minWidth: '20rem', maxWidth: '25rem' },
       draggable: false,
+      rejectLabel: translate("NAV.NO"),
+      acceptLabel: translate("NAV.YES"),
       accept: () => deleteUser(id),
     });
   }
@@ -123,7 +124,7 @@ function UserCenter() {
                       : userList.filter((d) => {
                         return searchValue.toLowerCase() === '' ? d : d.userName.toLowerCase().includes(searchValue.toLowerCase()) || d.email.toLowerCase().includes(searchValue.toLowerCase())
                       }).map((item) => (<div key={item.id} className="col-12 sm:col-6 md:col-4 lg:col-3 xl:col-3">
-                        <div onClick={() => handleDelete(item?.id)} className={`text-center border-round-sm cursor-pointer hover:shadow-2  overflow-hidden ${item?.isActive ? " bg-blue-100" : "bg-red-100"}`}>
+                        <div className={`text-center border-round-sm cursor-pointer hover:shadow-2 overflow-hidden ${item?.isActive ? " bg-blue-100" : "bg-red-100"}`}>
                           <div className='flex flex-row h-full w-full h-auto p-1 align-items-center justify-content-start'>
                             <div className='flex p-1 justify-content-start align-content-center'>
                               {
@@ -134,6 +135,10 @@ function UserCenter() {
                               <div className='text-gray w-full text-sm font-bold text-overflow-ellipsis text-left overflow-hiddent'>{item.userName}</div>
                               <span className='text-gray text-sm'><i className={`pi ${item?.isActive ? "pi-check-circle text-green-500" : "pi-minus-circle text-red-500"} mr-1`} style={{ fontSize: '12px' }}></i>{item?.isActive ? translate("GLOBAL.ACTIVE") : translate("GLOBAL.INACTIVE")}</span>
                               <div className='text-gray text-sm'><i className="pi pi-envelope mr-1" style={{ fontSize: '12px' }}></i>{item?.email}</div>
+                            </div>
+                            <div className='flex flex-column h-full p-1 align-items-center justify-content-center' style={{ width: "30px" }}>
+                              <i onClick={() => { }} className="pi pi-user-edit text-sm text-blue-400 hover:bg-blue-200 p-2 border-circle"></i>
+                              <i onClick={() => handleDelete(item?.id)} className="pi pi-trash text-sm text-red-400 hover:bg-blue-200 p-2 border-circle"></i>
                             </div>
                           </div>
                         </div>

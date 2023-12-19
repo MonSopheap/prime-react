@@ -79,7 +79,8 @@
         "PAGE_NOT_FOUND": "That's an error. The page you were looking for, does not exist!",
         "ENTER_YOUR_USERNAME": "Enter your username or email",
         "ENTER_YOUR_PASSWORD": "Enter your password",
-        "DO_YOU_WANT_TO_DELETE": "Do you want to delete this record?"
+        "DO_YOU_WANT_TO_DELETE": "Do you want to delete this record?",
+        "BACKUP_YOUR_DATABASE": "Backup your database"
     },
     "ERROR": {
         "INVALID_USER": "Invalid Username or Password"
