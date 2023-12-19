@@ -4,9 +4,13 @@
     padding: 8px 1rem;
 }
 
+.p-dialog .p-dialog-header .p-dialog-title {
+    font-size: 13pt;
+}
+
 .p-dialog .p-dialog-footer {
-    height: 50px;
-    padding: 0.5rem;
+    height: 55px;
+    padding: 0.6rem;
     box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
 }
 

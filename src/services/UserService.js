@@ -28,6 +28,14 @@ class UserService {
             throw error;
         }
     }
+    async create({ userName, password, confirmPassword, email, isActive }) {
+        try {
+            const response = await AxiosInstanceService("/user", MethodEnum.POST, { userName: userName, password: password, confirmPassword: confirmPassword, email: email, isActive: isActive });
+            if (response) return response.data;
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 export default UserService;

@@ -96,7 +96,7 @@ function Navbar() {
                             <i className="pi pi-angle-down text-gray-500"></i>
                         </div>
                     </div>
-                    <Button icon="pi pi-question-circle" style={{ width: '38px', height: "38px" }} tooltip={translate("GLOBAL.HELP")} tooltipOptions={{ position: 'bottom', mouseTrack: true, mouseTrackTop: 15 }} className="ml-2 border bg-blue-50 border-primary-50 focus:border-primary-500" rounded outlined />
+                    <Button icon="pi pi-question-circle" style={{ width: '38px', height: "38px" }} tooltip={translate("GLOBAL.HELP")} tooltipOptions={{ position: 'bottom', mouseTrack: true, mouseTrackTop: 15 }} className="ml-2 border bg-blue-50 border-primary-50 focus:border-primary-200" rounded outlined />
                     <Button onClick={() => { navigate("/setting") }} icon="pi pi-cog" style={{ width: '38px', height: "38px" }} tooltip={translate("GLOBAL.SETTING")} tooltipOptions={{ position: 'bottom', mouseTrack: true, mouseTrackTop: 15 }} className="ml-1 border bg-blue-50 border-primary-50 focus:border-primary-200" rounded outlined loading={loading} />
                     <Button onClick={() => setVisibleNoti(true)} className="p-1 border overflow-visible bg-blue-50 border-primary-50 focus:border-primary-200 ml-1 flex justify-content-center align-items-center" rounded outlined style={{ width: "40px", height: "40px" }}>
                         <i className="pi pi-bell p-overlay-badge text-primary" style={{ fontSize: '18px' }}>

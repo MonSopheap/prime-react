@@ -9,6 +9,7 @@ import { Skeleton } from 'primereact/skeleton';
 import { InputText } from 'primereact/inputtext';
 import RandomColor from '../../hooks/RandomColor';
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
+import { Dialog } from 'primereact/dialog';
 
 function UserCenter() {
   const [translate] = useTranslation("global");
@@ -18,6 +19,8 @@ function UserCenter() {
   const [error, setError] = useState('')
   const userService = new UserService();
   const [searchValue, setSearch] = useState('');
+  const [visible, setVisible] = useState(false);
+  const [header, setHeader] = useState('')
 
 
 
@@ -58,21 +61,35 @@ function UserCenter() {
     });
   }
 
-  const handleDelete = (id) => {
-    console.log(id)
+  const handleDelete = (item) => {
     confirmDialog({
-      message: translate("MSG.DO_YOU_WANT_TO_DELETE"),
+      message: translate("MSG.DO_YOU_WANT_TO_DELETE") + ` (${item?.userName})`,
       header: translate("MSG.DELETE_CONFIRMATION"),
       icon: 'pi pi-info-circle',
       acceptClassName: 'p-button-danger',
-      style: { minWidth: '20rem', maxWidth: '25rem' },
+      style: { minWidth: '25rem', maxWidth: '25rem' },
       draggable: false,
       rejectLabel: translate("NAV.NO"),
       acceptLabel: translate("NAV.YES"),
-      accept: () => deleteUser(id),
+      accept: () => deleteUser(item?.id),
     });
   }
 
+  const handleAddUser = () => {
+    setHeader(translate("NAV.ADD_NEW"))
+    setVisible(true)
+  }
+  const handleEditUser = (item) => {
+    setHeader(translate("NAV.EDIT"))
+    setVisible(true)
+  }
+
+  const footerContent = (
+    <div>
+      <Button label={translate("NAV.NO")} icon="pi pi-times" onClick={() => setVisible(false)} className="p-button-text" />
+      <Button label={translate("NAV.YES")} icon="pi pi-save" className='mr-0' onClick={() => setVisible(false)} autoFocus />
+    </div>
+  );
 
   return (
     <>
@@ -97,7 +114,7 @@ function UserCenter() {
             <div className="h-full flex-1 flex flex-row justify-content-end align-items-center">
               <div className="pr-3 w-full flex flex-row justify-content-end align-items-center">
 
-                <Button label={translate("NAV.ADD")} icon="pi pi-plus-circle" className="px-3 py-2 mr-1" outlined loading={false} onClick={() => { }} />
+                <Button onClick={() => handleAddUser()} label={translate("NAV.ADD")} icon="pi pi-plus-circle" className="px-3 py-2 mr-1" outlined loading={false} />
               </div>
             </div>
           </div>
@@ -124,7 +141,7 @@ function UserCenter() {
                       : userList.filter((d) => {
                         return searchValue.toLowerCase() === '' ? d : d.userName.toLowerCase().includes(searchValue.toLowerCase()) || d.email.toLowerCase().includes(searchValue.toLowerCase())
                       }).map((item) => (<div key={item.id} className="col-12 sm:col-6 md:col-4 lg:col-3 xl:col-3">
-                        <div className={`text-center border-round-sm cursor-pointer hover:shadow-2 overflow-hidden ${item?.isActive ? " bg-blue-100" : "bg-red-100"}`}>
+                        <div className={`text-center border-round-sm border-1 border-gray-100 cursor-pointer hover:shadow-2 overflow-hidden ${item?.isActive ? " bg-blue-50" : "bg-red-50"}`}>
                           <div className='flex flex-row h-full w-full h-auto p-1 align-items-center justify-content-start'>
                             <div className='flex p-1 justify-content-start align-content-center'>
                               {
@@ -137,8 +154,8 @@ function UserCenter() {
                               <div className='text-gray text-sm'><i className="pi pi-envelope mr-1" style={{ fontSize: '12px' }}></i>{item?.email}</div>
                             </div>
                             <div className='flex flex-column h-full p-1 align-items-center justify-content-center' style={{ width: "30px" }}>
-                              <i onClick={() => { }} className="pi pi-user-edit text-sm text-blue-400 hover:bg-blue-200 p-2 border-circle"></i>
-                              <i onClick={() => handleDelete(item?.id)} className="pi pi-trash text-sm text-red-400 hover:bg-blue-200 p-2 border-circle"></i>
+                              <i onClick={() => handleEditUser(item)} className="pi pi-user-edit text-sm text-blue-400 hover:bg-blue-100 p-2 border-circle"></i>
+                              <i onClick={() => handleDelete(item)} className="pi pi-trash text-sm text-red-400 hover:bg-blue-100 p-2 border-circle"></i>
                             </div>
                           </div>
                         </div>
@@ -150,6 +167,16 @@ function UserCenter() {
           </div>
         </div>
       </div>
+
+
+      <Dialog header={header} visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)} footer={footerContent}>
+        <p className="m-0">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+      </Dialog>
     </>
   )
 }
