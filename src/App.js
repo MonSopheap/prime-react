@@ -18,8 +18,9 @@ import LoginPage from './pages/auth/LoginPage';
 import AuthLayout from './layouts/AuthLayout';
 import DeveloperPage from './pages/developer/DeveloperPage';
 import ProtectedRoute from './commom/ProtectedRoute';
-import UserCenter from './pages/users/UserCenter';
 import BackupDatabase from './pages/tools/BackupDatabase';
+import UserManagement from './pages/users/UserManagement';
+import RolePage from './pages/roles/RolePage';
 
 
 function App() {
@@ -28,8 +29,6 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<ProtectedRoute><MainLayout /></ProtectedRoute>}>
-          <Route index element={<PageNotFound />}></Route>
-
           <Route path="home" element={<HomePage />}>
             <Route path='developer' element={<DeveloperPage />}></Route>
             <Route path='dashboard' element={<span>Dashboard</span>}></Route>
@@ -37,7 +36,8 @@ function App() {
             <Route path='submenu2' element={<span>Submenu 2</span>}></Route>
             <Route path='submenu3' element={<span>Submenu 3</span>}></Route>
             <Route path='submenu4' element={<span>Submenu 3</span>}></Route>
-            <Route path='user' element={<UserCenter />}></Route>
+            <Route path='user' element={<UserManagement />}></Route>
+            <Route path='role' element={<RolePage />}></Route>
             <Route path='database' element={<BackupDatabase />}></Route>
             {/* 👇️ only match this when no other routes match */}
             <Route path="*" element={<PageNotFound />} />

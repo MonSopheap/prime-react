@@ -31,6 +31,7 @@
         "DELETE": "លុប",
         "YES": "បាទ/ចាស៎",
         "NO": "ទេ",
+        "CLOSE": "បិទ",
         "OK": "យល់ព្រម",
         "CANCEL": "បិទ",
         "SAVE": "រក្សាទុក",
@@ -40,17 +41,23 @@
         "MEMO": "សម្គាល់",
         "GENERAL_INFO": "ព័ត៌មានទូទៅ",
         "STOCK_INFO": "ព័ត៌មានស្តុក",
-        "UNIT_SET": "ខ្នាត",
-        "USERNAME": "ឈ្មោះ ឬ អ៊ីមែល",
-        "ENTER_USERNAME": "បញ្ចូលឈ្មោះ ឬ អ៊ីមែល",
-        "PASSWORD": "លេខកូដសម្ងាត់",
-        "ENTER_PASSWORD": "បញ្ចូលលេខកូដសម្ងាត់",
         "USER": "អ្នកប្រើប្រាស់",
         "USER_MANAGEMENT": "គ្រប់គ្រងអ្នកប្រើប្រាស់",
         "USERS": "អ្នកប្រើប្រាស់",
         "ROLE": "មុខងារ",
         "TOOLS": "ឧបករណ៍",
-        "DATABASE": "មូលទិន្នន័យ"
+        "DATABASE": "មូលទិន្នន័យ",
+        "NAME": "ឈ្មោះ",
+        "DESCRIPTION": "បរិយាយ",
+        "ACTION": "សកម្ម"
+    },
+    "USER": {
+        "USERNAME": "ឈ្មោះ ឬ អ៊ីមែល",
+        "ENTER_USERNAME": "បញ្ចូលឈ្មោះ ឬ អ៊ីមែល",
+        "PASSWORD": "លេខកូដសម្ងាត់",
+        "CONFIRM_PASSWORD": "ផ្ទៀងផ្ទាត់លេខកូដសម្ងាត់",
+        "ENTER_PASSWORD": "បញ្ចូលលេខកូដសម្ងាត់",
+        "EMAIL": "អ៊ីម៉ែល(Email)"
     },
     "ITEM": {
         "CODE": "កូដ",
@@ -61,7 +68,8 @@
         "COST": "ថ្លៃដើម",
         "BASE_UNIT": "ខ្នាតគោល",
         "BASE_PRICE": "តម្លៃខ្នាតគោល",
-        "BARCODE": "កូដទំនិញ"
+        "BARCODE": "កូដទំនិញ",
+        "UNIT_SET": "ខ្នាត"
     },
     "ITEM_GROUP": {
         "CODE": "កូដ",
@@ -75,6 +83,7 @@
         "UNITSET_NAME": "ឈ្មោះខ្នាត"
     },
     "MSG": {
+        "INFORMATION": "ព័ត៌មាន",
         "WARNING": "ការព្រមាន",
         "SUCCESS": "ជោគជ័យ",
         "DELETE_CONFIRMATION": "បញ្ជាក់ការលុប",
@@ -82,7 +91,8 @@
         "ENTER_YOUR_USERNAME": "សូមបញ្ចូលឈ្មោះ ឬ អ៊ីមែល",
         "ENTER_YOUR_PASSWORD": "សូមបញ្ចូលពាក្យសម្ងាត់",
         "DO_YOU_WANT_TO_DELETE": "តើអ្នកចង់លុបទិន្នន័យនេះមែនទេ?",
-        "BACKUP_YOUR_DATABASE": "បម្រុងទុកមូលដ្ឋានទិន្នន័យរបស់អ្នក។"
+        "BACKUP_YOUR_DATABASE": "បម្រុងទុកមូលដ្ឋានទិន្នន័យរបស់អ្នក។",
+        "DELETED_SUCCESSFULLY": "លុបទិន្នន័យបានដោយជោគជ័យ"
     },
     "ERROR": {
         "INVALID_USER": "ឈ្មោះអ្នកប្រើ ឬពាក្យសម្ងាត់មិនត្រឹមត្រូវ"

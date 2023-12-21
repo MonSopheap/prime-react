@@ -31,7 +31,7 @@ function LoginPage() {
             console.log(`RESULT:`, res)
 
             setLoading(false);
-            navigate("/")
+            navigate("/home")
             localStorage.setItem(AppProps.ACCESS_TOKEN, res.data.accessToken);
             localStorage.setItem(AppProps.CURRENT_USER, res.data.data);
         }).catch((err) => {
@@ -65,17 +65,17 @@ function LoginPage() {
                                 <p className='p-0 mt-2'>{translate("GLOBAL.ENTER_YOUR_CREDENTIALS")}</p>
                                 <div className='pt-2'>
                                     <div className="flex flex-column gap-2 mb-3">
-                                        <label htmlFor="username">{translate("NAV.USERNAME")}</label>
+                                        <label htmlFor="username">{translate("USER.USERNAME")}</label>
                                         <span className="p-input-icon-left w-full">
                                             <i className="pi pi-user" />
-                                            <InputText id="username" value={userName} className='w-full' onChange={(e) => setUsername(e.target.value)} placeholder={translate("NAV.ENTER_USERNAME")} aria-describedby="username-help" autoFocus />
+                                            <InputText id="username" value={userName} className='w-full' onChange={(e) => setUsername(e.target.value)} placeholder={translate("USER.ENTER_USERNAME")} aria-describedby="username-help" autoFocus />
                                         </span>
                                     </div>
                                     <div className="flex flex-column gap-2">
-                                        <label htmlFor="password">{translate("NAV.PASSWORD")}</label>
+                                        <label htmlFor="password">{translate("USER.PASSWORD")}</label>
                                         <span className="p-input-icon-left w-full">
                                             <i className="pi pi-unlock" />
-                                            <InputText id="password" value={password} onChange={(e) => setPassword(e.target.value)} className='w-full' type="password" placeholder={translate("NAV.ENTER_PASSWORD")} aria-describedby="password-help" />
+                                            <InputText id="password" value={password} onChange={(e) => setPassword(e.target.value)} className='w-full' type="password" placeholder={translate("USER.ENTER_PASSWORD")} aria-describedby="password-help" />
                                         </span>
                                     </div>
                                 </div>

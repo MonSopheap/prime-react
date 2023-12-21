@@ -1,6 +1,6 @@
 import { BreadCrumb } from 'primereact/breadcrumb'
 import { Button } from 'primereact/button'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { Avatar } from 'primereact/avatar';
@@ -10,62 +10,61 @@ import { InputText } from 'primereact/inputtext';
 import RandomColor from '../../hooks/RandomColor';
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import { Dialog } from 'primereact/dialog';
-import { Controller, useForm } from 'react-hook-form';
+import { Checkbox } from 'primereact/checkbox';
+import { Toast } from 'primereact/toast';
 
-function UserCenter() {
+function UserManagement() {
   const [translate] = useTranslation("global");
   const navigate = useNavigate()
+  const userService = new UserService();
   const [userList, setUserList] = useState([])
   const [isLoading, setLoading] = useState(false)
   const [error, setError] = useState('')
-  const userService = new UserService();
   const [searchValue, setSearch] = useState('');
   const [visible, setVisible] = useState(false);
-  const [header, setHeader] = useState('')
-  const [formData, setFormData] = useState({});
-
-  const defaultValues = {
-    userName: '',
-    password: '',
-    confirmPassword: '',
-    email: '',
-    isActive: true,
-  }
+  const [header, setHeader] = useState('');
+  const [isActive, setActive] = useState(false);
+  const [user, setUser] = useState({
+    userName: "",
+    password: "",
+    confirmPassword: "",
+    email: "",
+    isActive: isActive,
+  });
+  const [msg, setMsg] = useState("")
+  const toast = useRef(null);
 
   const home = { icon: 'pi pi-home', command: () => navigate("/home"), }
   const items = [
     { label: translate("NAV.USER") },
   ];
 
-  const fetchUsers = () => {
+  const fetchUsers = async () => {
     setLoading(true)
-    userService.getUsers().then((res) => {
+    await userService.getUsers().then((res) => {
       setUserList(res?.data);
-      setTimeout(() => {
-        setLoading(false);
-      }, 1000)
     }).catch((err) => {
-      console.log(`ERROR: ${err}`)
       setError(err);
+    }).finally(() => {
       setTimeout(() => {
-        setLoading(false);
+        setLoading(false)
       }, 1000)
-
-    });
+    })
   }
 
   useEffect(() => {
     fetchUsers();
-
   }, [])
 
-  const deleteUser = async (id) => {
-    await userService.delete(id).then((res) => {
-      fetchUsers();
-    }).catch((err) => {
-      setTimeout(() => {
-        setLoading(false);
-      }, 1000)
+  const deleteUser = async (user) => {
+    await userService.delete(343).then((res) => {
+      if (res.status) {
+        fetchUsers();
+        toast.current.show({ severity: 'success', summary: translate("MSG.SUCCESS"), detail: translate("MSG.DELETED_SUCCESSFULLY"), life: 3000 });
+      }
+    }).catch((error) => {
+      console.log(error)
+      toast.current.show({ severity: 'error', summary: translate("MSG.INFORMATION"), detail: error.message, life: 3000 });
     });
   }
 
@@ -79,8 +78,15 @@ function UserCenter() {
       draggable: false,
       rejectLabel: translate("NAV.NO"),
       acceptLabel: translate("NAV.YES"),
-      accept: () => deleteUser(item?.id),
+      accept: () => deleteUser(item),
     });
+  }
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setUser({ ...user, [e.target.name]: value })
+    console.log(user)
+
   }
 
   const handleAddUser = () => {
@@ -92,28 +98,39 @@ function UserCenter() {
     setVisible(true)
   }
 
-  const footerContent = (
-    <div>
-      <Button label={translate("NAV.NO")} icon="pi pi-times" onClick={() => setVisible(false)} className="p-button-text" />
-      <Button type="submit" label={translate("NAV.YES")} icon="pi pi-save" className='mr-0' autoFocus />
-    </div>
-  );
-
-  const getFormErrorMessage = (name) => {
-    return errors[name] && <small className="p-error">{errors[name].message}</small>
-  };
-
-  const { control, formState: { errors }, handleSubmit, reset } = useForm({ defaultValues });
-
-  const onSubmit = (data) => {
-    console.log(data)
-    setFormData(data);
-    setVisible(false)
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(`Message alert`)
+    // console.log(event);
+    // console.log(user)
+    // await userService.save(user)
+    //   .then((res) => {
+    //     console.log("User Added Successfully");
+    //     setMsg("Used Added Sucessfully");
+    //     setUser({
+    //       userName: "",
+    //       password: "",
+    //       confirmPassword: "",
+    //       email: "",
+    //       isActive: isActive,
+    //     });
+    //     setVisible(false)
+    //   }).catch((error) => {
+    //     console.log(error);
+    //   });
   }
 
+  const footerContent = (
+    <div>
+      <Button label={translate("NAV.CLOSE")} icon="pi pi-times" onClick={() => setVisible(false)} className="p-button-text" />
+      <Button type="submit" label={translate("NAV.SAVE")} icon="pi pi-save" className='mr-0' />
+    </div>
+  );
   return (
     <>
+      <Toast ref={toast} position="top-center" />
       <ConfirmDialog />
+
       <div className="w-full h-full">
         <div className="w-full h-full flex flex-column">
           <div className="w-full flex flex-row justify-content-between align-items-center border-bottom-1 border-200 overflow-hidden" style={{ height: "50px" }}>
@@ -144,7 +161,7 @@ function UserCenter() {
                 <div className="grid">
                   {
                     isLoading ? [...Array(12)].map((item, index) => (
-                      <div key={index} className="col-12 sm:col-6 md:col-4 lg:col-3 xl:col-3">
+                      <div key={index} className="col-12 sm:col-12 md:col-6 lg:col-4 xl:col-3">
                         <div className="text-center border-round-sm bg-blue-50 w">
                           <div className='flex flex-row h-full w-full p-1 align-items-center justify-content-start overflow-hidden'>
                             <div className='flex p-1 justify-content-start align-content-center'>
@@ -160,7 +177,7 @@ function UserCenter() {
                     ))
                       : userList.filter((d) => {
                         return searchValue.toLowerCase() === '' ? d : d.userName.toLowerCase().includes(searchValue.toLowerCase()) || d.email.toLowerCase().includes(searchValue.toLowerCase())
-                      }).map((item) => (<div key={item.id} className="col-12 sm:col-6 md:col-4 lg:col-3 xl:col-3">
+                      }).map((item) => (<div key={item.id} className="col-12 sm:col-12 md:col-6 lg:col-4 xl:col-3">
                         <div className={`text-center border-round-sm border-1 border-gray-100 cursor-pointer hover:shadow-2 overflow-hidden ${item?.isActive ? " bg-blue-50" : "bg-red-50"}`}>
                           <div className='flex flex-row h-full w-full h-auto p-1 align-items-center justify-content-start'>
                             <div className='flex p-1 justify-content-start align-content-center'>
@@ -188,22 +205,52 @@ function UserCenter() {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="p-fluid">
-        <Dialog header={header} visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)} footer={footerContent}>
-          <div className="field">
-            <span className="p-float-label">
-              <Controller name="name" control={control} rules={{ required: 'Name is required.' }} render={({ field, fieldState }) => (
-                <InputText id={field.name} {...field} autoFocus />
-              )} />
-              <label htmlFor="name">Name*</label>
-            </span>
-            {getFormErrorMessage('name')}
+      <Dialog header={header} draggable={false} visible={visible} style={{ width: '35rem', minWidth: '35rem' }} onHide={() => setVisible(false)} footer={footerContent}>
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <div className='grid'>
+            <div className='col-12 sm:col-12 md:col-4 lg:col-4 xl:col-4 flex justify-content-start align-items-center'>
+              <label htmlFor="userName">{translate("USER.USERNAME")}<sup className="p-invalid">*</sup></label>
+            </div>
+            <div className='col-12 sm:col-12 md:col-8 lg:col-8 xl:col-8'>
+              <InputText id="userName" className='w-full' name='userName' value={user.userName} onChange={(e) => handleChange(e)} autoFocus />
+            </div>
           </div>
-        </Dialog>
-      </form>
+          <div className='grid'>
+            <div className='col-12 sm:col-12 md:col-4 lg:col-4 xl:col-4 flex justify-content-start align-items-center'>
+              <label htmlFor="pwd">{translate("USER.PASSWORD")}<sup className="p-invalid">*</sup></label>
+            </div>
+            <div className='col-12 sm:col-12 md:col-8 lg:col-8 xl:col-8'>
+              <InputText id="pwd" name="password" value={user.password} onChange={(e) => handleChange(e)} className='w-full' />
+            </div>
+          </div>
+          <div className='grid'>
+            <div className='col-12 sm:col-12 md:col-4 lg:col-4 xl:col-4 flex justify-content-start align-items-center'>
+              <label htmlFor="confirmPwd">{translate("USER.CONFIRM_PASSWORD")}<sup className="p-invalid">*</sup></label>
+            </div>
+            <div className='col-12 sm:col-12 md:col-8 lg:col-8 xl:col-8'>
+              <InputText id="confirmPwd" name="confirmPassword" value={user.confirmPassword} onChange={(e) => handleChange(e)} className='w-full' />
+            </div>
+          </div>
+          <div className='grid'>
+            <div className='col-12 sm:col-12 md:col-4 lg:col-4 xl:col-4 flex justify-content-start align-items-center'>
+              <label htmlFor="email">{translate("USER.EMAIL")}</label>
+            </div>
+            <div className='col-12 sm:col-12 md:col-8 lg:col-8 xl:col-8'>
+              <InputText id="email" name="email" value={user.email} onChange={(e) => handleChange(e)} className='w-full' />
+            </div>
+          </div>
+          <div className='grid'>
+            <div className='col-12 md:block sm:hidden md:col-4 lg:col-4 xl:col-4 flex justify-content-start align-items-center'>
 
+            </div>
+            <div className='col-12 sm:col-12 md:col-8 lg:col-8 xl:col-8'>
+              <Checkbox onChange={e => setActive(e.checked)} checked={isActive}></Checkbox>
+            </div>
+          </div>
+        </form>
+      </Dialog>
     </>
   )
 }
 
-export default UserCenter
+export default UserManagement

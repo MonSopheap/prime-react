@@ -1,14 +1,31 @@
 import AxiosInstanceService from "../commom/AxiosInstance";
-import { MethodEnum } from "../commom/Enum";
+import { MethodEnum } from "../commom/MethodEnum";
 
 class RoleService {
-    getRols = async () => {
+    async getRoles() {
         try {
             const response = await AxiosInstanceService("/role/gets", MethodEnum.GET);
-            console.log(`RESPONSE:`, response)
-            return response;
+            console.log(response)
+            return response?.data;
         } catch (error) {
-            console.log(error);
+            throw error;
+        }
+    }
+
+    async delete(id) {
+        try {
+            const response = await AxiosInstanceService(`/role/${id}`, MethodEnum.DELETE);
+            if (response) return response.data;
+        } catch (error) {
+            throw error;
+        }
+    }
+    async save(obj) {
+        try {
+            const response = await AxiosInstanceService("/role", MethodEnum.POST, obj);
+            return response;
+        }
+        catch (error) {
             throw error;
         }
     }

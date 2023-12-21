@@ -62,25 +62,25 @@ function Navbar() {
         navigate("auth/login");
     }
     const notificationList = [
-        { id: 1, name: "What is Programming?", desc: "Our mission: to help people learn to code for free. We accomplish this by creating thousands of videos, articles, and interactive coding lessons - all freely available to the public.", createdDate: '27/05/2023' },
-        { id: 2, name: "How to use .filter() and .includes() methods on JSON with multiple conditions (JS, React)?", desc: "My current code that does the filtering looks like:", createdDate: '27/05/2023' },
-        { id: 3, name: "You can see that I also added", desc: "message if no user matches with what we write in the input, you can do it by just editing the part where the users are being rendered,", createdDate: '27/05/2023' },
-        { id: 4, name: "Notification 003", desc: "Description Notification", createdDate: '27/05/2023' },
-        { id: 4, name: "Notification 003", desc: "Description Notification", createdDate: '27/05/2023' },
-        { id: 4, name: "Notification 003", desc: "Description Notification", createdDate: '27/05/2023' },
-        { id: 4, name: "Notification 003", desc: "Description Notification", createdDate: '27/05/2023' },
-        { id: 4, name: "Notification 003", desc: "Description Notification", createdDate: '27/05/2023' },
-        { id: 4, name: "Notification 003", desc: "Description Notification", createdDate: '27/05/2023' },
-        { id: 4, name: "Notification 003", desc: "Description Notification", createdDate: '27/05/2023' },
-        { id: 4, name: "Notification 003", desc: "Description Notification", createdDate: '27/05/2023' },
-        { id: 4, name: "Notification 003", desc: "Description Notification", createdDate: '27/05/2023' },
-        { id: 4, name: "Notification 003", desc: "Description Notification", createdDate: '27/05/2023' },
-        { id: 4, name: "Notification 003", desc: "Description Notification", createdDate: '27/05/2023' },
-        { id: 4, name: "Notification 003", desc: "Description Notification", createdDate: '27/05/2023' },
-        { id: 4, name: "Notification 003", desc: "Description Notification", createdDate: '27/05/2023' },
-        { id: 4, name: "Notification 003", desc: "Description Notification", createdDate: '27/05/2023' },
-        { id: 4, name: "Notification 003", desc: "Description Notification", createdDate: '27/05/2023' },
-        { id: 4, name: "Notification 003", desc: "Description Notification", createdDate: '27/05/2023' },
+        { id: 0, name: "What is Programming?", desc: "Our mission: to help people learn to code for free. We accomplish this by creating thousands of videos, articles, and interactive coding lessons - all freely available to the public.", createdDate: '27/05/2023' },
+        { id: 0, name: "How to use .filter() and .includes() methods on JSON with multiple conditions (JS, React)?", desc: "My current code that does the filtering looks like:", createdDate: '27/05/2023' },
+        { id: 0, name: "You can see that I also added", desc: "message if no user matches with what we write in the input, you can do it by just editing the part where the users are being rendered,", createdDate: '27/05/2023' },
+        { id: 0, name: "Notification 003", desc: "Description Notification", createdDate: '27/05/2023' },
+        { id: 0, name: "Notification 003", desc: "Description Notification", createdDate: '27/05/2023' },
+        { id: 0, name: "Notification 003", desc: "Description Notification", createdDate: '27/05/2023' },
+        { id: 0, name: "Notification 003", desc: "Description Notification", createdDate: '27/05/2023' },
+        { id: 0, name: "Notification 003", desc: "Description Notification", createdDate: '27/05/2023' },
+        { id: 0, name: "Notification 003", desc: "Description Notification", createdDate: '27/05/2023' },
+        { id: 0, name: "Notification 003", desc: "Description Notification", createdDate: '27/05/2023' },
+        { id: 0, name: "Notification 003", desc: "Description Notification", createdDate: '27/05/2023' },
+        { id: 0, name: "Notification 003", desc: "Description Notification", createdDate: '27/05/2023' },
+        { id: 0, name: "Notification 003", desc: "Description Notification", createdDate: '27/05/2023' },
+        { id: 0, name: "Notification 003", desc: "Description Notification", createdDate: '27/05/2023' },
+        { id: 0, name: "Notification 003", desc: "Description Notification", createdDate: '27/05/2023' },
+        { id: 0, name: "Notification 003", desc: "Description Notification", createdDate: '27/05/2023' },
+        { id: 0, name: "Notification 003", desc: "Description Notification", createdDate: '27/05/2023' },
+        { id: 0, name: "Notification 003", desc: "Description Notification", createdDate: '27/05/2023' },
+        { id: 0, name: "Notification 003", desc: "Description Notification", createdDate: '27/05/2023' },
     ];
     return (
         <>
@@ -156,9 +156,9 @@ function Navbar() {
                 <div className='absolute font-bold text-md' style={{ top: "15px", left: "15px" }}>{translate("GLOBAL.NOTIFICATION")}</div>
                 <div className='grid grid-nogutter'>
                     {
-                        notificationList.map((item) => {
+                        notificationList.map((item, index) => {
                             return (
-                                <div class="col-12 p-0 border-bottom-1 border-gray-100 cursor-pointer hover:shadow-1 hover:bg-orange-50">
+                                <div key={index} class="col-12 p-0 border-bottom-1 border-gray-100 cursor-pointer hover:shadow-1 hover:bg-blue-50">
                                     <div className='flex flex-column p-2'>
                                         <div className='flex flex-row justify-content-start align-items-center'>
                                             <div style={{ width: "45px" }}>
