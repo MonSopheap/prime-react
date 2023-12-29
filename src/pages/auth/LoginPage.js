@@ -9,6 +9,7 @@ import { AppProps } from '../../commom/AppProps';
 import UserService from '../../services/UserService';
 import AnimationWrapper from '../../commom/PageAnimation';
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
+import GoogleOAuth2Service from '../../services/GoogleOAuth2';
 
 function LoginPage() {
     const [translate] = useTranslation("global");
@@ -18,6 +19,8 @@ function LoginPage() {
     const toastMsgRef = useRef(null);
     const navigate = useNavigate();
     const userService = new UserService();
+    const googleOAuth2Service = new GoogleOAuth2Service();
+    const GOOGLE_CLIENT_ID = '329476046362-vda1m53o4u9efrn6uuk6pos9hvnfrmog.apps.googleusercontent.com';
 
 
     const showMessage = ({ message }) => {
@@ -32,24 +35,27 @@ function LoginPage() {
 
             setLoading(false);
             navigate("/home")
-            localStorage.setItem(AppProps.ACCESS_TOKEN, res.data.accessToken);
-            localStorage.setItem(AppProps.CURRENT_USER, res.data.data);
+            console.log(res.data)
+            localStorage.setItem(AppProps.ACCESS_TOKEN, res.accessToken);
+            localStorage.setItem(AppProps.CURRENT_USER, JSON.stringify(res.data));
         }).catch((err) => {
             console.log(`ERROR: ${err}`)
             setLoading(false);
         });
     }
 
-    const signUp = (event) => {
-        confirmDialog({
-            trigger: event.currentTarget,
-            message: 'Are you sure you want to proceed?',
-            header: 'Confirmation',
-            icon: 'pi pi-exclamation-triangle',
-            accept: () => { },
-            reject: () => { },
-        });
-    };
+    // const sigInWithGoogle = async (event) => {
+    //     event.preventDefault();
+    //     setLoading(true);
+    //     await googleOAuth2Service.signIn().then((res) => {
+    //         console.log(`RESULT:`, res)
+    //         setLoading(false);
+    //         // navigate("/home")
+    //     }).catch((err) => {
+    //         console.log(`ERROR: ${err}`)
+    //         setLoading(false);
+    //     });
+    // };
 
     return (
 
@@ -81,20 +87,19 @@ function LoginPage() {
                                 </div>
                                 <div className='flex flex-row justify-content-between align-items-center mt-2 mb-4'>
                                     <a href='#' onClick={() => navigate("/")} className='p-0 no-underline focus:text-primary-500'>{translate("GLOBAL.FORGOT_PASSWORD")}</a>
-                                    <a href='#' onClick={signUp} className='p-0 text-600 focus:text-primary-500'>{translate("GLOBAL.CREATE_ACCOUNT")} </a>
+                                    <a href='#' onClick={() => navigate("/auth/register")} className='p-0 text-600 focus:text-primary-500'>{translate("GLOBAL.CREATE_ACCOUNT")} </a>
                                 </div>
                                 <Button type="submit" className='w-full mb-2' label={translate("GLOBAL.SIGN_IN")} icon="pi pi-sign-in" loading={loading} />
-                                <GoogleOAuthProvider clientId="<your_client_id>">
+                                <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
                                     <GoogleLogin
                                         onSuccess={credentialResponse => {
-                                            console.log(credentialResponse);
+                                            console.log(`*CredentialResponse`, credentialResponse);
                                         }}
                                         onError={() => {
                                             console.log('Login Failed');
                                         }}
                                     />
                                 </GoogleOAuthProvider>
-
                             </form>
                         </div>
                     </div>

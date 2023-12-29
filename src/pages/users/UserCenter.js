@@ -13,7 +13,7 @@ import { Dialog } from 'primereact/dialog';
 import { Checkbox } from 'primereact/checkbox';
 import { Toast } from 'primereact/toast';
 
-function UserManagement() {
+function UserCenter() {
   const [translate] = useTranslation("global");
   const navigate = useNavigate()
   const userService = new UserService();
@@ -54,10 +54,11 @@ function UserManagement() {
 
   useEffect(() => {
     fetchUsers();
+
   }, [])
 
   const deleteUser = async (user) => {
-    await userService.delete(343).then((res) => {
+    await userService.delete(user?.id).then((res) => {
       if (res.status) {
         fetchUsers();
         toast.current.show({ severity: 'success', summary: translate("MSG.SUCCESS"), detail: translate("MSG.DELETED_SUCCESSFULLY"), life: 3000 });
@@ -205,7 +206,7 @@ function UserManagement() {
         </div>
       </div>
 
-      <Dialog header={header} draggable={false} visible={visible} style={{ width: '35rem', minWidth: '35rem' }} onHide={() => setVisible(false)} footer={footerContent}>
+      <Dialog header={header} draggable={false} visible={visible} breakpoints={{ "960px": "75vw" }} style={{ width: '35rem', minWidth: '35rem' }} onHide={() => setVisible(false)} footer={footerContent}>
         <form onSubmit={(e) => handleSubmit(e)}>
           <div className='grid'>
             <div className='col-12 sm:col-12 md:col-4 lg:col-4 xl:col-4 flex justify-content-start align-items-center'>
@@ -247,10 +248,11 @@ function UserManagement() {
               <Checkbox onChange={e => setActive(e.checked)} checked={isActive}></Checkbox>
             </div>
           </div>
+
         </form>
       </Dialog>
     </>
   )
 }
 
-export default UserManagement
+export default UserCenter

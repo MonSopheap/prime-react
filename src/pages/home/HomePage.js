@@ -35,6 +35,20 @@ function HomePage() {
             command: () => { navigate('/home/android') }
         },
         {
+            label: translate("NAV.STOCK"),
+            expanded: isExpandedMenu([
+                "/home/stock/item",
+            ]),
+            items: [
+                {
+                    label: translate("NAV.ITEM"),
+                    icon: 'pi pi-fw pi-inbox',
+                    command: () => { navigate('/home/stock/item') },
+                    className: isActiveClass("/home/stock/item"),
+                },
+            ],
+        },
+        {
             label: translate("NAV.USER_MANAGEMENT"),
             items: [
                 {
@@ -49,33 +63,27 @@ function HomePage() {
                     command: () => { navigate('/home/role') },
                     className: isActiveClass("/home/role"),
                 },
-                {
-                    label: 'Submenu 2',
-                    icon: 'pi pi-fw pi-align-right',
-                    command: () => { navigate('/home/submenu2') },
-                    className: isActiveClass("/home/submenu2")
-                },
-                {
-                    label: 'Submenu 3',
-                    icon: 'pi pi-fw pi-align-center',
-                    command: () => { navigate('/home/submenu3') },
-                    className: isActiveClass("/home/submenu3")
-                },
-                {
-                    label: 'Submenu 4',
-                    icon: 'pi pi-fw pi-align-justify',
-                    command: () => { navigate('/home/submenu4') },
-                    className: isActiveClass("/home/submenu4")
-                }
             ],
             expanded: isExpandedMenu([
                 "/home/user",
                 "/home/role",
-                "/home/submenu2",
-                "/home/submenu3",
-                "/home/submenu4",
             ])
         },
+        {
+            label: translate("GLOBAL.SETTING"),
+            expanded: isExpandedMenu([
+                "/home/setting/branch",
+            ]),
+            items: [
+                {
+                    label: translate("NAV.BRANCH"),
+                    icon: 'pi pi-sitemap',
+                    command: () => { navigate('/home/setting/branch') },
+                    className: isActiveClass("/home/setting/branch"),
+                },
+            ],
+        },
+
         {
             label: translate("NAV.TOOLS"),
             expanded: isExpandedMenu([

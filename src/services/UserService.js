@@ -30,7 +30,7 @@ class UserService {
     }
     async save(obj) {
         try {
-            const response = await AxiosInstanceService("/user", MethodEnum.POST, obj);
+            const response = await AxiosInstanceService("/user/register", MethodEnum.POST, obj);
             return response;
         }
         catch (error) {

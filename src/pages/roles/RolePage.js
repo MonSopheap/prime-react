@@ -118,7 +118,7 @@ function RolePage() {
         //   });
     }
 
-    console.log(selectedRole)
+    // console.log(selectedRole)
 
     const footerContent = (
         <div>
@@ -150,9 +150,9 @@ function RolePage() {
                         </div>
                         <div className="h-full flex-1 flex flex-row justify-content-end align-items-center">
                             <div className="pr-3 w-full flex flex-row justify-content-end align-items-center">
-                                <Button onClick={() => handleDelete()} label={translate("NAV.DELETE")} icon="pi pi-trash" className="px-3 py-2 mr-1" loading={false} outlined text raised disabled={!selectedRole || selectedRole?.id === 0} />
-                                <Button onClick={() => handleEdit()} label={translate("NAV.EDIT")} icon="pi pi-pencil" className="px-3 py-2 mr-1" loading={false} outlined text raised disabled={!selectedRole || selectedRole?.id === 0} />
-                                <Button onClick={() => handleAdd()} label={translate("NAV.ADD")} icon="pi pi-plus-circle" className="px-3 py-2 mr-1" loading={false} outlined text raised />
+                                <Button onClick={() => handleDelete()} label={translate("NAV.DELETE")} icon="pi pi-trash" className="px-3 py-2 mr-1" loading={false} outlined disabled={!selectedRole || selectedRole?.id === 0} />
+                                <Button onClick={() => handleEdit()} label={translate("NAV.EDIT")} icon="pi pi-pencil" className="px-3 py-2 mr-1" loading={false} outlined disabled={!selectedRole || selectedRole?.id === 0} />
+                                <Button onClick={() => handleAdd()} label={translate("NAV.ADD")} icon="pi pi-plus-circle" className="px-3 py-2 mr-1" loading={false} outlined />
                             </div>
                         </div>
                     </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from 'primereact/button';
 import { Badge } from 'primereact/badge';
@@ -11,9 +11,10 @@ import {
     avatar001,
 } from "../assets/images";
 import { Sidebar } from 'primereact/sidebar';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Avatar } from 'primereact/avatar';
 import { AppProps } from '../commom/AppProps';
+import { UserContext } from '../contexts/UserContext';
 
 function Navbar() {
     const [translate, i18n] = useTranslation("global");
@@ -22,7 +23,7 @@ function Navbar() {
     const navigate = useNavigate()
     const [language, setLanguage] = useState({})
     const [visibleNofi, setVisibleNoti] = useState(false);
-
+    const userContext = useContext(UserContext);
     useEffect(() => {
         const lang = JSON.parse(localStorage.getItem(AppProps.KEY_LANGUAGE));
         if (lang) storeLanguage(lang);
@@ -61,6 +62,7 @@ function Navbar() {
         localStorage.removeItem(AppProps.CURRENT_USER);
         navigate("auth/login");
     }
+
     const notificationList = [
         { id: 0, name: "What is Programming?", desc: "Our mission: to help people learn to code for free. We accomplish this by creating thousands of videos, articles, and interactive coding lessons - all freely available to the public.", createdDate: '27/05/2023' },
         { id: 0, name: "How to use .filter() and .includes() methods on JSON with multiple conditions (JS, React)?", desc: "My current code that does the filtering looks like:", createdDate: '27/05/2023' },
@@ -125,9 +127,9 @@ function Navbar() {
             <OverlayPanel ref={optProfile}>
                 <ul className="list-none p-0 m-0" style={{ minWidth: "190px", width: "200px" }}>
                     <li onClick={(e) => { optProfile.current.hide() }} className="p-2 border-round-sm hover:bg-gray-100 hover:font-bold cursor-pointer">
-                        <a href='#' className='block text-left text-800 no-underline'>
-                            <i className="pi pi-at pr-2 text-primary" style={{ color: '#708090' }}></i>
-                            info@gmail.com
+                        <a href='#' className='block text-left text-800 no-underline font-bold flex align-items-center'>
+                            <i className="pi pi-verified pr-2 text-green-500" style={{ color: '#708090' }}></i>
+                            {userContext?.currentUser?.userName}
                         </a>
                     </li>
                     <li onClick={(e) => { optProfile.current.hide(); navigate("/profile") }} className="p-2 border-round-sm hover:bg-gray-100 cursor-pointer">

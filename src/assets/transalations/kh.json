@@ -2,6 +2,7 @@
     "GLOBAL": {
         "WELCOME": "សូមស្វាគមន៍",
         "WELCOME_BACK": "សូមស្វាគមន៍",
+        "REGISTER": "ចុះឈ្មោះបង្កើតគណនី",
         "DASHBOARD": "ផ្ទាំងព័ត៌មាន",
         "DEVELOPER": "អ្នកអភិវឌ្ឍន៍",
         "PAGE_404": "រកមិនឃើញទំព័រ",
@@ -12,9 +13,10 @@
         "PROFILE": "គណនីខ្ញុំ",
         "SIGN_IN": "ចូលគណនី",
         "SIGN_OUT": "ចាកចេញ",
-        "ENTER_YOUR_CREDENTIALS": "បញ្ចូលព័ត៌មានសម្ងាត់របស់អ្នក",
+        "ENTER_YOUR_CREDENTIALS": "បញ្ចូលព័ត៌មានរបស់អ្នក",
         "FORGOT_PASSWORD": "ភ្លេចពាក្យសម្ងាត់?",
         "CREATE_ACCOUNT": "បង្កើតគណនី?",
+        "SIGNUP_ACCOUNT": "បង្កើតគណនី",
         "ACTIVE": "សកម្ម",
         "INACTIVE": "អសកម្ម",
         "SEARCH": "ស្វែងរក",
@@ -40,6 +42,7 @@
         "ITEM_GROUP": "ក្រុមទំនិញ",
         "MEMO": "សម្គាល់",
         "GENERAL_INFO": "ព័ត៌មានទូទៅ",
+        "STOCK": "ស្តុក",
         "STOCK_INFO": "ព័ត៌មានស្តុក",
         "USER": "អ្នកប្រើប្រាស់",
         "USER_MANAGEMENT": "គ្រប់គ្រងអ្នកប្រើប្រាស់",
@@ -49,7 +52,8 @@
         "DATABASE": "មូលទិន្នន័យ",
         "NAME": "ឈ្មោះ",
         "DESCRIPTION": "បរិយាយ",
-        "ACTION": "សកម្ម"
+        "ACTION": "សកម្ម",
+        "BRANCH": "សាខា"
     },
     "USER": {
         "USERNAME": "ឈ្មោះ ឬ អ៊ីមែល",

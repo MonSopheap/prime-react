@@ -8,17 +8,18 @@ import { AutoComplete } from "primereact/autocomplete";
 import { InputTextarea } from "primereact/inputtextarea";
 import { TabView, TabPanel } from 'primereact/tabview';
 import { Dropdown } from 'primereact/dropdown';
-import { Card } from 'primereact/card';
 
 import {
     defaultImage
 } from "../../assets/images";
-import RoleService from '../../services/RoleService';
+import { useNavigate } from 'react-router-dom';
 
 function ItemCenter() {
     const [translate] = useTranslation("global")
-    const home = { icon: 'pi pi-home', url: '/web/home' }
+    const navigate = useNavigate()
+    const home = { icon: 'pi pi-home', command: () => navigate("/home"), }
     const items = [
+        { label: translate("NAV.STOCK") },
         { label: translate("NAV.ITEM") },
     ];
     const [value, setValue] = useState('');
@@ -37,7 +38,7 @@ function ItemCenter() {
         { label: "abc2", value: "2" },
         { label: "abc3", value: "3" }
     ];
-    const roleService = new RoleService();
+
 
     const [visible, setVisible] = useState(false);
     const footerContent = (
@@ -53,17 +54,6 @@ function ItemCenter() {
     ];
 
     useEffect(() => {
-        setItemGroups(data);
-        setLoading(true)
-        roleService.getRols().then((res) => {
-            setTimeout(() => {
-                setLoading(false);
-            }, 1500);
-        }).catch((err) => {
-            setTimeout(() => {
-                setLoading(false);
-            }, 1500);
-        });
 
     }, [])
 

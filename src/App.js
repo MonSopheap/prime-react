@@ -19,43 +19,47 @@ import AuthLayout from './layouts/AuthLayout';
 import DeveloperPage from './pages/developer/DeveloperPage';
 import ProtectedRoute from './commom/ProtectedRoute';
 import BackupDatabase from './pages/tools/BackupDatabase';
-import UserManagement from './pages/users/UserManagement';
 import RolePage from './pages/roles/RolePage';
+import { UserContextProvider } from './contexts/UserContext';
+import UserCenter from './pages/users/UserCenter';
 
 
 function App() {
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<ProtectedRoute><MainLayout /></ProtectedRoute>}>
-          <Route path="home" element={<HomePage />}>
-            <Route path='developer' element={<DeveloperPage />}></Route>
-            <Route path='dashboard' element={<span>Dashboard</span>}></Route>
-            <Route path='submenu1' element={<span>Submenu 1</span>}></Route>
-            <Route path='submenu2' element={<span>Submenu 2</span>}></Route>
-            <Route path='submenu3' element={<span>Submenu 3</span>}></Route>
-            <Route path='submenu4' element={<span>Submenu 3</span>}></Route>
-            <Route path='user' element={<UserManagement />}></Route>
-            <Route path='role' element={<RolePage />}></Route>
-            <Route path='database' element={<BackupDatabase />}></Route>
+      <UserContextProvider>
+        <Routes>
+          <Route path="/" element={<ProtectedRoute><MainLayout /></ProtectedRoute>}>
+            <Route path="home" element={<HomePage />}>
+              <Route path='stock/item' element={<ItemCenter />}></Route>
+              <Route path='developer' element={<DeveloperPage />}></Route>
+              <Route path='dashboard' element={<span>Dashboard</span>}></Route>
+              <Route path='submenu1' element={<span>Submenu 1</span>}></Route>
+              <Route path='submenu2' element={<span>Submenu 2</span>}></Route>
+              <Route path='submenu3' element={<span>Submenu 3</span>}></Route>
+              <Route path='submenu4' element={<span>Submenu 3</span>}></Route>
+              <Route path='user' element={<UserCenter />}></Route>
+              <Route path='role' element={<RolePage />}></Route>
+              <Route path='database' element={<BackupDatabase />}></Route>
+              {/* 👇️ only match this when no other routes match */}
+              <Route path="*" element={<PageNotFound />} />
+            </Route>
+
+
+            <Route path='setting' element={<Settings />}></Route>
+            <Route path='profile' element={<Profile />}></Route>
+            <Route path='report/activity-log' element={<ActivityLogs />}></Route>
             {/* 👇️ only match this when no other routes match */}
             <Route path="*" element={<PageNotFound />} />
           </Route>
 
-          <Route path='item-center' element={<ItemCenter />}></Route>
-          <Route path='setting' element={<Settings />}></Route>
-          <Route path='profile' element={<Profile />}></Route>
-          <Route path='report/activity-log' element={<ActivityLogs />}></Route>
-          {/* 👇️ only match this when no other routes match */}
-          <Route path="*" element={<PageNotFound />} />
-        </Route>
-
-        <Route path="/auth" element={<AuthLayout />}>
-          <Route path='login' element={<LoginPage />}></Route>
-          <Route path="*" element={<null />} />
-        </Route>
-      </Routes>
+          <Route path="/auth" element={<AuthLayout />}>
+            <Route path='login' element={<LoginPage />}></Route>
+            <Route path="*" element={<null />} />
+          </Route>
+        </Routes>
+      </UserContextProvider>
     </BrowserRouter>
   );
 }
