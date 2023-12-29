@@ -6,8 +6,11 @@ export const UserContextProvider = ({ children }) => {
   const [currentUser, setUser] = useState({});
 
   useEffect(() => {
-    const result = JSON.parse(localStorage.getItem(AppProps.CURRENT_USER));
-    setUser(result);
+    const user = localStorage.getItem(AppProps.CURRENT_USER);
+    if (user) {
+      const result = JSON.parse(user);
+      setUser(result);
+    }
   }, []);
 
   return (
