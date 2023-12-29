@@ -7,7 +7,8 @@ export const UserContextProvider = ({ children }) => {
 
   useEffect(() => {
     const user = localStorage.getItem(AppProps.CURRENT_USER);
-    if (user) {
+    console.log(`*User`, user)
+    if (user && user.length) {
       const result = JSON.parse(user);
       setUser(result);
     }
