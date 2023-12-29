@@ -87,15 +87,15 @@ function HomePage() {
         {
             label: translate("NAV.TOOLS"),
             expanded: isExpandedMenu([
-                "/home/telegram",
+                "/home/telegram-group",
                 "/home/database",
             ]),
             items: [
                 {
                     label: translate("Telegram"),
                     icon: 'pi pi-fw pi-telegram',
-                    command: () => { navigate('/home/telegram') },
-                    className: isActiveClass("/home/telegram"),
+                    command: () => { navigate('/home/telegram-group') },
+                    className: isActiveClass("/home/telegram-group"),
                 },
                 {
                     icon: 'pi pi-fw pi-database',

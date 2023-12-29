@@ -72,7 +72,7 @@ function LoginPage() {
                                 </div>
                                 <div className='flex flex-row justify-content-between align-items-center mt-2 mb-4'>
                                     <a href='#' onClick={() => navigate("/")} className='p-0 no-underline focus:text-primary-500'>{translate("GLOBAL.FORGOT_PASSWORD")}</a>
-                                    <a href='#' onClick={() => navigate("/auth/register")} className='p-0 text-600 focus:text-primary-500'>{translate("GLOBAL.CREATE_ACCOUNT")} </a>
+                                    <a href='https://t.me/SopheapZz' target="_blank" className='p-0 text-600 focus:text-primary-500'>{translate("GLOBAL.CREATE_ACCOUNT")} </a>
                                 </div>
                                 <Button type="submit" className='w-full mb-2' label={translate("GLOBAL.SIGN_IN")} icon="pi pi-sign-in" loading={loading} />
                                 <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>

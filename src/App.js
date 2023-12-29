@@ -22,6 +22,7 @@ import BackupDatabase from './pages/tools/BackupDatabase';
 import RolePage from './pages/roles/RolePage';
 import { UserContextProvider } from './contexts/UserContext';
 import UserCenter from './pages/users/UserCenter';
+import TelegramGroup from './pages/tools/TelegramGroup';
 
 
 function App() {
@@ -42,10 +43,9 @@ function App() {
               <Route path='user' element={<UserCenter />}></Route>
               <Route path='role' element={<RolePage />}></Route>
               <Route path='database' element={<BackupDatabase />}></Route>
-              {/* 👇️ only match this when no other routes match */}
+              <Route path='telegram-group' element={<TelegramGroup />}></Route>
               <Route path="*" element={<PageNotFound />} />
             </Route>
-
 
             <Route path='setting' element={<Settings />}></Route>
             <Route path='profile' element={<Profile />}></Route>

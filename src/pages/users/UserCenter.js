@@ -12,6 +12,7 @@ import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import { Dialog } from 'primereact/dialog';
 import { Checkbox } from 'primereact/checkbox';
 import { Toast } from 'primereact/toast';
+import { AppProps } from '../../commom/AppProps';
 
 function UserCenter() {
   const [translate] = useTranslation("global");
@@ -69,18 +70,28 @@ function UserCenter() {
     });
   }
 
-  const handleDelete = (item) => {
-    confirmDialog({
-      message: translate("MSG.DO_YOU_WANT_TO_DELETE") + ` (${item?.userName})`,
-      header: translate("MSG.DELETE_CONFIRMATION"),
-      icon: 'pi pi-info-circle',
-      acceptClassName: 'p-button-danger',
-      style: { minWidth: '25rem', maxWidth: '25rem' },
-      draggable: false,
-      rejectLabel: translate("NAV.NO"),
-      acceptLabel: translate("NAV.YES"),
-      accept: () => deleteUser(item),
-    });
+  const handleDelete = (user) => {
+    const __currentUser = localStorage.getItem(AppProps.CURRENT_USER);
+    if (__currentUser) {
+      const obj = JSON.parse(__currentUser);
+
+      if (obj.id === user.id) {
+        toast.current.show({ severity: 'warn', summary: translate("MSG.INFORMATION"), detail: translate("MSG.CAN_NOT_DELETE_CURRENT_USER"), life: 3000 });
+      }
+      else {
+        confirmDialog({
+          message: translate("MSG.DO_YOU_WANT_TO_DELETE") + ` (${user?.userName})`,
+          header: translate("MSG.DELETE_CONFIRMATION"),
+          icon: 'pi pi-info-circle',
+          acceptClassName: 'p-button-danger',
+          style: { minWidth: '25rem', maxWidth: '25rem' },
+          draggable: false,
+          rejectLabel: translate("NAV.NO"),
+          acceptLabel: translate("NAV.YES"),
+          accept: () => deleteUser(user),
+        });
+      }
+    }
   }
 
   const handleChange = (e) => {

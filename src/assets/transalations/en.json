@@ -37,6 +37,7 @@
         "OK": "Ok",
         "CANCEL": "Cancel",
         "SAVE": "Save",
+        "SEND": "Send",
         "ADD_ITEM": "Add Item",
         "EDIT_ITEM": "Edit Item",
         "ITEM_GROUP": "Item Group",
@@ -53,7 +54,11 @@
         "NAME": "Name",
         "DESCRIPTION": "Description",
         "ACTION": "Action",
-        "BRANCH": "Branch"
+        "BRANCH": "Branch",
+        "TELEGRAM": "Telegram",
+        "TELEGRAM_GROUP": "Telegram Group",
+        "ACTIVE": "Active",
+        "INACTIVE": "Inactive"
     },
     "USER": {
         "USERNAME": "Username or Email",
@@ -86,6 +91,11 @@
         "LOCAL_NAME": "Local Name",
         "UNITSET_NAME": "UnitSet Name"
     },
+    "TELEGRAM": {
+        "GROUP_NAME": "Group Name",
+        "API_KEY": "API Key",
+        "CHAT_ID": "Chat ID"
+    },
     "MSG": {
         "INFORMATION": "Information",
         "WARNING": "Warning",
@@ -96,7 +106,8 @@
         "ENTER_YOUR_PASSWORD": "Enter your password",
         "DO_YOU_WANT_TO_DELETE": "Do you want to delete this record?",
         "BACKUP_YOUR_DATABASE": "Backup your database",
-        "DELETED_SUCCESSFULLY": "Deleted successfully"
+        "DELETED_SUCCESSFULLY": "Deleted successfully",
+        "CAN_NOT_DELETE_CURRENT_USER": "You cannot delete current user."
     },
     "ERROR": {
         "INVALID_USER": "Invalid Username or Password"

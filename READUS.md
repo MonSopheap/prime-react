@@ -27,3 +27,6 @@
 
 # HELPER
 > https://morioh.com/a/e55ac8e91cf4/helper-functions-in-react-a-comprehensive-guide
+
+# SEARCH QUERY
+> https://primereact.org/autocomplete/#forceselection

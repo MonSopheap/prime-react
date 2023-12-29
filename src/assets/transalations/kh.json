@@ -37,6 +37,7 @@
         "OK": "យល់ព្រម",
         "CANCEL": "បិទ",
         "SAVE": "រក្សាទុក",
+        "SEND": "ផ្ញើ",
         "ADD_ITEM": "បន្ថែមទំនិញ",
         "EDIT_ITEM": "កែប្រែទំនិញ",
         "ITEM_GROUP": "ក្រុមទំនិញ",
@@ -53,7 +54,11 @@
         "NAME": "ឈ្មោះ",
         "DESCRIPTION": "បរិយាយ",
         "ACTION": "សកម្ម",
-        "BRANCH": "សាខា"
+        "BRANCH": "សាខា",
+        "TELEGRAM": "តេលេក្រាម (Telegram)",
+        "TELEGRAM_GROUP": "ក្រុម (Telegram)",
+        "ACTIVE": "សកម្ម",
+        "INACTIVE": "អសកម្ម"
     },
     "USER": {
         "USERNAME": "ឈ្មោះ ឬ អ៊ីមែល",
@@ -86,6 +91,11 @@
         "LOCAL_NAME": "ឈ្មោះ (ភាសាខ្មែរ)",
         "UNITSET_NAME": "ឈ្មោះខ្នាត"
     },
+    "TELEGRAM": {
+        "GROUP_NAME": "ឈ្មោះក្រុម (Telegram)",
+        "API_KEY": "API Key",
+        "CHAT_ID": "Chat ID"
+    },
     "MSG": {
         "INFORMATION": "ព័ត៌មាន",
         "WARNING": "ការព្រមាន",
@@ -96,7 +106,8 @@
         "ENTER_YOUR_PASSWORD": "សូមបញ្ចូលពាក្យសម្ងាត់",
         "DO_YOU_WANT_TO_DELETE": "តើអ្នកចង់លុបទិន្នន័យនេះមែនទេ?",
         "BACKUP_YOUR_DATABASE": "បម្រុងទុកមូលដ្ឋានទិន្នន័យរបស់អ្នក។",
-        "DELETED_SUCCESSFULLY": "លុបទិន្នន័យបានដោយជោគជ័យ"
+        "DELETED_SUCCESSFULLY": "លុបទិន្នន័យបានដោយជោគជ័យ",
+        "CAN_NOT_DELETE_CURRENT_USER": "អ្នកមិនអាចលុប (User) ដែលកំពុងប្រើប្រាស់បានទេ។"
     },
     "ERROR": {
         "INVALID_USER": "ឈ្មោះអ្នកប្រើ ឬពាក្យសម្ងាត់មិនត្រឹមត្រូវ"
