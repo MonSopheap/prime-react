@@ -9,7 +9,7 @@ export const UserContextProvider = ({ children }) => {
     const user = localStorage.getItem(AppProps.CURRENT_USER);
     console.log(`*User`, user)
     if (user && user.length) {
-      const result = JSON.parse(user);
+      const result = JSON.stringify(user);
       setUser(result);
     }
   }, []);
