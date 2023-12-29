@@ -9,7 +9,6 @@ import { AppProps } from '../../commom/AppProps';
 import UserService from '../../services/UserService';
 import AnimationWrapper from '../../commom/PageAnimation';
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
-import GoogleOAuth2Service from '../../services/GoogleOAuth2';
 
 function LoginPage() {
     const [translate] = useTranslation("global");
@@ -19,7 +18,6 @@ function LoginPage() {
     const toastMsgRef = useRef(null);
     const navigate = useNavigate();
     const userService = new UserService();
-    const googleOAuth2Service = new GoogleOAuth2Service();
     const GOOGLE_CLIENT_ID = '329476046362-vda1m53o4u9efrn6uuk6pos9hvnfrmog.apps.googleusercontent.com';
 
 
@@ -43,19 +41,6 @@ function LoginPage() {
             setLoading(false);
         });
     }
-
-    // const sigInWithGoogle = async (event) => {
-    //     event.preventDefault();
-    //     setLoading(true);
-    //     await googleOAuth2Service.signIn().then((res) => {
-    //         console.log(`RESULT:`, res)
-    //         setLoading(false);
-    //         // navigate("/home")
-    //     }).catch((err) => {
-    //         console.log(`ERROR: ${err}`)
-    //         setLoading(false);
-    //     });
-    // };
 
     return (
 
